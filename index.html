@@ -1,0 +1,1385 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loris Parfum Leiden | Exclusieve Parfumerie</title>
+<meta name="description" content="Loris Parfum Leiden - Uw exclusieve parfumerie aan de Haarlemmerstraat in Leiden. Ontdek onze collectie luxe geuren.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #c9a44c;
+    --gold-light: #e2cb8c;
+    --black: #0a0a0a;
+    --black-soft: #141414;
+    --white: #ffffff;
+    --off-white: #f7f5f0;
+    --grey: #8a8a8a;
+  }
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--off-white);
+    color: var(--black);
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    letter-spacing: 1px;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  ul {
+    list-style: none;
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px;
+  }
+
+  /* ===== Scroll reveal ===== */
+  .reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 1s ease, transform 1s ease;
+  }
+  .reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ===== Header / Navigation ===== */
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    transition: background 0.4s ease, padding 0.4s ease, box-shadow 0.4s ease;
+    padding: 28px 0;
+    background: transparent;
+  }
+
+  header.scrolled {
+    background: rgba(10, 10, 10, 0.92);
+    backdrop-filter: blur(8px);
+    padding: 14px 0;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+  }
+
+  nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+  }
+
+  .logo span {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 6px;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 42px;
+  }
+
+  .nav-links a {
+    color: var(--white);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    position: relative;
+    padding-bottom: 6px;
+    transition: color 0.3s ease;
+  }
+
+  .nav-links a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 1px;
+    background: var(--gold);
+    transition: width 0.35s ease;
+  }
+
+  .nav-links a:hover {
+    color: var(--gold-light);
+  }
+
+  .nav-links a:hover::after {
+    width: 100%;
+  }
+
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    z-index: 1100;
+  }
+
+  .nav-toggle span {
+    display: block;
+    width: 28px;
+    height: 2px;
+    background: var(--white);
+    transition: all 0.3s ease;
+  }
+
+  /* ===== Hero Section ===== */
+  .hero {
+    height: 100vh;
+    min-height: 640px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background:
+      linear-gradient(180deg, rgba(10,10,10,0.55) 0%, rgba(10,10,10,0.65) 50%, rgba(10,10,10,0.85) 100%),
+      url('images/IMG_7039.jpg') center/cover no-repeat;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, transparent 30%, rgba(10,10,10,0.6) 100%);
+    pointer-events: none;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    color: var(--white);
+    padding: 0 24px;
+    max-width: 800px;
+  }
+
+  .hero-eyebrow {
+    display: inline-block;
+    font-size: 13px;
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    margin-bottom: 24px;
+    font-weight: 500;
+    opacity: 0;
+    animation: fadeUp 1.2s ease forwards 0.3s;
+  }
+
+  .hero h1 {
+    font-size: clamp(40px, 7vw, 84px);
+    line-height: 1.15;
+    font-weight: 700;
+    margin-bottom: 24px;
+    opacity: 0;
+    animation: fadeUp 1.2s ease forwards 0.6s;
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero p {
+    font-size: clamp(15px, 2vw, 19px);
+    font-weight: 300;
+    letter-spacing: 1px;
+    color: var(--off-white);
+    margin-bottom: 40px;
+    opacity: 0;
+    animation: fadeUp 1.2s ease forwards 0.9s;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeUp 1.2s ease forwards 1.2s;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 16px 40px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    border: 1px solid var(--gold);
+    transition: all 0.4s ease;
+    cursor: pointer;
+  }
+
+  .btn-primary {
+    background: var(--gold);
+    color: var(--black);
+  }
+
+  .btn-primary:hover {
+    background: transparent;
+    color: var(--gold-light);
+    border-color: var(--gold-light);
+  }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--white);
+    border: 1px solid rgba(255,255,255,0.5);
+  }
+
+  .btn-outline:hover {
+    border-color: var(--gold);
+    color: var(--gold-light);
+  }
+
+  .scroll-indicator {
+    position: absolute;
+    bottom: 36px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--gold-light);
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .scroll-indicator::after {
+    content: '';
+    width: 1px;
+    height: 50px;
+    background: linear-gradient(var(--gold), transparent);
+    animation: scrollLine 2s ease infinite;
+  }
+
+  @keyframes scrollLine {
+    0% { transform: scaleY(0); transform-origin: top; }
+    50% { transform: scaleY(1); transform-origin: top; }
+    51% { transform: scaleY(1); transform-origin: bottom; }
+    100% { transform: scaleY(0); transform-origin: bottom; }
+  }
+
+  /* ===== Collections Section ===== */
+  .collections {
+    background: var(--black);
+    color: var(--white);
+  }
+
+  .collections .section-eyebrow {
+    color: var(--gold-light);
+  }
+
+  .collections .section-header h2 {
+    color: var(--white);
+  }
+
+  .collections .section-header p {
+    color: #b8b8b8;
+  }
+
+  .collections-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+
+  .collection-card {
+    position: relative;
+    display: block;
+    height: 480px;
+    overflow: hidden;
+    border: 1px solid rgba(201, 164, 76, 0.25);
+    background-color: var(--black-soft);
+    transition: border-color 0.4s ease;
+  }
+
+  .collection-card:hover {
+    border-color: var(--gold);
+  }
+
+  .collection-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.8s ease, filter 0.8s ease;
+    filter: grayscale(35%) brightness(0.6);
+  }
+
+  .collection-card:hover .collection-bg {
+    transform: scale(1.08);
+    filter: grayscale(0%) brightness(0.5);
+  }
+
+  .collection-overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 40px;
+    background: linear-gradient(180deg, transparent 35%, rgba(0,0,0,0.9) 100%);
+  }
+
+  .collection-overlay .tag {
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+
+  .collection-overlay h3 {
+    color: var(--white);
+    font-size: 30px;
+    margin-bottom: 18px;
+  }
+
+  .collection-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--gold-light);
+    font-size: 12px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .collection-link svg {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s ease;
+  }
+
+  .collection-card:hover .collection-link svg {
+    transform: translateX(6px);
+  }
+
+  @media (max-width: 900px) {
+    .collections-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .collection-card {
+      height: 380px;
+    }
+  }
+
+  /* ===== Section Generic ===== */
+  section {
+    padding: 120px 0;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 70px;
+  }
+
+  .section-eyebrow {
+    display: block;
+    font-size: 12px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+
+  .section-header h2 {
+    font-size: clamp(32px, 5vw, 50px);
+    color: var(--black);
+    margin-bottom: 20px;
+  }
+
+  .divider {
+    width: 70px;
+    height: 2px;
+    background: var(--gold);
+    margin: 0 auto;
+  }
+
+  .section-header p {
+    max-width: 620px;
+    margin: 24px auto 0;
+    color: var(--grey);
+    font-weight: 300;
+    font-size: 16px;
+  }
+
+  /* ===== About Section ===== */
+  .about {
+    background: var(--off-white);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+  }
+
+  .about-image {
+    position: relative;
+    height: 540px;
+    border: 1px solid var(--gold);
+    padding: 24px;
+  }
+
+  .about-image::before {
+    content: '';
+    position: absolute;
+    top: -24px;
+    left: -24px;
+    width: 100%;
+    height: 100%;
+    border: 1px solid var(--gold);
+    z-index: 0;
+  }
+
+  .about-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: relative;
+    z-index: 1;
+  }
+
+  .about-text h2 {
+    font-size: clamp(30px, 4.5vw, 46px);
+    margin-bottom: 24px;
+    line-height: 1.25;
+  }
+
+  .about-text h2 em {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  .about-text p {
+    color: #555;
+    font-weight: 300;
+    margin-bottom: 22px;
+    font-size: 16px;
+  }
+
+  .about-features {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 36px;
+  }
+
+  .about-feature {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .about-feature .icon {
+    flex-shrink: 0;
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+  }
+
+  .about-feature h4 {
+    font-size: 15px;
+    margin-bottom: 4px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .about-feature p {
+    font-size: 13px;
+    color: var(--grey);
+    margin: 0;
+  }
+
+  /* ===== Hours Section ===== */
+  .hours {
+    background: var(--black);
+    color: var(--white);
+    position: relative;
+    background-image:
+      linear-gradient(rgba(10,10,10,0.93), rgba(10,10,10,0.93)),
+      url('images/IMG_7039.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+
+  .hours .section-eyebrow {
+    color: var(--gold-light);
+  }
+
+  .hours .section-header h2 {
+    color: var(--white);
+  }
+
+  .hours .section-header p {
+    color: #b8b8b8;
+  }
+
+  .hours-table {
+    max-width: 640px;
+    margin: 0 auto;
+    border: 1px solid rgba(201, 164, 76, 0.3);
+  }
+
+  .hours-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 22px 40px;
+    border-bottom: 1px solid rgba(201, 164, 76, 0.18);
+    font-size: 16px;
+    letter-spacing: 1px;
+    transition: background 0.3s ease;
+  }
+
+  .hours-row:last-child {
+    border-bottom: none;
+  }
+
+  .hours-row:hover {
+    background: rgba(201, 164, 76, 0.06);
+  }
+
+  .hours-row .day {
+    font-family: 'Playfair Display', serif;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+  }
+
+  .hours-row .time {
+    color: var(--gold-light);
+    font-weight: 300;
+  }
+
+  .hours-row.today .day,
+  .hours-row.today .time {
+    color: var(--gold);
+    font-weight: 600;
+  }
+
+  .hours-note {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 13px;
+    color: var(--grey);
+    letter-spacing: 1px;
+  }
+
+  /* ===== Location Section ===== */
+  .location {
+    background: var(--off-white);
+  }
+
+  .location-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 60px;
+    align-items: stretch;
+  }
+
+  .location-info {
+    background: var(--white);
+    border: 1px solid #e6e0d2;
+    padding: 50px 44px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .location-info h3 {
+    font-size: 26px;
+    margin-bottom: 28px;
+    position: relative;
+    padding-bottom: 18px;
+  }
+
+  .location-info h3::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 50px;
+    height: 2px;
+    background: var(--gold);
+  }
+
+  .info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 18px;
+    margin-bottom: 28px;
+  }
+
+  .info-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .info-item .icon {
+    flex-shrink: 0;
+    width: 46px;
+    height: 46px;
+    background: var(--black);
+    color: var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .info-item h4 {
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 6px;
+    color: var(--black);
+  }
+
+  .info-item p, .info-item a {
+    font-size: 15px;
+    color: #666;
+    font-weight: 300;
+  }
+
+  .info-item a:hover {
+    color: var(--gold);
+  }
+
+  .map-wrapper {
+    border: 1px solid #e6e0d2;
+    overflow: hidden;
+    min-height: 420px;
+    filter: grayscale(40%) contrast(1.05);
+  }
+
+  .map-wrapper iframe {
+    width: 100%;
+    height: 100%;
+    min-height: 420px;
+    border: 0;
+    display: block;
+  }
+
+  /* ===== Contact Section ===== */
+  .contact {
+    background: var(--black);
+    color: var(--white);
+    text-align: center;
+  }
+
+  .contact .section-eyebrow {
+    color: var(--gold-light);
+  }
+
+  .contact .section-header h2 {
+    color: var(--white);
+  }
+
+  .contact .section-header p {
+    color: #b8b8b8;
+  }
+
+  .contact-card {
+    max-width: 520px;
+    margin: 0 auto;
+    border: 1px solid var(--gold);
+    padding: 60px 50px;
+    position: relative;
+  }
+
+  .contact-card::before,
+  .contact-card::after {
+    content: '';
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border: 1px solid var(--gold);
+  }
+
+  .contact-card::before {
+    top: -10px;
+    left: -10px;
+    border-right: none;
+    border-bottom: none;
+  }
+
+  .contact-card::after {
+    bottom: -10px;
+    right: -10px;
+    border-left: none;
+    border-top: none;
+  }
+
+  .contact-phone-icon {
+    width: 64px;
+    height: 64px;
+    border: 1px solid var(--gold);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 28px;
+    color: var(--gold);
+  }
+
+  .contact-card h3 {
+    font-size: 24px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+  }
+
+  .contact-card .phone-number {
+    display: inline-block;
+    font-family: 'Playfair Display', serif;
+    font-size: 38px;
+    color: var(--gold);
+    margin: 18px 0 28px;
+    letter-spacing: 2px;
+    transition: color 0.3s ease;
+  }
+
+  .contact-card .phone-number:hover {
+    color: var(--gold-light);
+  }
+
+  .contact-card p {
+    color: #aaa;
+    font-weight: 300;
+    font-size: 14px;
+    margin-bottom: 30px;
+  }
+
+  /* ===== Footer ===== */
+  footer {
+    background: #060606;
+    color: #999;
+    padding: 70px 0 0;
+  }
+
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 60px;
+    padding-bottom: 60px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .footer-brand .logo {
+    color: var(--white);
+    margin-bottom: 18px;
+  }
+
+  .footer-brand p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.8;
+    max-width: 320px;
+  }
+
+  .footer-col h4 {
+    color: var(--white);
+    font-size: 15px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 24px;
+  }
+
+  .footer-col ul li {
+    margin-bottom: 12px;
+    font-size: 14px;
+    font-weight: 300;
+  }
+
+  .footer-col ul li a {
+    transition: color 0.3s ease;
+  }
+
+  .footer-col ul li a:hover {
+    color: var(--gold);
+  }
+
+  .footer-bottom {
+    text-align: center;
+    padding: 28px 0;
+    font-size: 13px;
+    font-weight: 300;
+    letter-spacing: 1px;
+  }
+
+  .footer-bottom span {
+    color: var(--gold);
+  }
+
+  /* ===== WhatsApp Floating Button ===== */
+  .whatsapp-float {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 1200;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #25D366;
+    color: #fff;
+    padding: 15px 26px 15px 18px;
+    border-radius: 50px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  }
+
+  .whatsapp-float::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50px;
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.55);
+    animation: whatsappPulse 2.4s ease-out infinite;
+    pointer-events: none;
+  }
+
+  .whatsapp-float:hover {
+    background: #1ebe57;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+  }
+
+  .whatsapp-float svg {
+    width: 26px;
+    height: 26px;
+    fill: #fff;
+    flex-shrink: 0;
+  }
+
+  @keyframes whatsappPulse {
+    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.55); }
+    70% { box-shadow: 0 0 0 16px rgba(37, 211, 102, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+  }
+
+  @media (max-width: 480px) {
+    .whatsapp-float {
+      bottom: 20px;
+      right: 20px;
+      padding: 14px;
+      font-size: 0;
+      gap: 0;
+    }
+
+    .whatsapp-float svg {
+      width: 28px;
+      height: 28px;
+    }
+  }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 900px) {
+    .about-grid,
+    .location-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .about-image {
+      height: 400px;
+      margin-top: 24px;
+    }
+
+    .about-image::before {
+      display: none;
+    }
+
+    .footer-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .container {
+      padding: 0 24px;
+    }
+
+    .nav-links {
+      position: fixed;
+      top: 0;
+      right: -100%;
+      height: 100vh;
+      width: 70%;
+      max-width: 320px;
+      background: var(--black);
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 36px;
+      padding: 0 50px;
+      transition: right 0.45s ease;
+      box-shadow: -10px 0 30px rgba(0,0,0,0.4);
+    }
+
+    .nav-links.open {
+      right: 0;
+    }
+
+    .nav-toggle {
+      display: flex;
+    }
+
+    .nav-toggle.active span:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+
+    .nav-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .nav-toggle.active span:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
+    }
+
+    section {
+      padding: 80px 0;
+    }
+
+    .hours-row {
+      padding: 18px 24px;
+      font-size: 14px;
+    }
+
+    .about-features {
+      grid-template-columns: 1fr;
+    }
+
+    .contact-card {
+      padding: 44px 26px;
+    }
+
+    .contact-card .phone-number {
+      font-size: 28px;
+    }
+
+    .location-info {
+      padding: 36px 28px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== Header / Navigation ===== -->
+<header id="header">
+  <div class="container">
+    <nav>
+      <a href="#home" class="logo">Loris Parfum<span>Leiden</span></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#collecties">Onze Producten</a></li>
+        <li><a href="#over-ons">Over Ons</a></li>
+        <li><a href="#openingstijden">Openingstijden</a></li>
+        <li><a href="#locatie">Locatie</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Menu openen">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<!-- ===== Hero ===== -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <span class="hero-eyebrow">Exclusieve Parfumerie &mdash; Leiden</span>
+    <h1>De geur die <em>jouw</em> verhaal vertelt</h1>
+    <p>Ontdek een zorgvuldig samengestelde collectie van tijdloze en eigentijdse parfums in het hart van Leiden.</p>
+    <div class="hero-buttons">
+      <a href="#over-ons" class="btn btn-primary">Ontdek Onze Collectie</a>
+      <a href="#locatie" class="btn btn-outline">Bezoek Onze Winkel</a>
+    </div>
+  </div>
+  <div class="scroll-indicator">Scroll</div>
+</section>
+
+<!-- ===== Collecties ===== -->
+<section class="collections" id="collecties">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">Onze Collecties</span>
+      <h2>Ontdek Onze Werelden</h2>
+      <div class="divider"></div>
+      <p>Van exclusieve parfums tot luxe huisgeuren en verzorgende bodycare &mdash; ontdek de collectie die bij u past.</p>
+    </div>
+    <div class="collections-grid reveal">
+      <a href="parfum.html" class="collection-card">
+        <div class="collection-bg" style="background-image: url('images/IMG_7031.jpg');"></div>
+        <div class="collection-overlay">
+          <span class="tag">Collectie</span>
+          <h3>Parfum Collecties</h3>
+          <span class="collection-link">
+            Bekijk Collectie
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </div>
+      </a>
+      <a href="huisgeuren.html" class="collection-card">
+        <div class="collection-bg" style="background-image: url('images/IMG_7059.jpg');"></div>
+        <div class="collection-overlay">
+          <span class="tag">Collectie</span>
+          <h3>Huisgeuren</h3>
+          <span class="collection-link">
+            Bekijk Collectie
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </div>
+      </a>
+      <a href="bodycare.html" class="collection-card">
+        <div class="collection-bg" style="background-image: url('images/IMG_7035.WEBP');"></div>
+        <div class="collection-overlay">
+          <span class="tag">Collectie</span>
+          <h3>Bodycare</h3>
+          <span class="collection-link">
+            Bekijk Collectie
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Over Ons ===== -->
+<section class="about" id="over-ons">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text reveal">
+        <span class="section-eyebrow">Onze Passie</span>
+        <h2>Welkom bij <em>Loris Parfum</em> Leiden</h2>
+        <p>Bij Loris Parfum Leiden geloven wij dat een geur veel meer is dan een product &mdash; het is een uitdrukking van persoonlijkheid, een herinnering en een statement. Sinds onze opening aan de Haarlemmerstraat zetten wij ons in om de mooiste en meest exclusieve parfums onder één dak te brengen.</p>
+        <p>Onze collectie bestaat uit zorgvuldig geselecteerde geuren van bekende merken tot verfijnde niche-parfums, voor dames en heren die houden van kwaliteit en raffinement. Ons team staat voor u klaar met persoonlijk en deskundig advies, zodat u altijd de geur vindt die perfect bij u past.</p>
+        <div class="about-features">
+          <div class="about-feature">
+            <div class="icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 2C8 6 6 9 6 13a6 6 0 0012 0c0-4-2-7-6-11z"/></svg>
+            </div>
+            <div>
+              <h4>Exclusieve Merken</h4>
+              <p>Een verfijnde selectie van topmerken en niche-parfums.</p>
+            </div>
+          </div>
+          <div class="about-feature">
+            <div class="icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+            </div>
+            <div>
+              <h4>Persoonlijk Advies</h4>
+              <p>Deskundig advies, afgestemd op uw smaak en stijl.</p>
+            </div>
+          </div>
+          <div class="about-feature">
+            <div class="icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 7l9-4 9 4-9 4-9-4z"/><path d="M3 12l9 4 9-4"/><path d="M3 17l9 4 9-4"/></svg>
+            </div>
+            <div>
+              <h4>Topkwaliteit</h4>
+              <p>100% authentieke producten van de hoogste kwaliteit.</p>
+            </div>
+          </div>
+          <div class="about-feature">
+            <div class="icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 3v18"/></svg>
+            </div>
+            <div>
+              <h4>Centraal Gelegen</h4>
+              <p>Gevestigd in het bruisende centrum van Leiden.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="about-image reveal">
+        <img src="images/IMG_7039.jpg" alt="Luxe parfumflesjes uitgestald in de winkel">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Openingstijden ===== -->
+<section class="hours" id="openingstijden">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">Wij Staan Voor U Klaar</span>
+      <h2>Openingstijden</h2>
+      <div class="divider"></div>
+      <p>Bezoek onze winkel aan de Haarlemmerstraat en laat u verrassen door onze collectie.</p>
+    </div>
+    <div class="hours-table reveal">
+      <div class="hours-row" data-day="0">
+        <span class="day">Zondag</span>
+        <span class="time">12:00 &ndash; 18:00</span>
+      </div>
+      <div class="hours-row" data-day="1">
+        <span class="day">Maandag</span>
+        <span class="time">12:00 &ndash; 18:00</span>
+      </div>
+      <div class="hours-row" data-day="2">
+        <span class="day">Dinsdag</span>
+        <span class="time">11:00 &ndash; 18:00</span>
+      </div>
+      <div class="hours-row" data-day="3">
+        <span class="day">Woensdag</span>
+        <span class="time">11:00 &ndash; 18:00</span>
+      </div>
+      <div class="hours-row" data-day="4">
+        <span class="day">Donderdag</span>
+        <span class="time">11:00 &ndash; 21:00</span>
+      </div>
+      <div class="hours-row" data-day="5">
+        <span class="day">Vrijdag</span>
+        <span class="time">11:00 &ndash; 18:00</span>
+      </div>
+      <div class="hours-row" data-day="6">
+        <span class="day">Zaterdag</span>
+        <span class="time">11:00 &ndash; 18:00</span>
+      </div>
+    </div>
+    <p class="hours-note reveal">Op donderdag genieten van koopavond tot 21:00 uur</p>
+  </div>
+</section>
+
+<!-- ===== Locatie ===== -->
+<section class="location" id="locatie">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">Bezoek Onze Winkel</span>
+      <h2>Onze Locatie</h2>
+      <div class="divider"></div>
+      <p>Te vinden in het historische centrum van Leiden, eenvoudig bereikbaar te voet, per fiets of met de auto.</p>
+    </div>
+    <div class="location-grid reveal">
+      <div class="location-info">
+        <h3>Loris Parfum Leiden</h3>
+        <div class="info-item">
+          <div class="icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 21s-7-5.5-7-11a7 7 0 0114 0c0 5.5-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg>
+          </div>
+          <div>
+            <h4>Adres</h4>
+            <p>Haarlemmerstraat 168<br>2312 GG Leiden</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          </div>
+          <div>
+            <h4>Bereikbaarheid</h4>
+            <p>Centraal gelegen winkelstraat in het centrum van Leiden, op loopafstand van het centraal station.</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          </div>
+          <div>
+            <h4>Telefoon</h4>
+            <a href="tel:0639135752">06 39135752</a>
+          </div>
+        </div>
+      </div>
+      <div class="map-wrapper">
+        <iframe
+          src="https://www.google.com/maps?q=Haarlemmerstraat+168,+2312+GG+Leiden&output=embed"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          title="Locatie Loris Parfum Leiden">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Contact ===== -->
+<section class="contact" id="contact">
+  <div class="container">
+    <div class="section-header reveal">
+      <span class="section-eyebrow">Neem Contact Op</span>
+      <h2>Contact</h2>
+      <div class="divider"></div>
+      <p>Heeft u vragen of wilt u advies over onze parfums? Neem gerust contact met ons op.</p>
+    </div>
+    <div class="contact-card reveal">
+      <div class="contact-phone-icon">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.362 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+      </div>
+      <h3>Bel Ons Direct</h3>
+      <p>Wij staan klaar om al uw vragen te beantwoorden</p>
+      <a href="tel:0639135752" class="phone-number">06 39135752</a>
+      <div>
+        <a href="tel:0639135752" class="btn btn-primary">Bel Nu</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Footer ===== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="#home" class="logo">Loris Parfum<span>Leiden</span></a>
+        <p>Uw exclusieve parfumerie in het hart van Leiden. Ontdek tijdloze en eigentijdse geuren van de mooiste merken, met persoonlijk advies van ons team.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigatie</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#over-ons">Over Ons</a></li>
+          <li><a href="#openingstijden">Openingstijden</a></li>
+          <li><a href="#locatie">Locatie</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li>Haarlemmerstraat 168</li>
+          <li>2312 GG Leiden</li>
+          <li><a href="tel:0639135752">06 39135752</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; <span id="year"></span> <span>Loris Parfum Leiden</span>. Alle rechten voorbehouden.
+    </div>
+  </div>
+</footer>
+
+<!-- ===== WhatsApp Floating Button ===== -->
+<a href="https://wa.me/31639135752" class="whatsapp-float" target="_blank" rel="noopener noreferrer" aria-label="App ons via WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+    <path d="M12.04 0C5.396 0 0 5.396 0 12.04c0 2.124.553 4.198 1.604 6.034L0 24l6.082-1.594a11.96 11.96 0 005.958 1.518h.005c6.643 0 12.039-5.396 12.039-12.04C24.084 5.396 18.683.005 12.04 0zm0 21.97a9.93 9.93 0 01-5.066-1.392l-.363-.215-3.601.945.96-3.508-.236-.36a9.93 9.93 0 01-1.524-5.31c0-5.488 4.469-9.957 9.962-9.957 2.66 0 5.158 1.037 7.038 2.918a9.892 9.892 0 012.913 7.044c-.003 5.493-4.471 9.962-9.953 9.962z"/>
+  </svg>
+  <span>App ons</span>
+</a>
+
+<script>
+  // Header scroll effect
+  const header = document.getElementById('header');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 60);
+  });
+
+  // Mobile nav toggle
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    navToggle.classList.toggle('active');
+    navLinks.classList.toggle('open');
+  });
+  navLinks.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      navToggle.classList.remove('active');
+      navLinks.classList.remove('open');
+    });
+  });
+
+  // Scroll reveal animation
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  reveals.forEach(el => observer.observe(el));
+
+  // Highlight current day in opening hours
+  const today = new Date().getDay(); // 0 = Sunday ... 6 = Saturday
+  const todayRow = document.querySelector('.hours-row[data-day="' + today + '"]');
+  if (todayRow) todayRow.classList.add('today');
+
+  // Footer year
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>
