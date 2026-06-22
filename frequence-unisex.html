@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Frequence Unisex — Loris Parfum Leiden</title>
-<meta name="description" content="Ontdek de volledige Frequence Unisex collectie van Loris Parfum Leiden. Zoek op nummer of geurnoot.">
+<meta name="description" content="Ontdek de volledige Frequence Unisex collectie van Loris Parfum Leiden. Klik op een product voor meer informatie.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -62,7 +62,7 @@
   }
   nav a:hover { color: var(--gold); }
   .page-header {
-    padding: 160px 40px 50px;
+    padding: 160px 40px 60px;
     text-align: center;
     background: linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%);
     color: var(--white);
@@ -95,126 +95,71 @@
     margin: 0 auto;
   }
 
-  /* ===== Search ===== */
-  .search-section {
-    background: #0a0a0a;
-    padding: 0 40px 50px;
-    text-align: center;
-  }
-  .search-wrap {
-    max-width: 480px;
-    margin: 0 auto;
-    position: relative;
-  }
-  .search-wrap svg {
-    position: absolute;
-    left: 18px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 18px;
-    height: 18px;
-    stroke: var(--gray);
-    pointer-events: none;
-  }
-  .search-wrap input {
-    width: 100%;
-    background: var(--white);
-    border: 1px solid transparent;
-    padding: 16px 20px 16px 48px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 14px;
-    letter-spacing: 0.5px;
-    color: var(--black);
-    transition: box-shadow 0.3s;
-  }
-  .search-wrap input:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px var(--gold);
-  }
-  .search-wrap input::placeholder { color: var(--gray); }
-  .result-count {
-    margin-top: 16px;
-    font-size: 12px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: var(--gold-light);
-  }
-
   /* ===== Product Grid ===== */
   .products-grid {
     max-width: 1300px;
     margin: 0 auto;
-    padding: 70px 40px 60px;
+    padding: 90px 40px 120px;
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 28px;
   }
-  .perfume-card {
+  .product-card {
+    display: block;
+    background: var(--white);
     border: 1px solid #e6e0d2;
-    padding: 28px 26px;
-    transition: all 0.3s ease;
+    text-decoration: none;
+    overflow: hidden;
+    transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
   }
-  .perfume-card:hover {
+  .product-card:hover {
     border-color: var(--gold);
-    box-shadow: 0 14px 30px rgba(0,0,0,0.08);
-    transform: translateY(-4px);
+    box-shadow: 0 18px 36px rgba(0,0,0,0.1);
+    transform: translateY(-6px);
   }
-  .perfume-number {
-    font-family: 'Playfair Display', serif;
-    font-size: 24px;
-    font-weight: 700;
-    color: var(--black);
-    margin-bottom: 18px;
-    letter-spacing: 1px;
-  }
-  .perfume-number::before {
-    content: '';
-    display: inline-block;
-    width: 8px;
-    height: 8px;
-    background: var(--gold);
-    margin-right: 10px;
-    border-radius: 50%;
-  }
-  .notes { display: flex; flex-direction: column; gap: 10px; }
-  .note-row { display: flex; gap: 12px; align-items: baseline; }
-  .note-label {
-    flex-shrink: 0;
-    width: 56px;
-    font-size: 11px;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: var(--gold);
-    font-weight: 600;
-  }
-  .note-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-  .note-tag {
-    font-size: 12px;
-    color: var(--gray);
+  .card-image {
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
     background: #f7f5f0;
-    padding: 4px 10px;
-    border-radius: 20px;
-    line-height: 1.4;
   }
-  .no-results {
-    display: none;
+  .card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.6s ease;
+  }
+  .product-card:hover .card-image img { transform: scale(1.06); }
+  .card-number {
+    padding: 22px 0 24px;
     text-align: center;
-    padding: 0 40px 100px;
-    color: var(--gray);
-    font-size: 15px;
   }
+  .card-number::before {
+    content: '';
+    display: block;
+    width: 28px;
+    height: 2px;
+    background: var(--gold);
+    margin: 0 auto 12px;
+  }
+  .card-number span {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: var(--black);
+    transition: color 0.3s ease;
+  }
+  .product-card:hover .card-number span { color: var(--gold); }
 
-  @media (max-width: 900px) {
-    .products-grid { grid-template-columns: repeat(2, 1fr); padding: 50px 20px; }
+  @media (max-width: 1100px) {
+    .products-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  @media (max-width: 700px) {
+    .products-grid { grid-template-columns: repeat(2, 1fr); padding: 60px 20px 90px; gap: 18px; }
     .page-header h1 { font-size: 32px; }
-    .search-section { padding: 0 20px 40px; }
     nav { display: none; }
   }
-  @media (max-width: 600px) {
+  @media (max-width: 420px) {
     .products-grid { grid-template-columns: 1fr; }
   }
 </style>
@@ -236,276 +181,140 @@
 <div class="page-header">
   <a href="frequence.html" class="back-link">← Terug naar Frequence</a>
   <h1>Frequence Unisex</h1>
-  <p>Tijdloze geuren voor iedereen, zonder grenzen. Bekijk de volledige collectie en zoek op nummer of geurnoot.</p>
+  <p>Tijdloze geuren voor iedereen, zonder grenzen. Klik op een product voor meer informatie.</p>
 </div>
 
-<div class="search-section">
-  <div class="search-wrap">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
-    <input type="text" id="searchInput" placeholder="Zoek op nummer of geurnoot, bv. U1 of Bergamot" autocomplete="off">
-  </div>
-  <p class="result-count" id="resultCount"></p>
+<div class="products-grid">
+  <a href="u1.html" class="product-card">
+    <div class="card-image"><img src="images/IMG_7287.jpg" alt="Frequence Unisex U1" loading="lazy"></div>
+    <div class="card-number"><span>U1</span></div>
+  </a>
+
+  <a href="u2.html" class="product-card">
+    <div class="card-image"><img src="images/IMG_7287.jpg" alt="Frequence Unisex U2" loading="lazy"></div>
+    <div class="card-number"><span>U2</span></div>
+  </a>
+
+  <a href="u3.html" class="product-card">
+    <div class="card-image"><img src="images/IMG_7287.jpg" alt="Frequence Unisex U3" loading="lazy"></div>
+    <div class="card-number"><span>U3</span></div>
+  </a>
+
+  <a href="u4.html" class="product-card">
+    <div class="card-image"><img src="images/IMG_7287.jpg" alt="Frequence Unisex U4" loading="lazy"></div>
+    <div class="card-number"><span>U4</span></div>
+  </a>
+
+  <a href="u5.html" class="product-card">
+    <div class="card-image"><img src="images/IMG_7287.jpg" alt="Frequence Unisex U5" loading="lazy"></div>
+    <div class="card-number"><span>U5</span></div>
+  </a>
+
+  <a href="u6.html" class="product-card">
+    <div class="card-image"><img src="images/IMG_7287.jpg" alt="Frequence Unisex U6" loading="lazy"></div>
+    <div class="card-number"><span>U6</span></div>
+  </a>
+
+  <a href="u7.html" class="product-card">
+    <div class="card-image"><img src="images/IMG_7287.jpg" alt="Frequence Unisex U7" loading="lazy"></div>
+    <div class="card-number"><span>U7</span></div>
+  </a>
+
+  <a href="u8.html" class="product-card">
+    <div class="card-image"><img src="images/IMG_7287.jpg" alt="Frequence Unisex U8" loading="lazy"></div>
+    <div class="card-number"><span>U8</span></div>
+  </a>
+
+  <a href="u9.html" class="product-card">
+    <div class="card-image"><img src="images/IMG_7287.jpg" alt="Frequence Unisex U9" loading="lazy"></div>
+    <div class="card-number"><span>U9</span></div>
+  </a>
+
+  <a href="u10.html" class="product-card">
+    <div class="card-image"><img src="images/IMG_7287.jpg" alt="Frequence Unisex U10" loading="lazy"></div>
+    <div class="card-number"><span>U10</span></div>
+  </a>
+
+  <a href="u11.html" class="product-card">
+    <div class="card-image"><img src="images/IMG_7287.jpg" alt="Frequence Unisex U11" loading="lazy"></div>
+    <div class="card-number"><span>U11</span></div>
+  </a>
+
+  <a href="u12.html" class="product-card">
+    <div class="card-image"><img src="images/IMG_7287.jpg" alt="Frequence Unisex U12" loading="lazy"></div>
+    <div class="card-number"><span>U12</span></div>
+  </a>
+
+  <a href="u13.html" class="product-card">
+    <div class="card-image"><img src="images/IMG_7287.jpg" alt="Frequence Unisex U13" loading="lazy"></div>
+    <div class="card-number"><span>U13</span></div>
+  </a>
+
+  <a href="u14.html" class="product-card">
+    <div class="card-image"><img src="images/IMG_7287.jpg" alt="Frequence Unisex U14" loading="lazy"></div>
+    <div class="card-number"><span>U14</span></div>
+  </a>
+
+  <a href="u16.html" class="product-card">
+    <div class="card-image"><img src="images/IMG_7287.jpg" alt="Frequence Unisex U16" loading="lazy"></div>
+    <div class="card-number"><span>U16</span></div>
+  </a>
+
+  <a href="u17.html" class="product-card">
+    <div class="card-image"><img src="images/IMG_7287.jpg" alt="Frequence Unisex U17" loading="lazy"></div>
+    <div class="card-number"><span>U17</span></div>
+  </a>
+
+  <a href="u20.html" class="product-card">
+    <div class="card-image"><img src="images/IMG_7287.jpg" alt="Frequence Unisex U20" loading="lazy"></div>
+    <div class="card-number"><span>U20</span></div>
+  </a>
+
+  <a href="u22.html" class="product-card">
+    <div class="card-image"><img src="images/IMG_7287.jpg" alt="Frequence Unisex U22" loading="lazy"></div>
+    <div class="card-number"><span>U22</span></div>
+  </a>
+
+  <a href="u25.html" class="product-card">
+    <div class="card-image"><img src="images/IMG_7287.jpg" alt="Frequence Unisex U25" loading="lazy"></div>
+    <div class="card-number"><span>U25</span></div>
+  </a>
+
+  <a href="u26.html" class="product-card">
+    <div class="card-image"><img src="images/IMG_7287.jpg" alt="Frequence Unisex U26" loading="lazy"></div>
+    <div class="card-number"><span>U26</span></div>
+  </a>
+
+  <a href="u28.html" class="product-card">
+    <div class="card-image"><img src="images/IMG_7287.jpg" alt="Frequence Unisex U28" loading="lazy"></div>
+    <div class="card-number"><span>U28</span></div>
+  </a>
+
+  <a href="u30.html" class="product-card">
+    <div class="card-image"><img src="images/IMG_7287.jpg" alt="Frequence Unisex U30" loading="lazy"></div>
+    <div class="card-number"><span>U30</span></div>
+  </a>
+
+  <a href="u33.html" class="product-card">
+    <div class="card-image"><img src="images/IMG_7287.jpg" alt="Frequence Unisex U33" loading="lazy"></div>
+    <div class="card-number"><span>U33</span></div>
+  </a>
+
+  <a href="u34.html" class="product-card">
+    <div class="card-image"><img src="images/IMG_7287.jpg" alt="Frequence Unisex U34" loading="lazy"></div>
+    <div class="card-number"><span>U34</span></div>
+  </a>
+
+  <a href="u35.html" class="product-card">
+    <div class="card-image"><img src="images/IMG_7287.jpg" alt="Frequence Unisex U35" loading="lazy"></div>
+    <div class="card-number"><span>U35</span></div>
+  </a>
+
+  <a href="u36.html" class="product-card">
+    <div class="card-image"><img src="images/IMG_7287.jpg" alt="Frequence Unisex U36" loading="lazy"></div>
+    <div class="card-number"><span>U36</span></div>
+  </a>
 </div>
-
-<div class="products-grid" id="productsGrid">
-        <article class="perfume-card" data-search="u1 bergamot rozemarijn oud amber leder musk vetiver">
-          <div class="perfume-number">U1</div>
-          <div class="notes">
-          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Bergamot</span><span class="note-tag">Rozemarijn</span></div></div>
-          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Oud</span><span class="note-tag">Amber</span><span class="note-tag">Leder</span></div></div>
-          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Musk</span><span class="note-tag">Vetiver</span></div></div>
-          </div>
-        </article>
-
-        <article class="perfume-card" data-search="u2 bergamot ylang-ylang tuberoos jasmijn kokosnoot amber tonkaboon benzoin">
-          <div class="perfume-number">U2</div>
-          <div class="notes">
-          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Bergamot</span><span class="note-tag">Ylang-Ylang</span></div></div>
-          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Tuberoos</span><span class="note-tag">Jasmijn</span><span class="note-tag">Kokosnoot</span></div></div>
-          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Amber</span><span class="note-tag">Tonkaboon</span><span class="note-tag">Benzoin</span></div></div>
-          </div>
-        </article>
-
-        <article class="perfume-card" data-search="u3 saffraan bergamot madagaskar vanille toffee sandelhout witte musk">
-          <div class="perfume-number">U3</div>
-          <div class="notes">
-          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Saffraan</span><span class="note-tag">Bergamot</span></div></div>
-          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Madagaskar Vanille</span><span class="note-tag">Toffee</span></div></div>
-          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Sandelhout</span><span class="note-tag">Witte Musk</span></div></div>
-          </div>
-        </article>
-
-        <article class="perfume-card" data-search="u4 appel kaneel rozenhout cederhout lelie van de dal roos amber sandelhout musk vanille oud">
-          <div class="perfume-number">U4</div>
-          <div class="notes">
-          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Appel</span><span class="note-tag">Kaneel</span><span class="note-tag">Rozenhout</span></div></div>
-          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Cederhout</span><span class="note-tag">Lelie van de Dal</span><span class="note-tag">Roos</span></div></div>
-          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Amber</span><span class="note-tag">Sandelhout</span><span class="note-tag">Musk</span><span class="note-tag">Vanille</span><span class="note-tag">Oud</span></div></div>
-          </div>
-        </article>
-
-        <article class="perfume-card" data-search="u5 cognac kaneel praline tonkaboon vanille eikenhout sandelhout">
-          <div class="perfume-number">U5</div>
-          <div class="notes">
-          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Cognac</span><span class="note-tag">Kaneel</span></div></div>
-          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Praline</span><span class="note-tag">Tonkaboon</span></div></div>
-          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Vanille</span><span class="note-tag">Eikenhout</span><span class="note-tag">Sandelhout</span></div></div>
-          </div>
-        </article>
-
-        <article class="perfume-card" data-search="u6 wilde aardbei amandel witte musk bourbon vanille peru balsem">
-          <div class="perfume-number">U6</div>
-          <div class="notes">
-          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Wilde Aardbei</span><span class="note-tag">Amandel</span></div></div>
-          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Witte Musk</span></div></div>
-          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Bourbon Vanille</span><span class="note-tag">Peru Balsem</span></div></div>
-          </div>
-        </article>
-
-        <article class="perfume-card" data-search="u7 zwarte kers pruim roze peper kardamom oud leder roos vanillesuiker amber tabakblad tonkaboon musk">
-          <div class="perfume-number">U7</div>
-          <div class="notes">
-          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Zwarte Kers</span><span class="note-tag">Pruim</span></div></div>
-          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Roze Peper</span><span class="note-tag">Kardamom</span><span class="note-tag">Oud</span><span class="note-tag">Leder</span><span class="note-tag">Roos</span></div></div>
-          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Vanillesuiker</span><span class="note-tag">Amber</span><span class="note-tag">Tabakblad</span><span class="note-tag">Tonkaboon</span><span class="note-tag">Musk</span></div></div>
-          </div>
-        </article>
-
-        <article class="perfume-card" data-search="u8 zeezout aquatische noten peper marine akkord musk amber hout">
-          <div class="perfume-number">U8</div>
-          <div class="notes">
-          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Zeezout</span><span class="note-tag">Aquatische Noten</span></div></div>
-          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Peper</span><span class="note-tag">Marine Akkord</span></div></div>
-          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Musk</span><span class="note-tag">Amber</span><span class="note-tag">Hout</span></div></div>
-          </div>
-        </article>
-
-        <article class="perfume-card" data-search="u9 jasmijn orchidee tonkaboon suiker musk patchouli amber">
-          <div class="perfume-number">U9</div>
-          <div class="notes">
-          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Jasmijn</span><span class="note-tag">Orchidee</span></div></div>
-          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Tonkaboon</span><span class="note-tag">Suiker</span></div></div>
-          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Musk</span><span class="note-tag">Patchouli</span><span class="note-tag">Amber</span></div></div>
-          </div>
-        </article>
-
-        <article class="perfume-card" data-search="u10 bergamot heliotropine vanille amandel myrrhe patchouli roos musk">
-          <div class="perfume-number">U10</div>
-          <div class="notes">
-          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Bergamot</span><span class="note-tag">Heliotropine</span></div></div>
-          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Vanille</span><span class="note-tag">Amandel</span><span class="note-tag">Myrrhe</span></div></div>
-          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Patchouli</span><span class="note-tag">Roos</span><span class="note-tag">Musk</span></div></div>
-          </div>
-        </article>
-
-        <article class="perfume-card" data-search="u11 bergamot grapefruit jasmijn magnolia gember cederhout amber musk patchouli">
-          <div class="perfume-number">U11</div>
-          <div class="notes">
-          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Bergamot</span><span class="note-tag">Grapefruit</span><span class="note-tag">Jasmijn</span></div></div>
-          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Magnolia</span><span class="note-tag">Gember</span></div></div>
-          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Cederhout</span><span class="note-tag">Amber</span><span class="note-tag">Musk</span><span class="note-tag">Patchouli</span></div></div>
-          </div>
-        </article>
-
-        <article class="perfume-card" data-search="u12 pistache bergamot framboos roos jasmijn kardamom tonkaboon marshmallow sandelhout vanille">
-          <div class="perfume-number">U12</div>
-          <div class="notes">
-          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Pistache</span><span class="note-tag">Bergamot</span><span class="note-tag">Framboos</span></div></div>
-          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Roos</span><span class="note-tag">Jasmijn</span><span class="note-tag">Kardamom</span></div></div>
-          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Tonkaboon</span><span class="note-tag">Marshmallow</span><span class="note-tag">Sandelhout</span><span class="note-tag">Vanille</span></div></div>
-          </div>
-        </article>
-
-        <article class="perfume-card" data-search="u13 vanille iris tonkaboon sandelhout musk amber">
-          <div class="perfume-number">U13</div>
-          <div class="notes">
-          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Vanille</span><span class="note-tag">Iris</span></div></div>
-          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Tonkaboon</span></div></div>
-          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Sandelhout</span><span class="note-tag">Musk</span><span class="note-tag">Amber</span></div></div>
-          </div>
-        </article>
-
-        <article class="perfume-card" data-search="u14 bergamot saffraan jasmijn roos vanille sandelhout musk">
-          <div class="perfume-number">U14</div>
-          <div class="notes">
-          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Bergamot</span><span class="note-tag">Saffraan</span></div></div>
-          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Jasmijn</span><span class="note-tag">Roos</span></div></div>
-          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Vanille</span><span class="note-tag">Sandelhout</span><span class="note-tag">Musk</span></div></div>
-          </div>
-        </article>
-
-        <article class="perfume-card" data-search="u16 citroen abrikoos sinaasappel aquatische noten vijg amber musk">
-          <div class="perfume-number">U16</div>
-          <div class="notes">
-          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Citroen</span><span class="note-tag">Abrikoos</span><span class="note-tag">Sinaasappel</span></div></div>
-          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Aquatische Noten</span></div></div>
-          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Vijg</span><span class="note-tag">Amber</span><span class="note-tag">Musk</span></div></div>
-          </div>
-        </article>
-
-        <article class="perfume-card" data-search="u17 mandarijn bergamot gember aquatische noten musk amber cederhout">
-          <div class="perfume-number">U17</div>
-          <div class="notes">
-          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Mandarijn</span><span class="note-tag">Bergamot</span><span class="note-tag">Gember</span></div></div>
-          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Aquatische Noten</span></div></div>
-          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Musk</span><span class="note-tag">Amber</span><span class="note-tag">Cederhout</span></div></div>
-          </div>
-        </article>
-
-        <article class="perfume-card" data-search="u20 koffie kaneel tonkaboon vanille amber musk">
-          <div class="perfume-number">U20</div>
-          <div class="notes">
-          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Koffie</span><span class="note-tag">Kaneel</span></div></div>
-          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Tonkaboon</span><span class="note-tag">Vanille</span></div></div>
-          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Amber</span><span class="note-tag">Musk</span></div></div>
-          </div>
-        </article>
-
-        <article class="perfume-card" data-search="u22 bergamot citroen tonkaboon jasmijn amber musk">
-          <div class="perfume-number">U22</div>
-          <div class="notes">
-          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Bergamot</span><span class="note-tag">Citroen</span></div></div>
-          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Tonkaboon</span><span class="note-tag">Jasmijn</span></div></div>
-          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Amber</span><span class="note-tag">Musk</span></div></div>
-          </div>
-        </article>
-
-        <article class="perfume-card" data-search="u25 viooltjesblad kardemom iris ambrette sandelhout cederhout leder papier">
-          <div class="perfume-number">U25</div>
-          <div class="notes">
-          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Viooltjesblad</span><span class="note-tag">Kardemom</span></div></div>
-          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Iris</span><span class="note-tag">Ambrette</span></div></div>
-          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Sandelhout</span><span class="note-tag">Cederhout</span><span class="note-tag">Leder</span><span class="note-tag">Papier</span></div></div>
-          </div>
-        </article>
-
-        <article class="perfume-card" data-search="u26 cocos poeder heliotroop madagaskar vanille vanilla extract witte musk muskus heilig hout kokosnoot">
-          <div class="perfume-number">U26</div>
-          <div class="notes">
-          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Cocos Poeder</span><span class="note-tag">Heliotroop</span></div></div>
-          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Madagaskar Vanille</span></div></div>
-          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Vanilla Extract</span><span class="note-tag">Witte Musk</span><span class="note-tag">Muskus</span><span class="note-tag">Heilig Hout</span><span class="note-tag">Kokosnoot</span></div></div>
-          </div>
-        </article>
-
-        <article class="perfume-card" data-search="u28 ambroxan ambroxan ambroxan">
-          <div class="perfume-number">U28</div>
-          <div class="notes">
-          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Ambroxan</span></div></div>
-          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Ambroxan</span></div></div>
-          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Ambroxan</span></div></div>
-          </div>
-        </article>
-
-        <article class="perfume-card" data-search="u30 passievrucht bergamot oud roos amber musk sandelhout">
-          <div class="perfume-number">U30</div>
-          <div class="notes">
-          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Passievrucht</span><span class="note-tag">Bergamot</span></div></div>
-          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Oud</span><span class="note-tag">Roos</span></div></div>
-          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Amber</span><span class="note-tag">Musk</span><span class="note-tag">Sandelhout</span></div></div>
-          </div>
-        </article>
-
-        <article class="perfume-card" data-search="u33 bergamot citroen roos viooltje musk vanille sandelhout">
-          <div class="perfume-number">U33</div>
-          <div class="notes">
-          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Bergamot</span><span class="note-tag">Citroen</span></div></div>
-          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Roos</span><span class="note-tag">Viooltje</span></div></div>
-          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Musk</span><span class="note-tag">Vanille</span><span class="note-tag">Sandelhout</span></div></div>
-          </div>
-        </article>
-
-        <article class="perfume-card" data-search="u34 bergamot mandarijn roos iris sandelhout musk amber">
-          <div class="perfume-number">U34</div>
-          <div class="notes">
-          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Bergamot</span><span class="note-tag">Mandarijn</span></div></div>
-          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Roos</span><span class="note-tag">Iris</span></div></div>
-          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Sandelhout</span><span class="note-tag">Musk</span><span class="note-tag">Amber</span></div></div>
-          </div>
-        </article>
-
-        <article class="perfume-card" data-search="u35 hibiscus bergamot roos framboos musk amber">
-          <div class="perfume-number">U35</div>
-          <div class="notes">
-          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Hibiscus</span><span class="note-tag">Bergamot</span></div></div>
-          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Roos</span><span class="note-tag">Framboos</span></div></div>
-          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Musk</span><span class="note-tag">Amber</span></div></div>
-          </div>
-        </article>
-
-        <article class="perfume-card" data-search="u36 vanille bergamot tonkaboon ambrette sandelhout musk amber">
-          <div class="perfume-number">U36</div>
-          <div class="notes">
-          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Vanille</span><span class="note-tag">Bergamot</span></div></div>
-          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Tonkaboon</span><span class="note-tag">Ambrette</span></div></div>
-          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Sandelhout</span><span class="note-tag">Musk</span><span class="note-tag">Amber</span></div></div>
-          </div>
-        </article>
-</div>
-
-<p class="no-results" id="noResults">Geen parfums gevonden voor deze zoekterm.</p>
-
-<script>
-  const input = document.getElementById('searchInput');
-  const cards = Array.from(document.querySelectorAll('.perfume-card'));
-  const resultCount = document.getElementById('resultCount');
-  const noResults = document.getElementById('noResults');
-
-  function filterCards() {
-    const query = input.value.trim().toLowerCase();
-    let visible = 0;
-    cards.forEach(card => {
-      const match = query === '' || card.dataset.search.includes(query);
-      card.style.display = match ? '' : 'none';
-      if (match) visible++;
-    });
-    resultCount.textContent = visible + ' van ' + cards.length + ' parfums';
-    noResults.style.display = visible === 0 ? 'block' : 'none';
-  }
-
-  input.addEventListener('input', filterCards);
-  filterCards();
-</script>
 
 </body>
 </html>
