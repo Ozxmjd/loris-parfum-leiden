@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Frequence Vrouwen — Loris Parfum Leiden</title>
+<meta name="description" content="Ontdek de volledige Frequence Vrouwen collectie van Loris Parfum Leiden. Zoek op nummer of geurnoot.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --white: #ffffff;
+    --gold: #c9a45c;
+    --gold-light: #e0c896;
+    --gray: #6b6b6b;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--white);
+    color: var(--black);
+  }
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(10,10,10,0.95);
+    backdrop-filter: blur(10px);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+  }
+  .logo span {
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+  }
+  nav { display: flex; gap: 30px; align-items: center; }
+  nav a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  nav a:hover { color: var(--gold); }
+  .page-header {
+    padding: 160px 40px 50px;
+    text-align: center;
+    background: linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%);
+    color: var(--white);
+  }
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 30px;
+    border: 1px solid var(--gold);
+    padding: 10px 20px;
+    transition: all 0.3s;
+  }
+  .back-link:hover { background: var(--gold); color: var(--black); }
+  .page-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 600;
+    margin-bottom: 16px;
+  }
+  .page-header p {
+    color: #aaa;
+    font-size: 16px;
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
+  /* ===== Search ===== */
+  .search-section {
+    background: #0a0a0a;
+    padding: 0 40px 50px;
+    text-align: center;
+  }
+  .search-wrap {
+    max-width: 480px;
+    margin: 0 auto;
+    position: relative;
+  }
+  .search-wrap svg {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 18px;
+    height: 18px;
+    stroke: var(--gray);
+    pointer-events: none;
+  }
+  .search-wrap input {
+    width: 100%;
+    background: var(--white);
+    border: 1px solid transparent;
+    padding: 16px 20px 16px 48px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    color: var(--black);
+    transition: box-shadow 0.3s;
+  }
+  .search-wrap input:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px var(--gold);
+  }
+  .search-wrap input::placeholder { color: var(--gray); }
+  .result-count {
+    margin-top: 16px;
+    font-size: 12px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold-light);
+  }
+
+  /* ===== Product Grid ===== */
+  .products-grid {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 70px 40px 60px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  .perfume-card {
+    border: 1px solid #e6e0d2;
+    padding: 28px 26px;
+    transition: all 0.3s ease;
+  }
+  .perfume-card:hover {
+    border-color: var(--gold);
+    box-shadow: 0 14px 30px rgba(0,0,0,0.08);
+    transform: translateY(-4px);
+  }
+  .perfume-number {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--black);
+    margin-bottom: 18px;
+    letter-spacing: 1px;
+  }
+  .perfume-number::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    background: var(--gold);
+    margin-right: 10px;
+    border-radius: 50%;
+  }
+  .notes { display: flex; flex-direction: column; gap: 10px; }
+  .note-row { display: flex; gap: 12px; align-items: baseline; }
+  .note-label {
+    flex-shrink: 0;
+    width: 56px;
+    font-size: 11px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+  }
+  .note-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .note-tag {
+    font-size: 12px;
+    color: var(--gray);
+    background: #f7f5f0;
+    padding: 4px 10px;
+    border-radius: 20px;
+    line-height: 1.4;
+  }
+  .no-results {
+    display: none;
+    text-align: center;
+    padding: 0 40px 100px;
+    color: var(--gray);
+    font-size: 15px;
+  }
+
+  @media (max-width: 900px) {
+    .products-grid { grid-template-columns: repeat(2, 1fr); padding: 50px 20px; }
+    .page-header h1 { font-size: 32px; }
+    .search-section { padding: 0 20px 40px; }
+    nav { display: none; }
+  }
+  @media (max-width: 600px) {
+    .products-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="logo">LORIS PARFUM<span>LEIDEN</span></a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="parfum.html">Onze Producten</a>
+    <a href="index.html#over-ons">Over Ons</a>
+    <a href="index.html#openingstijden">Openingstijden</a>
+    <a href="index.html#locatie">Locatie</a>
+    <a href="index.html#contact">Contact</a>
+  </nav>
+</header>
+
+<div class="page-header">
+  <a href="frequence.html" class="back-link">← Terug naar Frequence</a>
+  <h1>Frequence Vrouwen</h1>
+  <p>Elegante en bloemige geuren met karakter. Bekijk de volledige collectie en zoek op nummer of geurnoot.</p>
+</div>
+
+<div class="search-section">
+  <div class="search-wrap">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+    <input type="text" id="searchInput" placeholder="Zoek op nummer of geurnoot, bv. K58 of Jasmijn" autocomplete="off">
+  </div>
+  <p class="result-count" id="resultCount"></p>
+</div>
+
+<div class="products-grid" id="productsGrid">
+        <article class="perfume-card" data-search="k9 meloen honing kokosnoot jasmijn lelie rozen vanille chocolade patchouli amber">
+          <div class="perfume-number">K9</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Meloen</span><span class="note-tag">Honing</span><span class="note-tag">Kokosnoot</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Jasmijn</span><span class="note-tag">Lelie</span><span class="note-tag">Rozen</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Vanille</span><span class="note-tag">Chocolade</span><span class="note-tag">Patchouli</span><span class="note-tag">Amber</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k15 jasmijn witte amber kasjmier sandelhout witte amber">
+          <div class="perfume-number">K15</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Jasmijn</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Witte Amber</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Kasjmier</span><span class="note-tag">Sandelhout</span><span class="note-tag">Witte Amber</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k35 roze peper citroen bergamot jasmijn iris hyacint patchouli witte musk vanille amber">
+          <div class="perfume-number">K35</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Roze Peper</span><span class="note-tag">Citroen</span><span class="note-tag">Bergamot</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Jasmijn</span><span class="note-tag">Iris</span><span class="note-tag">Hyacint</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Patchouli</span><span class="note-tag">Witte Musk</span><span class="note-tag">Vanille</span><span class="note-tag">Amber</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k41 sinaasappel bergamot grapefruit roos jasmijn iris patchouli vetiver witte musk amber">
+          <div class="perfume-number">K41</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Sinaasappel</span><span class="note-tag">Bergamot</span><span class="note-tag">Grapefruit</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Roos</span><span class="note-tag">Jasmijn</span><span class="note-tag">Iris</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Patchouli</span><span class="note-tag">Vetiver</span><span class="note-tag">Witte Musk</span><span class="note-tag">Amber</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k58 sinaasappelbloesom mandarine bloedsinaasappel jasmijn rozenhout kokaboter vanille tonkaboon sandelhout">
+          <div class="perfume-number">K58</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Sinaasappelbloesom</span><span class="note-tag">Mandarine</span><span class="note-tag">Bloedsinaasappel</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Jasmijn</span><span class="note-tag">Rozenhout</span><span class="note-tag">Kokaboter</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Vanille</span><span class="note-tag">Tonkaboon</span><span class="note-tag">Sandelhout</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k110 bergamot passievruchten jasmijn orchidee gardenia sandelhout patchouli vanille">
+          <div class="perfume-number">K110</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Bergamot</span><span class="note-tag">Passievruchten</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Jasmijn</span><span class="note-tag">Orchidee</span><span class="note-tag">Gardenia</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Sandelhout</span><span class="note-tag">Patchouli</span><span class="note-tag">Vanille</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k119 zwarte bes peer iris jasmijn oranjebloesem praline vanille patchouli tonkaboon">
+          <div class="perfume-number">K119</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Zwarte Bes</span><span class="note-tag">Peer</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Iris</span><span class="note-tag">Jasmijn</span><span class="note-tag">Oranjebloesem</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Praline</span><span class="note-tag">Vanille</span><span class="note-tag">Patchouli</span><span class="note-tag">Tonkaboon</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k128 anijs appel amaryllis iris viooltje vanille vetiver tonkaboon musk">
+          <div class="perfume-number">K128</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Anijs</span><span class="note-tag">Appel</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Amaryllis</span><span class="note-tag">Iris</span><span class="note-tag">Viooltje</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Vanille</span><span class="note-tag">Vetiver</span><span class="note-tag">Tonkaboon</span><span class="note-tag">Musk</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k130 grapefruit bloedroos framboos jasmijn oranjebloesem zilveren bes patchouli honingkruid amber">
+          <div class="perfume-number">K130</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Grapefruit</span><span class="note-tag">Bloedroos</span><span class="note-tag">Framboos</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Jasmijn</span><span class="note-tag">Oranjebloesem</span><span class="note-tag">Zilveren Bes</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Patchouli</span><span class="note-tag">Honingkruid</span><span class="note-tag">Amber</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k144 roze peper roos musk sandelhout amber musk">
+          <div class="perfume-number">K144</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Roze Peper</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Roos</span><span class="note-tag">Musk</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Sandelhout</span><span class="note-tag">Amber</span><span class="note-tag">Musk</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k168 gardenia freesia perzik roos patchouli jasmijn amber vanille musk">
+          <div class="perfume-number">K168</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Gardenia</span><span class="note-tag">Freesia</span><span class="note-tag">Perzik</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Roos</span><span class="note-tag">Patchouli</span><span class="note-tag">Jasmijn</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Amber</span><span class="note-tag">Vanille</span><span class="note-tag">Musk</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k183 zwarte bes freesia roos patchouli vanille amber">
+          <div class="perfume-number">K183</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Zwarte Bes</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Freesia</span><span class="note-tag">Roos</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Patchouli</span><span class="note-tag">Vanille</span><span class="note-tag">Amber</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k207 truffel gardenia zwarte bes ylang-ylang orchidee lotusblom patchouli sandelhout musk amber">
+          <div class="perfume-number">K207</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Truffel</span><span class="note-tag">Gardenia</span><span class="note-tag">Zwarte Bes</span><span class="note-tag">Ylang-Ylang</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Orchidee</span><span class="note-tag">Lotusblom</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Patchouli</span><span class="note-tag">Sandelhout</span><span class="note-tag">Musk</span><span class="note-tag">Amber</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k222 peer roze peper sinaasappelbloesem koffie jasmijn bittere amandel patchouli cederhout vanille cashmere">
+          <div class="perfume-number">K222</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Peer</span><span class="note-tag">Roze Peper</span><span class="note-tag">Sinaasappelbloesem</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Koffie</span><span class="note-tag">Jasmijn</span><span class="note-tag">Bittere Amandel</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Patchouli</span><span class="note-tag">Cederhout</span><span class="note-tag">Vanille</span><span class="note-tag">Cashmere</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k230 mandarijn bloedsinaasappel jasmijn guaiac hout perzik karamel sandelhout">
+          <div class="perfume-number">K230</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Mandarijn</span><span class="note-tag">Bloedsinaasappel</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Jasmijn</span><span class="note-tag">Guaiac Hout</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Perzik</span><span class="note-tag">Karamel</span><span class="note-tag">Sandelhout</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k233 groene mandarijn pompelmoes witte jasmijn vanille amber cashmere">
+          <div class="perfume-number">K233</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Groene Mandarijn</span><span class="note-tag">Pompelmoes</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Witte Jasmijn</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Vanille</span><span class="note-tag">Amber</span><span class="note-tag">Cashmere</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k244 lychee magnolia roze peper pioenroos freesia roos cederhout amber musk">
+          <div class="perfume-number">K244</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Lychee</span><span class="note-tag">Magnolia</span><span class="note-tag">Roze Peper</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Pioenroos</span><span class="note-tag">Freesia</span><span class="note-tag">Roos</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Cederhout</span><span class="note-tag">Amber</span><span class="note-tag">Musk</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k246 aardbei framboos braam bosbes kers jasmijn viooltje amber musk">
+          <div class="perfume-number">K246</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Aardbei</span><span class="note-tag">Framboos</span><span class="note-tag">Braam</span><span class="note-tag">Bosbes</span><span class="note-tag">Kers</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Jasmijn</span><span class="note-tag">Viooltje</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Amber</span><span class="note-tag">Musk</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k248 tonkaboon cacao tuberoos jasmijn tonkaboon cacao sandelhout">
+          <div class="perfume-number">K248</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Tonkaboon</span><span class="note-tag">Cacao</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Tuberoos</span><span class="note-tag">Jasmijn</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Tonkaboon</span><span class="note-tag">Cacao</span><span class="note-tag">Sandelhout</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k249 witte bloemen jasmijn freesia amber musk sandelhout">
+          <div class="perfume-number">K249</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Witte Bloemen</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Jasmijn</span><span class="note-tag">Freesia</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Amber</span><span class="note-tag">Musk</span><span class="note-tag">Sandelhout</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k254 honing gardenia sinaasappelbloesem patchouli jasmijn vetiver amber musk">
+          <div class="perfume-number">K254</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Honing</span><span class="note-tag">Gardenia</span><span class="note-tag">Sinaasappelbloesem</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Patchouli</span><span class="note-tag">Jasmijn</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Vetiver</span><span class="note-tag">Amber</span><span class="note-tag">Musk</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k260 sinaasappel tropisch fruit citroengras jasmijn iris musk amber vanille">
+          <div class="perfume-number">K260</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Sinaasappel</span><span class="note-tag">Tropisch Fruit</span><span class="note-tag">Citroengras</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Jasmijn</span><span class="note-tag">Iris</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Musk</span><span class="note-tag">Amber</span><span class="note-tag">Vanille</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k269 lychee bergamot perzik magnolia jasmijn pioenroos musk amber sandelhout">
+          <div class="perfume-number">K269</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Lychee</span><span class="note-tag">Bergamot</span><span class="note-tag">Perzik</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Magnolia</span><span class="note-tag">Jasmijn</span><span class="note-tag">Pioenroos</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Musk</span><span class="note-tag">Amber</span><span class="note-tag">Sandelhout</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k270 jasmijn saffraan amberwood ambergrijs fir resin cederhout">
+          <div class="perfume-number">K270</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Jasmijn</span><span class="note-tag">Saffraan</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Amberwood</span><span class="note-tag">Ambergrijs</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Fir Resin</span><span class="note-tag">Cederhout</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k272 framboos neroli citroen roos vanille musk patchouli">
+          <div class="perfume-number">K272</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Framboos</span><span class="note-tag">Neroli</span><span class="note-tag">Citroen</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Roos</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Vanille</span><span class="note-tag">Musk</span><span class="note-tag">Patchouli</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k273 jasmijn perzik bergamot roos iris musk vetiver sandelhout">
+          <div class="perfume-number">K273</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Jasmijn</span><span class="note-tag">Perzik</span><span class="note-tag">Bergamot</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Roos</span><span class="note-tag">Iris</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Musk</span><span class="note-tag">Vetiver</span><span class="note-tag">Sandelhout</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k274 mandarijn bergamot zwarte bes lavendel sinaasappelbloesem madagaskar vanille amber musk">
+          <div class="perfume-number">K274</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Mandarijn</span><span class="note-tag">Bergamot</span><span class="note-tag">Zwarte Bes</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Lavendel</span><span class="note-tag">Sinaasappelbloesem</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Madagaskar Vanille</span><span class="note-tag">Amber</span><span class="note-tag">Musk</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k275 bergamot sinaasappelbloesem indische jasmijn tuberoos witte musk cederhout vanille">
+          <div class="perfume-number">K275</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Bergamot</span><span class="note-tag">Sinaasappelbloesem</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Indische Jasmijn</span><span class="note-tag">Tuberoos</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Witte Musk</span><span class="note-tag">Cederhout</span><span class="note-tag">Vanille</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k280 lychee zwarte bes roos jasmijn vetiver vanille musk">
+          <div class="perfume-number">K280</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Lychee</span><span class="note-tag">Zwarte Bes</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Roos</span><span class="note-tag">Jasmijn</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Vetiver</span><span class="note-tag">Vanille</span><span class="note-tag">Musk</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k282 lychee rabarber bergamot turkse roos pioenroos jasmijn nootmuskaat vanille vetiver musk">
+          <div class="perfume-number">K282</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Lychee</span><span class="note-tag">Rabarber</span><span class="note-tag">Bergamot</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Turkse Roos</span><span class="note-tag">Pioenroos</span><span class="note-tag">Jasmijn</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Nootmuskaat</span><span class="note-tag">Vanille</span><span class="note-tag">Vetiver</span><span class="note-tag">Musk</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k283 mangostaanwater bergamot ylang-ylang jasmijn freesia patchouli sandelhout musk cederhout">
+          <div class="perfume-number">K283</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Mangostaanwater</span><span class="note-tag">Bergamot</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Ylang-Ylang</span><span class="note-tag">Jasmijn</span><span class="note-tag">Freesia</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Patchouli</span><span class="note-tag">Sandelhout</span><span class="note-tag">Musk</span><span class="note-tag">Cederhout</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k284 bergamot mandarijn neroli jasmijn iris amber musk bourbon vanille">
+          <div class="perfume-number">K284</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Bergamot</span><span class="note-tag">Mandarijn</span><span class="note-tag">Neroli</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Jasmijn</span><span class="note-tag">Iris</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Amber</span><span class="note-tag">Musk</span><span class="note-tag">Bourbon Vanille</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k285 bergamot roze peper aldehyden jasmijn tuberoos iris patchouli benzoin vanille amber">
+          <div class="perfume-number">K285</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Bergamot</span><span class="note-tag">Roze Peper</span><span class="note-tag">Aldehyden</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Jasmijn</span><span class="note-tag">Tuberoos</span><span class="note-tag">Iris</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Patchouli</span><span class="note-tag">Benzoin</span><span class="note-tag">Vanille</span><span class="note-tag">Amber</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k286 peer mandarijn magnolia jasmijn oranjebloesem vanille cederhout musk">
+          <div class="perfume-number">K286</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Peer</span><span class="note-tag">Mandarijn</span><span class="note-tag">Magnolia</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Jasmijn</span><span class="note-tag">Oranjebloesem</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Vanille</span><span class="note-tag">Cederhout</span><span class="note-tag">Musk</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k287 bergamot citroen jasmijn geranium roos patchouli vetiver amber vanille">
+          <div class="perfume-number">K287</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Bergamot</span><span class="note-tag">Citroen</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Jasmijn</span><span class="note-tag">Geranium</span><span class="note-tag">Roos</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Patchouli</span><span class="note-tag">Vetiver</span><span class="note-tag">Amber</span><span class="note-tag">Vanille</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k288 bergamot citroen rozmarijn salie peper jeneverbes cederhout tonkaboon">
+          <div class="perfume-number">K288</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Bergamot</span><span class="note-tag">Citroen</span><span class="note-tag">Rozmarijn</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Salie</span><span class="note-tag">Peper</span><span class="note-tag">Jeneverbes</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Cederhout</span><span class="note-tag">Tonkaboon</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k289 gember peper limoen kokosnoot jasmijn vanille tonkaboon sandelhout">
+          <div class="perfume-number">K289</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Gember</span><span class="note-tag">Peper</span><span class="note-tag">Limoen</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Kokosnoot</span><span class="note-tag">Jasmijn</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Vanille</span><span class="note-tag">Tonkaboon</span><span class="note-tag">Sandelhout</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k290 bergamot neroli jasmijn oranjebloesem musk sandelhout amber">
+          <div class="perfume-number">K290</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Bergamot</span><span class="note-tag">Neroli</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Jasmijn</span><span class="note-tag">Oranjebloesem</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Musk</span><span class="note-tag">Sandelhout</span><span class="note-tag">Amber</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k291 koffie jasmijn oranjebloesem peer vanille patchouli">
+          <div class="perfume-number">K291</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Koffie</span><span class="note-tag">Jasmijn</span><span class="note-tag">Oranjebloesem</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Peer</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Vanille</span><span class="note-tag">Patchouli</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k292 pioenroos roos jasmijn vanille musk sandelhout">
+          <div class="perfume-number">K292</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Pioenroos</span><span class="note-tag">Roos</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Jasmijn</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Vanille</span><span class="note-tag">Musk</span><span class="note-tag">Sandelhout</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k293 lelie van de dal pioenroos roos iris musk patchouli">
+          <div class="perfume-number">K293</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Lelie van de Dal</span><span class="note-tag">Pioenroos</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Roos</span><span class="note-tag">Iris</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Musk</span><span class="note-tag">Patchouli</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k294 honing sinaasappelbloesem jasmijn vanille tonkaboon patchouli">
+          <div class="perfume-number">K294</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Honing</span><span class="note-tag">Sinaasappelbloesem</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Jasmijn</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Vanille</span><span class="note-tag">Tonkaboon</span><span class="note-tag">Patchouli</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k295 peer bergamot kauwgom vanille caramel patchouli tonkaboon musk">
+          <div class="perfume-number">K295</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Peer</span><span class="note-tag">Bergamot</span><span class="note-tag">Kauwgom</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Vanille</span><span class="note-tag">Caramel</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Patchouli</span><span class="note-tag">Tonkaboon</span><span class="note-tag">Musk</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k297 viooltje mandarijn bergamot glycine osmanthus roos tonkaboon vanille patchouli">
+          <div class="perfume-number">K297</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Viooltje</span><span class="note-tag">Mandarijn</span><span class="note-tag">Bergamot</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Glycine</span><span class="note-tag">Osmanthus</span><span class="note-tag">Roos</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Tonkaboon</span><span class="note-tag">Vanille</span><span class="note-tag">Patchouli</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k298 framboos citroen leder roos absolue amber musk vanille">
+          <div class="perfume-number">K298</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Framboos</span><span class="note-tag">Citroen</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Leder</span><span class="note-tag">Roos Absolue</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Amber</span><span class="note-tag">Musk</span><span class="note-tag">Vanille</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k304 viooltje sandelhout vanille musk">
+          <div class="perfume-number">K304</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Viooltje</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Sandelhout</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Vanille</span><span class="note-tag">Musk</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k305 koffie roos vanille amber witte musk">
+          <div class="perfume-number">K305</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Koffie</span><span class="note-tag">Roos</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Vanille</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Amber</span><span class="note-tag">Witte Musk</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k306 citroen roos vanille jasmijn musk cederhout">
+          <div class="perfume-number">K306</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Citroen</span><span class="note-tag">Roos</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Vanille</span><span class="note-tag">Jasmijn</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Musk</span><span class="note-tag">Cederhout</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k307 citrusnoten saffraan gember roos jasmijn amber sandelhout vanille musk">
+          <div class="perfume-number">K307</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Citrusnoten</span><span class="note-tag">Saffraan</span><span class="note-tag">Gember</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Roos</span><span class="note-tag">Jasmijn</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Amber</span><span class="note-tag">Sandelhout</span><span class="note-tag">Vanille</span><span class="note-tag">Musk</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k308 bergamot jasmijn-thee cashmeran roze peper musk sandelhout">
+          <div class="perfume-number">K308</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Bergamot</span><span class="note-tag">Jasmijn-thee</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Cashmeran</span><span class="note-tag">Roze Peper</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Musk</span><span class="note-tag">Sandelhout</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k310 roze peper perzik jasmijn lelie van de dal vanille benzoin patchouli cederhout">
+          <div class="perfume-number">K310</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Roze Peper</span><span class="note-tag">Perzik</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Jasmijn</span><span class="note-tag">Lelie van de Dal</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Vanille</span><span class="note-tag">Benzoin</span><span class="note-tag">Patchouli</span><span class="note-tag">Cederhout</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k314 wilde roos viooltjesblad amber bruine suiker vanille saffraan">
+          <div class="perfume-number">K314</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Wilde Roos</span><span class="note-tag">Viooltjesblad</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Amber</span><span class="note-tag">Bruine Suiker</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Vanille</span><span class="note-tag">Saffraan</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k315 saffraan koriander mirt jasmijn narcis roos vanille tonkaboon sandelhout">
+          <div class="perfume-number">K315</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Saffraan</span><span class="note-tag">Koriander</span><span class="note-tag">Mirt</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Jasmijn</span><span class="note-tag">Narcis</span><span class="note-tag">Roos</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Vanille</span><span class="note-tag">Tonkaboon</span><span class="note-tag">Sandelhout</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k317 katoen witte musk witte musk witte oud musk">
+          <div class="perfume-number">K317</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Katoen</span><span class="note-tag">Witte Musk</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Witte Musk</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Witte Oud</span><span class="note-tag">Musk</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k402 musk vanille passievrucht magnolia patchouli sandelhout">
+          <div class="perfume-number">K402</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Musk</span><span class="note-tag">Vanille</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Passievrucht</span><span class="note-tag">Magnolia</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Patchouli</span><span class="note-tag">Sandelhout</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k425 oranjebloesem jasmijn-sambac tuberoos iris gardenia patchouli amber musk">
+          <div class="perfume-number">K425</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Oranjebloesem</span><span class="note-tag">Jasmijn-Sambac</span><span class="note-tag">Tuberoos</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Iris</span><span class="note-tag">Gardenia</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Patchouli</span><span class="note-tag">Amber</span><span class="note-tag">Musk</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k428 appel pruim kaneel sandelhout olijfhout cederhout amber musk">
+          <div class="perfume-number">K428</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Appel</span><span class="note-tag">Pruim</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Kaneel</span><span class="note-tag">Sandelhout</span><span class="note-tag">Olijfhout</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Cederhout</span><span class="note-tag">Amber</span><span class="note-tag">Musk</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k437 bittere kers bittere amandel turkse roos kirschlikeur jasmijn peru balsem vetiver sandelhout">
+          <div class="perfume-number">K437</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Bittere Kers</span><span class="note-tag">Bittere Amandel</span><span class="note-tag">Turkse Roos</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Kirschlikeur</span><span class="note-tag">Jasmijn</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Peru Balsem</span><span class="note-tag">Vetiver</span><span class="note-tag">Sandelhout</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k438 appel bergamot citroen roos amber musk">
+          <div class="perfume-number">K438</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Appel</span><span class="note-tag">Bergamot</span><span class="note-tag">Citroen</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Roos</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Amber</span><span class="note-tag">Musk</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k439 bulgaarse roos turkse roos guaiac hout oud vanille amber">
+          <div class="perfume-number">K439</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Bulgaarse Roos</span><span class="note-tag">Turkse Roos</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Guaiac Hout</span><span class="note-tag">Oud</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Vanille</span><span class="note-tag">Amber</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k440 bergamot vanille kokosnoot cashmirhout amber">
+          <div class="perfume-number">K440</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Bergamot</span><span class="note-tag">Vanille</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Kokosnoot</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Cashmirhout</span><span class="note-tag">Amber</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k441 aardbei jasmijn roos freesia vanille musk amber">
+          <div class="perfume-number">K441</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Aardbei</span><span class="note-tag">Jasmijn</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Roos</span><span class="note-tag">Freesia</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Vanille</span><span class="note-tag">Musk</span><span class="note-tag">Amber</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k448 lavendel mandarijn bergamot jasmijn orchidee tonkaboon vetiver amber">
+          <div class="perfume-number">K448</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Lavendel</span><span class="note-tag">Mandarijn</span><span class="note-tag">Bergamot</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Jasmijn</span><span class="note-tag">Orchidee</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Tonkaboon</span><span class="note-tag">Vetiver</span><span class="note-tag">Amber</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k449 lychee gember turkse roos bergamot amber musk patchouli">
+          <div class="perfume-number">K449</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Lychee</span><span class="note-tag">Gember</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Turkse Roos</span><span class="note-tag">Bergamot</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Amber</span><span class="note-tag">Musk</span><span class="note-tag">Patchouli</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k450 aardbei kokosnoot musk marshmallow vanille">
+          <div class="perfume-number">K450</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Aardbei</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Kokosnoot</span><span class="note-tag">Musk</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Marshmallow</span><span class="note-tag">Vanille</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k453 oranjebloesem musk roos sandelhout amber cashmere">
+          <div class="perfume-number">K453</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Oranjebloesem</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Musk</span><span class="note-tag">Roos</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Sandelhout</span><span class="note-tag">Amber</span><span class="note-tag">Cashmere</span></div></div>
+          </div>
+        </article>
+
+        <article class="perfume-card" data-search="k457 neroli bergamot jasmijn iris amber musk vanille">
+          <div class="perfume-number">K457</div>
+          <div class="notes">
+          <div class="note-row"><span class="note-label">Top</span><div class="note-tags"><span class="note-tag">Neroli</span><span class="note-tag">Bergamot</span></div></div>
+          <div class="note-row"><span class="note-label">Midden</span><div class="note-tags"><span class="note-tag">Jasmijn</span><span class="note-tag">Iris</span></div></div>
+          <div class="note-row"><span class="note-label">Basis</span><div class="note-tags"><span class="note-tag">Amber</span><span class="note-tag">Musk</span><span class="note-tag">Vanille</span></div></div>
+          </div>
+        </article>
+</div>
+
+<p class="no-results" id="noResults">Geen parfums gevonden voor deze zoekterm.</p>
+
+<script>
+  const input = document.getElementById('searchInput');
+  const cards = Array.from(document.querySelectorAll('.perfume-card'));
+  const resultCount = document.getElementById('resultCount');
+  const noResults = document.getElementById('noResults');
+
+  function filterCards() {
+    const query = input.value.trim().toLowerCase();
+    let visible = 0;
+    cards.forEach(card => {
+      const match = query === '' || card.dataset.search.includes(query);
+      card.style.display = match ? '' : 'none';
+      if (match) visible++;
+    });
+    resultCount.textContent = visible + ' van ' + cards.length + ' parfums';
+    noResults.style.display = visible === 0 ? 'block' : 'none';
+  }
+
+  input.addEventListener('input', filterCards);
+  filterCards();
+</script>
+
+</body>
+</html>
