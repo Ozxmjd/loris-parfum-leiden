@@ -97,6 +97,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    gap: 24px;
   }
 
   .logo {
@@ -124,6 +125,7 @@
   .nav-links {
     display: flex;
     gap: 42px;
+    margin-left: auto;
   }
 
   .nav-links a {
@@ -172,6 +174,24 @@
     height: 2px;
     background: var(--white);
     transition: all 0.3s ease;
+  }
+
+  .nav-end {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-shrink: 0;
+  }
+
+  .nav-search-standalone {
+    display: flex;
+    align-items: center;
+    color: var(--white);
+    transition: color 0.3s ease;
+  }
+
+  .nav-search-standalone:hover {
+    color: var(--gold-light);
   }
 
   /* ===== Hero Section ===== */
@@ -1052,13 +1072,17 @@
         <li><a href="#openingstijden">Openingstijden</a></li>
         <li><a href="#locatie">Locatie</a></li>
         <li><a href="#contact">Contact</a></li>
-        <li><a href="zoeken.html" title="Zoeken" aria-label="Zoeken" style="display:inline-flex;align-items:center;color:var(--white);transition:color .3s;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></a></li>
       </ul>
-      <button class="nav-toggle" id="navToggle" aria-label="Menu openen">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+      <div class="nav-end">
+        <a href="zoeken.html" class="nav-search-standalone" aria-label="Zoeken" title="Zoeken">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </a>
+        <button class="nav-toggle" id="navToggle" aria-label="Menu openen">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+      </div>
     </nav>
   </div>
 </header>
