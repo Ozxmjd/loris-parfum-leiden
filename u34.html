@@ -64,7 +64,7 @@
 
   /* ===== Page Header ===== */
   .page-header {
-    padding: 150px 40px 70px;
+    padding: 150px 40px 50px;
     text-align: center;
     background: linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%);
     color: var(--white);
@@ -98,7 +98,7 @@
     font-size: clamp(64px, 12vw, 110px);
     font-weight: 700;
     letter-spacing: 3px;
-    color: var(--white);
+    color: var(--black);
     line-height: 1;
   }
 
@@ -112,7 +112,8 @@
   .photo-frame {
     position: relative;
     width: 100%;
-    max-width: 380px;
+    max-width: 350px;
+    max-height: 350px;
     aspect-ratio: 1 / 1;
     padding: 14px;
     border: 1px solid var(--gold);
@@ -132,6 +133,13 @@
     height: 100%;
     object-fit: cover;
     display: block;
+  }
+
+  /* ===== Product Number ===== */
+  .product-number-section {
+    text-align: center;
+    padding: 10px 40px 0;
+    background: var(--white);
   }
 
   /* ===== Notes ===== */
@@ -191,9 +199,10 @@
   }
 
   @media (max-width: 700px) {
-    .page-header { padding: 130px 24px 50px; }
+    .page-header { padding: 130px 24px 36px; }
     nav { display: none; }
     .photo-section { padding: 50px 24px 10px; }
+    .product-number-section { padding: 6px 24px 0; }
     .notes-section { padding: 50px 24px 80px; }
   }
 </style>
@@ -215,13 +224,16 @@
 <section class="page-header">
   <a href="frequence-unisex.html" class="back-link">← Terug naar Frequence Unisex</a>
   <span class="eyebrow">Frequence Unisex</span>
-  <h1 class="product-title">U34</h1>
 </section>
 
 <section class="photo-section">
   <div class="photo-frame">
     <img src="images/IMG_7287.jpg" alt="Frequence Unisex U34">
   </div>
+</section>
+
+<section class="product-number-section">
+  <h1 class="product-title">U34</h1>
 </section>
 
 <section class="notes-section">
