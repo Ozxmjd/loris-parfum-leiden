@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>E332 — Frequence Mannen — Loris Parfum Leiden</title>
+<meta name="description" content="E332 uit de Frequence Mannen collectie van Loris Parfum Leiden. Topnoten: Bergamot, Citroen, Zwarte Bes. Middennoten: Vanille, Roos, Jasmijn, Oud. Basisnoten: Patchouli, Sandelhout, Musk, Amber.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --white: #ffffff;
+    --gold: #c9a45c;
+    --gold-light: #e0c896;
+    --gray: #6b6b6b;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--white);
+    color: var(--black);
+  }
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(10,10,10,0.95);
+    backdrop-filter: blur(10px);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+  }
+  .logo span {
+    font-size: 11px;
+    letter-spacing: 4px;
+    color: var(--gold);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+  }
+  nav { display: flex; gap: 30px; align-items: center; }
+  nav a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  nav a:hover { color: var(--gold); }
+
+  /* ===== Page Header ===== */
+  .page-header {
+    padding: 150px 40px 70px;
+    text-align: center;
+    background: linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%);
+    color: var(--white);
+  }
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--gold);
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 36px;
+    border: 1px solid var(--gold);
+    padding: 10px 20px;
+    transition: all 0.3s;
+  }
+  .back-link:hover { background: var(--gold); color: var(--black); }
+  .eyebrow {
+    display: block;
+    font-size: 12px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .product-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(64px, 12vw, 110px);
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: var(--white);
+    line-height: 1;
+  }
+
+  /* ===== Photo ===== */
+  .photo-section {
+    background: var(--white);
+    padding: 70px 40px 20px;
+    display: flex;
+    justify-content: center;
+  }
+  .photo-frame {
+    position: relative;
+    width: 100%;
+    max-width: 380px;
+    aspect-ratio: 1 / 1;
+    padding: 14px;
+    border: 1px solid var(--gold);
+  }
+  .photo-frame::before,
+  .photo-frame::after {
+    content: '';
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    border: 1px solid var(--gold);
+  }
+  .photo-frame::before { top: -9px; left: -9px; border-right: none; border-bottom: none; }
+  .photo-frame::after { bottom: -9px; right: -9px; border-left: none; border-top: none; }
+  .photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* ===== Notes ===== */
+  .notes-section {
+    padding: 60px 40px 110px;
+  }
+  .notes-container {
+    max-width: 640px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+  }
+  .note-block { text-align: center; }
+  .note-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: var(--black);
+    margin-bottom: 20px;
+  }
+  .note-heading::before {
+    content: '';
+    display: block;
+    width: 36px;
+    height: 2px;
+    background: var(--gold);
+    margin: 0 auto 16px;
+  }
+  .note-chips {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 12px;
+  }
+  .note-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid #e6e0d2;
+    background: #fbfaf7;
+    padding: 10px 20px;
+    border-radius: 40px;
+    font-size: 14px;
+    letter-spacing: 0.3px;
+    color: var(--black);
+    transition: border-color 0.3s ease, transform 0.3s ease;
+  }
+  .note-chip:hover {
+    border-color: var(--gold);
+    transform: translateY(-2px);
+  }
+  .note-chip .emoji {
+    font-size: 16px;
+    line-height: 1;
+  }
+
+  @media (max-width: 700px) {
+    .page-header { padding: 130px 24px 50px; }
+    nav { display: none; }
+    .photo-section { padding: 50px 24px 10px; }
+    .notes-section { padding: 50px 24px 80px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="logo">LORIS PARFUM<span>LEIDEN</span></a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="parfum.html">Onze Producten</a>
+    <a href="index.html#over-ons">Over Ons</a>
+    <a href="index.html#openingstijden">Openingstijden</a>
+    <a href="index.html#locatie">Locatie</a>
+    <a href="index.html#contact">Contact</a>
+  </nav>
+</header>
+
+<section class="page-header">
+  <a href="frequence-mannen.html" class="back-link">← Terug naar Frequence Mannen</a>
+  <span class="eyebrow">Frequence Mannen</span>
+  <h1 class="product-title">E332</h1>
+</section>
+
+<section class="photo-section">
+  <div class="photo-frame">
+    <img src="images/IMG_7288.jpg" alt="Frequence Mannen E332">
+  </div>
+</section>
+
+<section class="notes-section">
+  <div class="notes-container">
+    <div class="note-block">
+      <h2 class="note-heading">Topnoten</h2>
+      <div class="note-chips">
+        <span class="note-chip"><span class="emoji">🍋</span>Bergamot</span>
+        <span class="note-chip"><span class="emoji">🍋</span>Citroen</span>
+        <span class="note-chip"><span class="emoji">🫐</span>Zwarte Bes</span>
+      </div>
+    </div>
+    <div class="note-block">
+      <h2 class="note-heading">Middennoten</h2>
+      <div class="note-chips">
+        <span class="note-chip"><span class="emoji">🍮</span>Vanille</span>
+        <span class="note-chip"><span class="emoji">🌹</span>Roos</span>
+        <span class="note-chip"><span class="emoji">🌸</span>Jasmijn</span>
+        <span class="note-chip"><span class="emoji">🕯️</span>Oud</span>
+      </div>
+    </div>
+    <div class="note-block">
+      <h2 class="note-heading">Basisnoten</h2>
+      <div class="note-chips">
+        <span class="note-chip"><span class="emoji">🌿</span>Patchouli</span>
+        <span class="note-chip"><span class="emoji">🪵</span>Sandelhout</span>
+        <span class="note-chip"><span class="emoji">🤍</span>Musk</span>
+        <span class="note-chip"><span class="emoji">🔶</span>Amber</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+</body>
+</html>
