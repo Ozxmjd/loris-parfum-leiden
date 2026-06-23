@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dubai Collectie — Loris Parfum Leiden</title>
-<meta name="description" content="Ontdek de volledige Dubai/Arabische collectie van Loris Parfum Leiden. Oosterse luxe geuren geïnspireerd op de Arabische parfumtraditie.">
+<meta name="description" content="Ontdek de Dubai Collectie van Loris Parfum Leiden. Oosterse luxe geuren geïnspireerd op de Arabische parfumtraditie. Kies uit Mannen, Vrouwen en Unisex.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -62,7 +62,7 @@
   }
   nav a:hover { color: var(--gold); }
   .page-header {
-    padding: 140px 40px 50px;
+    padding: 160px 40px 60px;
     text-align: center;
     background:
       linear-gradient(rgba(10,10,10,0.65), rgba(10,10,10,0.88)),
@@ -93,175 +93,60 @@
   .page-header p {
     color: #bbb;
     font-size: 16px;
-    max-width: 560px;
+    max-width: 500px;
     margin: 0 auto;
   }
-
-  /* ===== View Toolbar ===== */
-  .view-toolbar {
-    display: flex;
-    justify-content: center;
-    gap: 14px;
-    padding: 50px 40px 0;
-  }
-  .view-btn {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 46px;
-    height: 46px;
-    border: 1px solid #e6e0d2;
-    background: var(--white);
-    color: var(--black);
-    cursor: pointer;
-    transition: border-color 0.3s ease, color 0.3s ease, background 0.3s ease;
-  }
-  .view-btn svg { width: 20px; height: 20px; }
-  .view-btn:hover { border-color: var(--gold); color: var(--gold); }
-  .view-btn.active { border-color: var(--gold); background: var(--black); color: var(--gold); }
-
-  /* ===== Product Grid ===== */
-  .products-grid {
+  .categories {
     max-width: 1300px;
     margin: 0 auto;
-    padding: 30px 40px 120px;
+    padding: 80px 40px 120px;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 28px;
+    gap: 30px;
   }
-  .products-grid.view-3 { grid-template-columns: repeat(3, 1fr); }
-  .products-grid.view-2 { grid-template-columns: repeat(2, 1fr); }
-  .products-grid.view-1 { grid-template-columns: 1fr; }
-  .product-card {
-    display: block;
-    background: var(--white);
-    border: 1px solid #e6e0d2;
+  .category-card {
+    position: relative;
+    height: 560px;
+    overflow: hidden;
+    cursor: pointer;
     text-decoration: none;
-    overflow: hidden;
-    transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
+    display: block;
   }
-  .product-card:hover {
-    border-color: var(--gold);
-    box-shadow: 0 18px 36px rgba(0,0,0,0.1);
-    transform: translateY(-6px);
-  }
-  .card-image {
-    aspect-ratio: 1 / 1;
-    overflow: hidden;
-    background: #f7f5f0;
-  }
-  .card-image img {
+  .category-card img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 0.6s ease;
   }
-  .product-card:hover .card-image img { transform: scale(1.06); }
-  .card-info {
-    padding: 18px 16px 22px;
-    text-align: center;
+  .category-card:hover img { transform: scale(1.08); }
+  .category-overlay {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: linear-gradient(0deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 100%);
+    padding: 50px 30px 30px;
+    color: var(--white);
   }
-  .card-info::before {
-    content: '';
-    display: block;
-    width: 28px;
-    height: 2px;
-    background: var(--gold);
-    margin: 0 auto 10px;
-  }
-  .card-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 18px;
-    font-weight: 700;
-    letter-spacing: 1px;
-    color: var(--black);
-    transition: color 0.3s ease;
-    display: block;
-    margin-bottom: 6px;
-    line-height: 1.2;
-  }
-  .product-card:hover .card-name { color: var(--gold); }
-  .card-meta {
-    font-size: 11px;
-    letter-spacing: 1.5px;
+  .category-overlay span {
+    font-size: 12px;
+    letter-spacing: 2px;
     text-transform: uppercase;
-    color: var(--gray);
+    color: var(--gold-light);
   }
-  .cat-v { color: #a05570; }
-  .cat-m { color: #4a6fa0; }
-  .cat-u { color: #507060; }
-  .products-grid.view-2 .card-name { font-size: 22px; }
-  .card-notes { display: none; }
-
-  /* ===== Single-column view with inline notes ===== */
-  .products-grid.view-1 .product-card {
-    display: grid;
-    grid-template-columns: 220px 1fr;
-    gap: 10px 32px;
-    padding: 24px;
-    align-items: start;
-  }
-  .products-grid.view-1 .card-image { grid-column: 1; grid-row: 1 / 3; }
-  .products-grid.view-1 .card-info {
-    grid-column: 2;
-    grid-row: 1;
-    text-align: left;
-    padding: 0;
-  }
-  .products-grid.view-1 .card-info::before { margin: 0 0 10px; }
-  .products-grid.view-1 .card-notes {
-    grid-column: 2;
-    grid-row: 2;
-    display: flex;
-    flex-direction: column;
-    gap: 14px;
-  }
-  .card-notes .note-heading {
+  .category-overlay h2 {
     font-family: 'Playfair Display', serif;
-    font-size: 13px;
+    font-size: 32px;
     font-weight: 600;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: var(--gray);
-    margin-bottom: 8px;
+    margin: 8px 0 10px;
   }
-  .card-notes .note-chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
+  .category-overlay p {
+    font-size: 14px;
+    color: #ddd;
+    line-height: 1.5;
   }
-  .card-notes .note-chip {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    border: 1px solid #e6e0d2;
-    background: #fbfaf7;
-    padding: 6px 14px;
-    border-radius: 30px;
-    font-size: 12.5px;
-    color: var(--black);
-  }
-  .card-notes .note-chip .emoji { font-size: 14px; line-height: 1; }
-  .card-notes .notes-loading,
-  .card-notes .notes-error {
-    font-size: 13px;
-    color: var(--gray);
-    font-style: italic;
-  }
-
-  @media (max-width: 700px) {
-    .view-toolbar { padding: 30px 20px 0; gap: 10px; }
-    .view-btn { width: 40px; height: 40px; }
-    .products-grid { padding: 24px 20px 90px; gap: 18px; }
+  @media (max-width: 900px) {
+    .categories { grid-template-columns: 1fr; padding: 60px 20px; }
     .page-header h1 { font-size: 32px; }
     nav { display: none; }
-  }
-  @media (max-width: 600px) {
-    .products-grid.view-1 .product-card { grid-template-columns: 1fr; }
-    .products-grid.view-1 .card-image { grid-row: 1; max-width: 240px; margin: 0 auto; }
-    .products-grid.view-1 .card-info { grid-row: 2; text-align: center; }
-    .products-grid.view-1 .card-info::before { margin: 0 auto 10px; }
-    .products-grid.view-1 .card-notes { grid-row: 3; }
   }
 </style>
 </head>
@@ -281,265 +166,37 @@
 </header>
 
 <div class="page-header">
-  <a href="parfum.html" class="back-link">← Terug naar Collecties</a>
+  <a href="parfum.html" class="back-link">← Terug naar collecties</a>
   <h1>Dubai Collectie</h1>
-  <p>Oosterse luxe geuren geïnspireerd op de rijke Arabische parfumtraditie. Klik op een product voor meer informatie.</p>
+  <p>Oosterse luxe geuren geïnspireerd op de rijke Arabische parfumtraditie. Kies jouw categorie.</p>
 </div>
 
-<div class="view-toolbar" role="group" aria-label="Weergave wisselen">
-  <button type="button" class="view-btn" data-view="3" title="3 kolommen" aria-label="3 kolommen">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="5" height="16"></rect><rect x="9.5" y="4" width="5" height="16"></rect><rect x="17" y="4" width="5" height="16"></rect></svg>
-  </button>
-  <button type="button" class="view-btn" data-view="2" title="2 kolommen" aria-label="2 kolommen">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="8" height="16"></rect><rect x="13" y="4" width="8" height="16"></rect></svg>
-  </button>
-  <button type="button" class="view-btn" data-view="1" title="1 kolom met noten" aria-label="1 kolom met noten">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="3" width="16" height="9"></rect><line x1="4" y1="16" x2="20" y2="16"></line><line x1="4" y1="19" x2="16" y2="19"></line></svg>
-  </button>
+<div class="categories">
+  <a href="dubai-mannen.html" class="category-card">
+    <img src="images/IMG_7041.WEBP" alt="Dubai Mannen">
+    <div class="category-overlay">
+      <span>Collectie</span>
+      <h2>Mannen</h2>
+      <p>Krachtige en oriëntaalse geuren voor de moderne man.</p>
+    </div>
+  </a>
+  <a href="dubai-vrouwen.html" class="category-card">
+    <img src="images/IMG_7041.WEBP" alt="Dubai Vrouwen">
+    <div class="category-overlay">
+      <span>Collectie</span>
+      <h2>Vrouwen</h2>
+      <p>Elegante en verleidelijke geuren met een Arabische touch.</p>
+    </div>
+  </a>
+  <a href="dubai-unisex.html" class="category-card">
+    <img src="images/IMG_7041.WEBP" alt="Dubai Unisex">
+    <div class="category-overlay">
+      <span>Collectie</span>
+      <h2>Unisex</h2>
+      <p>Diepe, oud-rijke geuren voor iedereen.</p>
+    </div>
+  </a>
 </div>
-
-<div class="products-grid">
-
-  <a href="aura.html" class="product-card">
-    <div class="card-image"><img src="images/IMG_7041.WEBP" alt="Aura" loading="lazy"></div>
-    <div class="card-info"><span class="card-name">Aura</span><div class="card-meta"><span class="cat-v">Vrouw</span> &bull; 100ml</div></div>
-    <div class="card-notes"></div>
-  </a>
-
-  <a href="angel-wings.html" class="product-card">
-    <div class="card-image"><img src="images/IMG_7041.WEBP" alt="Angel Wings" loading="lazy"></div>
-    <div class="card-info"><span class="card-name">Angel Wings</span><div class="card-meta"><span class="cat-v">Vrouw</span> &bull; 100ml</div></div>
-    <div class="card-notes"></div>
-  </a>
-
-  <a href="giza.html" class="product-card">
-    <div class="card-image"><img src="images/IMG_7041.WEBP" alt="Giza" loading="lazy"></div>
-    <div class="card-info"><span class="card-name">Giza</span><div class="card-meta"><span class="cat-v">Vrouw</span> &bull; 100ml</div></div>
-    <div class="card-notes"></div>
-  </a>
-
-  <a href="iceberg-white.html" class="product-card">
-    <div class="card-image"><img src="images/IMG_7041.WEBP" alt="Iceberg White" loading="lazy"></div>
-    <div class="card-info"><span class="card-name">Iceberg White</span><div class="card-meta"><span class="cat-v">Vrouw</span> &bull; 50ml</div></div>
-    <div class="card-notes"></div>
-  </a>
-
-  <a href="javou-midnight.html" class="product-card">
-    <div class="card-image"><img src="images/IMG_7041.WEBP" alt="Javou Midnight" loading="lazy"></div>
-    <div class="card-info"><span class="card-name">Javou Midnight</span><div class="card-meta"><span class="cat-v">Vrouw</span> &bull; 75ml</div></div>
-    <div class="card-notes"></div>
-  </a>
-
-  <a href="endless-love-vrouw.html" class="product-card">
-    <div class="card-image"><img src="images/IMG_7041.WEBP" alt="Endless Love Vrouw" loading="lazy"></div>
-    <div class="card-info"><span class="card-name">Endless Love</span><div class="card-meta"><span class="cat-v">Vrouw</span> &bull; 50ml</div></div>
-    <div class="card-notes"></div>
-  </a>
-
-  <a href="sahra.html" class="product-card">
-    <div class="card-image"><img src="images/IMG_7041.WEBP" alt="Sahra" loading="lazy"></div>
-    <div class="card-info"><span class="card-name">Sahra</span><div class="card-meta"><span class="cat-v">Vrouw</span> &bull; 100ml</div></div>
-    <div class="card-notes"></div>
-  </a>
-
-  <a href="bint-sheikh.html" class="product-card">
-    <div class="card-image"><img src="images/IMG_7041.WEBP" alt="Bint Sheikh" loading="lazy"></div>
-    <div class="card-info"><span class="card-name">Bint Sheikh</span><div class="card-meta"><span class="cat-v">Vrouw</span> &bull; 100ml</div></div>
-    <div class="card-notes"></div>
-  </a>
-
-  <a href="mesaytara.html" class="product-card">
-    <div class="card-image"><img src="images/IMG_7041.WEBP" alt="Mesaytara" loading="lazy"></div>
-    <div class="card-info"><span class="card-name">Mesaytara</span><div class="card-meta"><span class="cat-v">Vrouw</span> &bull; 100ml</div></div>
-    <div class="card-notes"></div>
-  </a>
-
-  <a href="javou-midnight-100ml.html" class="product-card">
-    <div class="card-image"><img src="images/IMG_7041.WEBP" alt="Javou Midnight 100ml" loading="lazy"></div>
-    <div class="card-info"><span class="card-name">Javou Midnight 100ml</span><div class="card-meta"><span class="cat-v">Vrouw</span> &bull; 100ml</div></div>
-    <div class="card-notes"></div>
-  </a>
-
-  <a href="rose-amrys.html" class="product-card">
-    <div class="card-image"><img src="images/IMG_7041.WEBP" alt="Rose Amrys" loading="lazy"></div>
-    <div class="card-info"><span class="card-name">Rose Amrys</span><div class="card-meta"><span class="cat-v">Vrouw</span> &bull; 50ml</div></div>
-    <div class="card-notes"></div>
-  </a>
-
-  <a href="narcotige.html" class="product-card">
-    <div class="card-image"><img src="images/IMG_7041.WEBP" alt="Narcotige" loading="lazy"></div>
-    <div class="card-info"><span class="card-name">Narcotige</span><div class="card-meta"><span class="cat-u">Unisex</span> &bull; 55ml</div></div>
-    <div class="card-notes"></div>
-  </a>
-
-  <a href="shrazad.html" class="product-card">
-    <div class="card-image"><img src="images/IMG_7041.WEBP" alt="Shrazad" loading="lazy"></div>
-    <div class="card-info"><span class="card-name">Shrazad</span><div class="card-meta"><span class="cat-u">Unisex</span> &bull; 50ml</div></div>
-    <div class="card-notes"></div>
-  </a>
-
-  <a href="oriental-oud.html" class="product-card">
-    <div class="card-image"><img src="images/IMG_7041.WEBP" alt="Oriental Oud" loading="lazy"></div>
-    <div class="card-info"><span class="card-name">Oriental Oud</span><div class="card-meta"><span class="cat-u">Unisex</span> &bull; 50ml</div></div>
-    <div class="card-notes"></div>
-  </a>
-
-  <a href="business-club.html" class="product-card">
-    <div class="card-image"><img src="images/IMG_7041.WEBP" alt="Business Club" loading="lazy"></div>
-    <div class="card-info"><span class="card-name">Business Club</span><div class="card-meta"><span class="cat-m">Man</span> &bull; 100ml</div></div>
-    <div class="card-notes"></div>
-  </a>
-
-  <a href="vip-men.html" class="product-card">
-    <div class="card-image"><img src="images/IMG_7041.WEBP" alt="VIP Men" loading="lazy"></div>
-    <div class="card-info"><span class="card-name">VIP Men</span><div class="card-meta"><span class="cat-m">Man</span> &bull; 100ml</div></div>
-    <div class="card-notes"></div>
-  </a>
-
-  <a href="idole.html" class="product-card">
-    <div class="card-image"><img src="images/IMG_7041.WEBP" alt="Idole" loading="lazy"></div>
-    <div class="card-info"><span class="card-name">Idole</span><div class="card-meta"><span class="cat-m">Man</span> &bull; 100ml</div></div>
-    <div class="card-notes"></div>
-  </a>
-
-  <a href="earth.html" class="product-card">
-    <div class="card-image"><img src="images/IMG_7041.WEBP" alt="Earth" loading="lazy"></div>
-    <div class="card-info"><span class="card-name">Earth</span><div class="card-meta"><span class="cat-m">Man</span> &bull; 100ml</div></div>
-    <div class="card-notes"></div>
-  </a>
-
-  <a href="iceberg-blue.html" class="product-card">
-    <div class="card-image"><img src="images/IMG_7041.WEBP" alt="Iceberg Blue" loading="lazy"></div>
-    <div class="card-info"><span class="card-name">Iceberg Blue</span><div class="card-meta"><span class="cat-m">Man</span> &bull; 50ml</div></div>
-    <div class="card-notes"></div>
-  </a>
-
-  <a href="uniq-black.html" class="product-card">
-    <div class="card-image"><img src="images/IMG_7041.WEBP" alt="Uniq Black" loading="lazy"></div>
-    <div class="card-info"><span class="card-name">Uniq Black</span><div class="card-meta"><span class="cat-m">Man</span> &bull; 100ml</div></div>
-    <div class="card-notes"></div>
-  </a>
-
-  <a href="nexus.html" class="product-card">
-    <div class="card-image"><img src="images/IMG_7041.WEBP" alt="Nexus" loading="lazy"></div>
-    <div class="card-info"><span class="card-name">Nexus</span><div class="card-meta"><span class="cat-m">Man</span> &bull; 50ml</div></div>
-    <div class="card-notes"></div>
-  </a>
-
-  <a href="endless-love-man.html" class="product-card">
-    <div class="card-image"><img src="images/IMG_7041.WEBP" alt="Endless Love Man" loading="lazy"></div>
-    <div class="card-info"><span class="card-name">Endless Love Man</span><div class="card-meta"><span class="cat-m">Man</span> &bull; 50ml</div></div>
-    <div class="card-notes"></div>
-  </a>
-
-  <a href="narcotige-intense.html" class="product-card">
-    <div class="card-image"><img src="images/IMG_7041.WEBP" alt="Narcotige Intense" loading="lazy"></div>
-    <div class="card-info"><span class="card-name">Narcotige Intense</span><div class="card-meta"><span class="cat-m">Man</span> &bull; 55ml</div></div>
-    <div class="card-notes"></div>
-  </a>
-
-  <a href="al-shaikh.html" class="product-card">
-    <div class="card-image"><img src="images/IMG_7041.WEBP" alt="Al Shaikh" loading="lazy"></div>
-    <div class="card-info"><span class="card-name">Al Shaikh</span><div class="card-meta"><span class="cat-m">Man</span> &bull; 100ml</div></div>
-    <div class="card-notes"></div>
-  </a>
-
-  <a href="black-oud.html" class="product-card">
-    <div class="card-image"><img src="images/IMG_7041.WEBP" alt="Black Oud" loading="lazy"></div>
-    <div class="card-info"><span class="card-name">Black Oud</span><div class="card-meta"><span class="cat-m">Man</span> &bull; 100ml</div></div>
-    <div class="card-notes"></div>
-  </a>
-
-  <a href="sultan.html" class="product-card">
-    <div class="card-image"><img src="images/IMG_7041.WEBP" alt="Sultan" loading="lazy"></div>
-    <div class="card-info"><span class="card-name">Sultan</span><div class="card-meta"><span class="cat-m">Man</span> &bull; 70ml</div></div>
-    <div class="card-notes"></div>
-  </a>
-
-  <a href="leather.html" class="product-card">
-    <div class="card-image"><img src="images/IMG_7041.WEBP" alt="Leather" loading="lazy"></div>
-    <div class="card-info"><span class="card-name">Leather</span><div class="card-meta"><span class="cat-m">Man</span> &bull; 100ml</div></div>
-    <div class="card-notes"></div>
-  </a>
-
-  <a href="arabian-code.html" class="product-card">
-    <div class="card-image"><img src="images/IMG_7041.WEBP" alt="Arabian Code" loading="lazy"></div>
-    <div class="card-info"><span class="card-name">Arabian Code</span><div class="card-meta"><span class="cat-m">Man</span> &bull; 50ml</div></div>
-    <div class="card-notes"></div>
-  </a>
-
-  <a href="kelamat.html" class="product-card">
-    <div class="card-image"><img src="images/IMG_7041.WEBP" alt="Kelamat" loading="lazy"></div>
-    <div class="card-info"><span class="card-name">Kelamat</span><div class="card-meta"><span class="cat-m">Man</span> &bull; 50ml</div></div>
-    <div class="card-notes"></div>
-  </a>
-
-</div>
-
-<script>
-(function () {
-  var KEY = 'dubaiView';
-  var grid = document.querySelector('.products-grid');
-  var buttons = document.querySelectorAll('.view-btn');
-  var cache = {};
-  var observer = null;
-
-  function setActiveButton(view) {
-    buttons.forEach(function (btn) {
-      btn.classList.toggle('active', btn.getAttribute('data-view') === view);
-    });
-  }
-
-  function loadNotes(card) {
-    var notesEl = card.querySelector('.card-notes');
-    if (!notesEl || notesEl.getAttribute('data-loaded')) return;
-    notesEl.setAttribute('data-loaded', '1');
-    var href = card.getAttribute('href');
-    if (cache[href]) { notesEl.innerHTML = cache[href]; return; }
-    notesEl.innerHTML = '<span class="notes-loading">Noten laden…</span>';
-    fetch(href).then(function (res) { return res.text(); }).then(function (html) {
-      var doc = new DOMParser().parseFromString(html, 'text/html');
-      var blocks = doc.querySelectorAll('.note-block');
-      var markup = '';
-      blocks.forEach(function (block) { markup += block.outerHTML; });
-      cache[href] = markup;
-      notesEl.innerHTML = markup;
-    }).catch(function () {
-      notesEl.innerHTML = '<span class="notes-error">Noten konden niet worden geladen.</span>';
-    });
-  }
-
-  function watchCards() {
-    if (observer || !('IntersectionObserver' in window)) {
-      document.querySelectorAll('.product-card').forEach(loadNotes);
-      return;
-    }
-    observer = new IntersectionObserver(function (entries) {
-      entries.forEach(function (entry) { if (entry.isIntersecting) loadNotes(entry.target); });
-    }, { rootMargin: '300px 0px' });
-    document.querySelectorAll('.product-card').forEach(function (card) { observer.observe(card); });
-  }
-
-  function applyView(view) {
-    grid.classList.remove('view-1', 'view-2', 'view-3');
-    grid.classList.add('view-' + view);
-    setActiveButton(view);
-    if (view === '1') watchCards();
-  }
-
-  buttons.forEach(function (btn) {
-    btn.addEventListener('click', function () {
-      var view = btn.getAttribute('data-view');
-      localStorage.setItem(KEY, view);
-      applyView(view);
-    });
-  });
-
-  var saved = localStorage.getItem(KEY);
-  var initial = saved || (window.matchMedia('(max-width: 700px)').matches ? '2' : '3');
-  applyView(initial);
-})();
-</script>
 
 </body>
 </html>

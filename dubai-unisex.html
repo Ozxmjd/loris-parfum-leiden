@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>DMAR Collectie — Loris Parfum Leiden</title>
-<meta name="description" content="Ontdek de DMAR collectie van Loris Parfum Leiden. Verfijnde Arabische geuren in 50ml.">
+<title>Dubai Unisex — Loris Parfum Leiden</title>
+<meta name="description" content="Dubai Unisex collectie van Loris Parfum Leiden. Diepe, oud-rijke geuren voor iedereen.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -33,13 +33,13 @@
   nav a:hover { color: var(--gold); }
   .page-header {
     padding: 140px 40px 50px; text-align: center;
-    background: linear-gradient(rgba(10,10,10,0.65), rgba(10,10,10,0.88)), url('images/IMG_7044.WEBP') center/cover no-repeat;
+    background: linear-gradient(rgba(10,10,10,0.65), rgba(10,10,10,0.88)), url('images/IMG_7041.WEBP') center/cover no-repeat;
     color: var(--white);
   }
   .back-link {
-    display: inline-flex; align-items: center; gap: 8px; color: var(--gold); text-decoration: none;
-    font-size: 13px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 30px;
-    border: 1px solid var(--gold); padding: 10px 20px; transition: all 0.3s;
+    display: inline-flex; align-items: center; gap: 8px; color: var(--gold);
+    text-decoration: none; font-size: 13px; letter-spacing: 1px; text-transform: uppercase;
+    margin-bottom: 30px; border: 1px solid var(--gold); padding: 10px 20px; transition: all 0.3s;
   }
   .back-link:hover { background: var(--gold); color: var(--black); }
   .page-header h1 { font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 600; margin-bottom: 16px; }
@@ -47,9 +47,8 @@
   .view-toolbar { display: flex; justify-content: center; gap: 14px; padding: 50px 40px 0; }
   .view-btn {
     display: inline-flex; align-items: center; justify-content: center;
-    width: 46px; height: 46px; border: 1px solid #e6e0d2;
-    background: var(--white); color: var(--black); cursor: pointer;
-    transition: border-color 0.3s ease, color 0.3s ease, background 0.3s ease;
+    width: 46px; height: 46px; border: 1px solid #e6e0d2; background: var(--white);
+    color: var(--black); cursor: pointer; transition: border-color 0.3s ease, color 0.3s ease, background 0.3s ease;
   }
   .view-btn svg { width: 20px; height: 20px; }
   .view-btn:hover { border-color: var(--gold); color: var(--gold); }
@@ -72,22 +71,32 @@
   .product-card:hover .card-image img { transform: scale(1.06); }
   .card-info { padding: 18px 16px 22px; text-align: center; }
   .card-info::before { content: ''; display: block; width: 28px; height: 2px; background: var(--gold); margin: 0 auto 10px; }
-  .card-name { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; letter-spacing: 1px; color: var(--black); transition: color 0.3s ease; display: block; margin-bottom: 6px; line-height: 1.2; }
+  .card-name {
+    font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700;
+    letter-spacing: 1px; color: var(--black); transition: color 0.3s ease;
+    display: block; margin-bottom: 6px; line-height: 1.2;
+  }
   .product-card:hover .card-name { color: var(--gold); }
   .card-meta { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gray); }
-  .cat-v { color: #a05570; }
-  .cat-m { color: #4a6fa0; }
   .cat-u { color: #507060; }
   .products-grid.view-2 .card-name { font-size: 22px; }
   .card-notes { display: none; }
-  .products-grid.view-1 .product-card { display: grid; grid-template-columns: 220px 1fr; gap: 10px 32px; padding: 24px; align-items: start; }
+  .products-grid.view-1 .product-card {
+    display: grid; grid-template-columns: 220px 1fr; gap: 10px 32px; padding: 24px; align-items: start;
+  }
   .products-grid.view-1 .card-image { grid-column: 1; grid-row: 1 / 3; }
   .products-grid.view-1 .card-info { grid-column: 2; grid-row: 1; text-align: left; padding: 0; }
   .products-grid.view-1 .card-info::before { margin: 0 0 10px; }
   .products-grid.view-1 .card-notes { grid-column: 2; grid-row: 2; display: flex; flex-direction: column; gap: 14px; }
-  .card-notes .note-heading { font-family: 'Playfair Display', serif; font-size: 13px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gray); margin-bottom: 8px; }
+  .card-notes .note-heading {
+    font-family: 'Playfair Display', serif; font-size: 13px; font-weight: 600;
+    letter-spacing: 1.5px; text-transform: uppercase; color: var(--gray); margin-bottom: 8px;
+  }
   .card-notes .note-chips { display: flex; flex-wrap: wrap; gap: 8px; }
-  .card-notes .note-chip { display: inline-flex; align-items: center; gap: 6px; border: 1px solid #e6e0d2; background: #fbfaf7; padding: 6px 14px; border-radius: 30px; font-size: 12.5px; color: var(--black); }
+  .card-notes .note-chip {
+    display: inline-flex; align-items: center; gap: 6px; border: 1px solid #e6e0d2;
+    background: #fbfaf7; padding: 6px 14px; border-radius: 30px; font-size: 12.5px; color: var(--black);
+  }
   .card-notes .note-chip .emoji { font-size: 14px; line-height: 1; }
   .card-notes .notes-loading, .card-notes .notes-error { font-size: 13px; color: var(--gray); font-style: italic; }
   @media (max-width: 700px) {
@@ -122,9 +131,9 @@
 </header>
 
 <div class="page-header">
-  <a href="parfum.html" class="back-link">← Terug naar Collecties</a>
-  <h1>DMAR Collectie</h1>
-  <p>Elegante Arabische geuren in luxe 50ml flacons. Klik op een product voor meer informatie.</p>
+  <a href="dubai.html" class="back-link">← Terug naar Dubai Collectie</a>
+  <h1>Dubai — Unisex</h1>
+  <p>Diepe, oud-rijke geuren voor iedereen.</p>
 </div>
 
 <div class="view-toolbar" role="group" aria-label="Weergave wisselen">
@@ -141,51 +150,21 @@
 
 <div class="products-grid">
 
-  <a href="dmar-black-shine.html" class="product-card">
-    <div class="card-image"><img src="images/IMG_7044.WEBP" alt="Dmar Black Shine" loading="lazy"></div>
-    <div class="card-info"><span class="card-name">Dmar Black Shine</span><div class="card-meta"><span class="cat-v">Vrouw</span> &bull; 50ml</div></div>
+  <a href="narcotige.html" class="product-card">
+    <div class="card-image"><img src="images/IMG_7041.WEBP" alt="Narcotige" loading="lazy"></div>
+    <div class="card-info"><span class="card-name">Narcotige</span><div class="card-meta"><span class="cat-u">Unisex</span> &bull; 55ml</div></div>
     <div class="card-notes"></div>
   </a>
 
-  <a href="dmar-love.html" class="product-card">
-    <div class="card-image"><img src="images/IMG_7044.WEBP" alt="Dmar Love" loading="lazy"></div>
-    <div class="card-info"><span class="card-name">Dmar Love</span><div class="card-meta"><span class="cat-v">Vrouw</span> &bull; 50ml</div></div>
+  <a href="shrazad.html" class="product-card">
+    <div class="card-image"><img src="images/IMG_7041.WEBP" alt="Shrazad" loading="lazy"></div>
+    <div class="card-info"><span class="card-name">Shrazad</span><div class="card-meta"><span class="cat-u">Unisex</span> &bull; 50ml</div></div>
     <div class="card-notes"></div>
   </a>
 
-  <a href="dmar-queen.html" class="product-card">
-    <div class="card-image"><img src="images/IMG_7044.WEBP" alt="Dmar Queen" loading="lazy"></div>
-    <div class="card-info"><span class="card-name">Dmar Queen</span><div class="card-meta"><span class="cat-v">Vrouw</span> &bull; 50ml</div></div>
-    <div class="card-notes"></div>
-  </a>
-
-  <a href="dmar-leather.html" class="product-card">
-    <div class="card-image"><img src="images/IMG_7044.WEBP" alt="Dmar Leather" loading="lazy"></div>
-    <div class="card-info"><span class="card-name">Dmar Leather</span><div class="card-meta"><span class="cat-m">Man</span> &bull; 50ml</div></div>
-    <div class="card-notes"></div>
-  </a>
-
-  <a href="dmar-sunlight.html" class="product-card">
-    <div class="card-image"><img src="images/IMG_7044.WEBP" alt="Dmar Sunlight" loading="lazy"></div>
-    <div class="card-info"><span class="card-name">Dmar Sunlight</span><div class="card-meta"><span class="cat-m">Man</span> &bull; 50ml</div></div>
-    <div class="card-notes"></div>
-  </a>
-
-  <a href="dmar-moonlight.html" class="product-card">
-    <div class="card-image"><img src="images/IMG_7044.WEBP" alt="Dmar Moonlight" loading="lazy"></div>
-    <div class="card-info"><span class="card-name">Dmar Moonlight</span><div class="card-meta"><span class="cat-m">Man</span> &bull; 50ml</div></div>
-    <div class="card-notes"></div>
-  </a>
-
-  <a href="dmar-vetiver-gold.html" class="product-card">
-    <div class="card-image"><img src="images/IMG_7044.WEBP" alt="Dmar Vetiver Gold" loading="lazy"></div>
-    <div class="card-info"><span class="card-name">Dmar Vetiver Gold</span><div class="card-meta"><span class="cat-m">Man</span> &bull; 50ml</div></div>
-    <div class="card-notes"></div>
-  </a>
-
-  <a href="dmar-al-taheron.html" class="product-card">
-    <div class="card-image"><img src="images/IMG_7044.WEBP" alt="Dmar Al Taheron" loading="lazy"></div>
-    <div class="card-info"><span class="card-name">Dmar Al Taheron</span><div class="card-meta"><span class="cat-m">Man</span> &bull; 50ml</div></div>
+  <a href="oriental-oud.html" class="product-card">
+    <div class="card-image"><img src="images/IMG_7041.WEBP" alt="Oriental Oud" loading="lazy"></div>
+    <div class="card-info"><span class="card-name">Oriental Oud</span><div class="card-meta"><span class="cat-u">Unisex</span> &bull; 50ml</div></div>
     <div class="card-notes"></div>
   </a>
 
@@ -193,12 +172,18 @@
 
 <script>
 (function () {
-  var KEY = 'dmarView';
+  var KEY = 'dubaiUnisexView';
   var grid = document.querySelector('.products-grid');
   var buttons = document.querySelectorAll('.view-btn');
   var cache = {};
   var observer = null;
-  function setActiveButton(view) { buttons.forEach(function (btn) { btn.classList.toggle('active', btn.getAttribute('data-view') === view); }); }
+
+  function setActiveButton(view) {
+    buttons.forEach(function (btn) {
+      btn.classList.toggle('active', btn.getAttribute('data-view') === view);
+    });
+  }
+
   function loadNotes(card) {
     var notesEl = card.querySelector('.card-notes');
     if (!notesEl || notesEl.getAttribute('data-loaded')) return;
@@ -213,22 +198,37 @@
       blocks.forEach(function (block) { markup += block.outerHTML; });
       cache[href] = markup;
       notesEl.innerHTML = markup;
-    }).catch(function () { notesEl.innerHTML = '<span class="notes-error">Noten konden niet worden geladen.</span>'; });
+    }).catch(function () {
+      notesEl.innerHTML = '<span class="notes-error">Noten konden niet worden geladen.</span>';
+    });
   }
+
   function watchCards() {
-    if (observer || !('IntersectionObserver' in window)) { document.querySelectorAll('.product-card').forEach(loadNotes); return; }
-    observer = new IntersectionObserver(function (entries) { entries.forEach(function (entry) { if (entry.isIntersecting) loadNotes(entry.target); }); }, { rootMargin: '300px 0px' });
+    if (observer || !('IntersectionObserver' in window)) {
+      document.querySelectorAll('.product-card').forEach(loadNotes);
+      return;
+    }
+    observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) { if (entry.isIntersecting) loadNotes(entry.target); });
+    }, { rootMargin: '300px 0px' });
     document.querySelectorAll('.product-card').forEach(function (card) { observer.observe(card); });
   }
+
   function applyView(view) {
     grid.classList.remove('view-1', 'view-2', 'view-3');
     grid.classList.add('view-' + view);
     setActiveButton(view);
     if (view === '1') watchCards();
   }
+
   buttons.forEach(function (btn) {
-    btn.addEventListener('click', function () { var view = btn.getAttribute('data-view'); localStorage.setItem(KEY, view); applyView(view); });
+    btn.addEventListener('click', function () {
+      var view = btn.getAttribute('data-view');
+      localStorage.setItem(KEY, view);
+      applyView(view);
+    });
   });
+
   var saved = localStorage.getItem(KEY);
   var initial = saved || (window.matchMedia('(max-width: 700px)').matches ? '2' : '3');
   applyView(initial);
