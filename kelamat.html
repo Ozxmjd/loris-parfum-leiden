@@ -39,6 +39,10 @@
   .note-chip { display: inline-flex; align-items: center; gap: 8px; border: 1px solid #e6e0d2; background: #fbfaf7; padding: 10px 20px; border-radius: 40px; font-size: 14px; letter-spacing: 0.3px; color: var(--black); transition: border-color 0.3s ease, transform 0.3s ease; }
   .note-chip:hover { border-color: var(--gold); transform: translateY(-2px); }
   .note-chip .emoji { font-size: 16px; line-height: 1; }
+  .inspiration-label { max-width: 640px; margin: 20px auto 50px; text-align: center; }
+  .inspiration-label::before { content: ''; display: block; width: 60px; height: 1px; background: #e6e0d2; margin: 0 auto 24px; }
+  .inspiration-label p { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--gray); margin-bottom: 8px; }
+  .inspiration-label h3 { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 600; color: var(--black); letter-spacing: 1px; }
   @media (max-width: 700px) { .page-header { padding: 130px 24px 36px; } nav { display: none; } .photo-section { padding: 50px 24px 10px; } .product-number-section { padding: 6px 24px 0; } .notes-section { padding: 50px 24px 80px; } }
 </style>
 </head>
@@ -88,6 +92,37 @@
         <span class="note-chip"><span class="emoji">🔶</span>Amber</span>
         <span class="note-chip"><span class="emoji">🌿</span>Eikenmoss</span>
         <span class="note-chip"><span class="emoji">🫘</span>Tonkaboon</span>
+      </div>
+    </div>
+  </div>
+  <div class="inspiration-label">
+    <p>Ook geïnspireerd door</p>
+    <h3>Montale Wild Horse</h3>
+  </div>
+  <div class="notes-container">
+    <div class="note-block">
+      <h2 class="note-heading">Topnoten</h2>
+      <div class="note-chips">
+        <span class="note-chip"><span class="emoji">🌱</span>Kardemom</span>
+        <span class="note-chip"><span class="emoji">💜</span>Lavendel</span>
+        <span class="note-chip"><span class="emoji">🌿</span>Rode Tijm</span>
+      </div>
+    </div>
+    <div class="note-block">
+      <h2 class="note-heading">Middennoten</h2>
+      <div class="note-chips">
+        <span class="note-chip"><span class="emoji">🌹</span>Roos</span>
+        <span class="note-chip"><span class="emoji">🍂</span>Patchouli</span>
+        <span class="note-chip"><span class="emoji">🌾</span>Vetiver</span>
+      </div>
+    </div>
+    <div class="note-block">
+      <h2 class="note-heading">Basisnoten</h2>
+      <div class="note-chips">
+        <span class="note-chip"><span class="emoji">🧥</span>Leder</span>
+        <span class="note-chip"><span class="emoji">🪵</span>Oud</span>
+        <span class="note-chip"><span class="emoji">🔶</span>Amber</span>
+        <span class="note-chip"><span class="emoji">🌬️</span>Musk</span>
       </div>
     </div>
   </div>
