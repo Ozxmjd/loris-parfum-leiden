@@ -95,15 +95,41 @@
     margin: 0 auto;
   }
 
+  /* ===== View Toolbar ===== */
+  .view-toolbar {
+    display: flex;
+    justify-content: center;
+    gap: 14px;
+    padding: 50px 40px 0;
+  }
+  .view-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 46px;
+    height: 46px;
+    border: 1px solid #e6e0d2;
+    background: var(--white);
+    color: var(--black);
+    cursor: pointer;
+    transition: border-color 0.3s ease, color 0.3s ease, background 0.3s ease;
+  }
+  .view-btn svg { width: 20px; height: 20px; }
+  .view-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .view-btn.active { border-color: var(--gold); background: var(--black); color: var(--gold); }
+
   /* ===== Product Grid ===== */
   .products-grid {
     max-width: 1300px;
     margin: 0 auto;
-    padding: 90px 40px 120px;
+    padding: 30px 40px 120px;
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 28px;
   }
+  .products-grid.view-3 { grid-template-columns: repeat(3, 1fr); }
+  .products-grid.view-2 { grid-template-columns: repeat(2, 1fr); }
+  .products-grid.view-1 { grid-template-columns: 1fr; }
   .product-card {
     display: block;
     background: var(--white);
@@ -150,17 +176,78 @@
     transition: color 0.3s ease;
   }
   .product-card:hover .card-number span { color: var(--gold); }
+  .products-grid.view-2 .card-number span { font-size: 33px; }
+  .card-notes { display: none; }
 
-  @media (max-width: 1100px) {
-    .products-grid { grid-template-columns: repeat(3, 1fr); }
+  /* ===== Single-column view with inline notes ===== */
+  .products-grid.view-1 .product-card {
+    display: grid;
+    grid-template-columns: 220px 1fr;
+    gap: 10px 32px;
+    padding: 24px;
+    align-items: start;
   }
+  .products-grid.view-1 .card-image { grid-column: 1; grid-row: 1 / 3; }
+  .products-grid.view-1 .card-number {
+    grid-column: 2;
+    grid-row: 1;
+    text-align: left;
+    padding: 0;
+  }
+  .products-grid.view-1 .card-number::before { margin: 0 0 12px; }
+  .products-grid.view-1 .card-notes {
+    grid-column: 2;
+    grid-row: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .card-notes .note-heading {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 8px;
+  }
+  .card-notes .note-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .card-notes .note-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    border: 1px solid #e6e0d2;
+    background: #fbfaf7;
+    padding: 6px 14px;
+    border-radius: 30px;
+    font-size: 12.5px;
+    color: var(--black);
+  }
+  .card-notes .note-chip .emoji { font-size: 14px; line-height: 1; }
+  .card-notes .notes-loading,
+  .card-notes .notes-error {
+    font-size: 13px;
+    color: var(--gray);
+    font-style: italic;
+  }
+
   @media (max-width: 700px) {
-    .products-grid { grid-template-columns: repeat(2, 1fr); padding: 60px 20px 90px; gap: 18px; }
+    .view-toolbar { padding: 30px 20px 0; gap: 10px; }
+    .view-btn { width: 40px; height: 40px; }
+    .products-grid { padding: 24px 20px 90px; gap: 18px; }
     .page-header h1 { font-size: 32px; }
     nav { display: none; }
   }
-  @media (max-width: 420px) {
-    .products-grid { grid-template-columns: 1fr; }
+  @media (max-width: 600px) {
+    .products-grid.view-1 .product-card { grid-template-columns: 1fr; }
+    .products-grid.view-1 .card-image { grid-row: 1; max-width: 240px; margin: 0 auto; }
+    .products-grid.view-1 .card-number { grid-row: 2; text-align: center; }
+    .products-grid.view-1 .card-number::before { margin: 0 auto 12px; }
+    .products-grid.view-1 .card-notes { grid-row: 3; }
   }
 </style>
 </head>
@@ -184,342 +271,495 @@
   <p>Elegante en bloemige geuren met karakter. Klik op een product voor meer informatie.</p>
 </div>
 
+<div class="view-toolbar" role="group" aria-label="Weergave wisselen">
+  <button type="button" class="view-btn" data-view="3" title="3 kolommen" aria-label="3 kolommen">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="5" height="16"></rect><rect x="9.5" y="4" width="5" height="16"></rect><rect x="17" y="4" width="5" height="16"></rect></svg>
+  </button>
+  <button type="button" class="view-btn" data-view="2" title="2 kolommen" aria-label="2 kolommen">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="8" height="16"></rect><rect x="13" y="4" width="8" height="16"></rect></svg>
+  </button>
+  <button type="button" class="view-btn" data-view="1" title="1 kolom met noten" aria-label="1 kolom met noten">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="3" width="16" height="9"></rect><line x1="4" y1="16" x2="20" y2="16"></line><line x1="4" y1="19" x2="16" y2="19"></line></svg>
+  </button>
+</div>
+
 <div class="products-grid">
   <a href="k9.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K9" loading="lazy"></div>
     <div class="card-number"><span>K9</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k15.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K15" loading="lazy"></div>
     <div class="card-number"><span>K15</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k35.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K35" loading="lazy"></div>
     <div class="card-number"><span>K35</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k41.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K41" loading="lazy"></div>
     <div class="card-number"><span>K41</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k58.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K58" loading="lazy"></div>
     <div class="card-number"><span>K58</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k110.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K110" loading="lazy"></div>
     <div class="card-number"><span>K110</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k119.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K119" loading="lazy"></div>
     <div class="card-number"><span>K119</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k128.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K128" loading="lazy"></div>
     <div class="card-number"><span>K128</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k130.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K130" loading="lazy"></div>
     <div class="card-number"><span>K130</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k144.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K144" loading="lazy"></div>
     <div class="card-number"><span>K144</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k168.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K168" loading="lazy"></div>
     <div class="card-number"><span>K168</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k183.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K183" loading="lazy"></div>
     <div class="card-number"><span>K183</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k207.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K207" loading="lazy"></div>
     <div class="card-number"><span>K207</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k222.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K222" loading="lazy"></div>
     <div class="card-number"><span>K222</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k230.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K230" loading="lazy"></div>
     <div class="card-number"><span>K230</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k233.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K233" loading="lazy"></div>
     <div class="card-number"><span>K233</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k244.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K244" loading="lazy"></div>
     <div class="card-number"><span>K244</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k246.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K246" loading="lazy"></div>
     <div class="card-number"><span>K246</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k248.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K248" loading="lazy"></div>
     <div class="card-number"><span>K248</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k249.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K249" loading="lazy"></div>
     <div class="card-number"><span>K249</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k254.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K254" loading="lazy"></div>
     <div class="card-number"><span>K254</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k260.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K260" loading="lazy"></div>
     <div class="card-number"><span>K260</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k269.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K269" loading="lazy"></div>
     <div class="card-number"><span>K269</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k270.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K270" loading="lazy"></div>
     <div class="card-number"><span>K270</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k272.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K272" loading="lazy"></div>
     <div class="card-number"><span>K272</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k273.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K273" loading="lazy"></div>
     <div class="card-number"><span>K273</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k274.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K274" loading="lazy"></div>
     <div class="card-number"><span>K274</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k275.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K275" loading="lazy"></div>
     <div class="card-number"><span>K275</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k280.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K280" loading="lazy"></div>
     <div class="card-number"><span>K280</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k282.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K282" loading="lazy"></div>
     <div class="card-number"><span>K282</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k283.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K283" loading="lazy"></div>
     <div class="card-number"><span>K283</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k284.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K284" loading="lazy"></div>
     <div class="card-number"><span>K284</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k285.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K285" loading="lazy"></div>
     <div class="card-number"><span>K285</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k286.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K286" loading="lazy"></div>
     <div class="card-number"><span>K286</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k287.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K287" loading="lazy"></div>
     <div class="card-number"><span>K287</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k288.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K288" loading="lazy"></div>
     <div class="card-number"><span>K288</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k289.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K289" loading="lazy"></div>
     <div class="card-number"><span>K289</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k290.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K290" loading="lazy"></div>
     <div class="card-number"><span>K290</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k291.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K291" loading="lazy"></div>
     <div class="card-number"><span>K291</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k292.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K292" loading="lazy"></div>
     <div class="card-number"><span>K292</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k293.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K293" loading="lazy"></div>
     <div class="card-number"><span>K293</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k294.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K294" loading="lazy"></div>
     <div class="card-number"><span>K294</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k295.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K295" loading="lazy"></div>
     <div class="card-number"><span>K295</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k297.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K297" loading="lazy"></div>
     <div class="card-number"><span>K297</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k298.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K298" loading="lazy"></div>
     <div class="card-number"><span>K298</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k304.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K304" loading="lazy"></div>
     <div class="card-number"><span>K304</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k305.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K305" loading="lazy"></div>
     <div class="card-number"><span>K305</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k306.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K306" loading="lazy"></div>
     <div class="card-number"><span>K306</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k307.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K307" loading="lazy"></div>
     <div class="card-number"><span>K307</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k308.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K308" loading="lazy"></div>
     <div class="card-number"><span>K308</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k310.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K310" loading="lazy"></div>
     <div class="card-number"><span>K310</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k314.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K314" loading="lazy"></div>
     <div class="card-number"><span>K314</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k315.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K315" loading="lazy"></div>
     <div class="card-number"><span>K315</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k317.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K317" loading="lazy"></div>
     <div class="card-number"><span>K317</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k402.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K402" loading="lazy"></div>
     <div class="card-number"><span>K402</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k425.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K425" loading="lazy"></div>
     <div class="card-number"><span>K425</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k428.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K428" loading="lazy"></div>
     <div class="card-number"><span>K428</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k437.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K437" loading="lazy"></div>
     <div class="card-number"><span>K437</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k438.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K438" loading="lazy"></div>
     <div class="card-number"><span>K438</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k439.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K439" loading="lazy"></div>
     <div class="card-number"><span>K439</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k440.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K440" loading="lazy"></div>
     <div class="card-number"><span>K440</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k441.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K441" loading="lazy"></div>
     <div class="card-number"><span>K441</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k448.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K448" loading="lazy"></div>
     <div class="card-number"><span>K448</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k449.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K449" loading="lazy"></div>
     <div class="card-number"><span>K449</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k450.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K450" loading="lazy"></div>
     <div class="card-number"><span>K450</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k453.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K453" loading="lazy"></div>
     <div class="card-number"><span>K453</span></div>
+    <div class="card-notes"></div>
   </a>
 
   <a href="k457.html" class="product-card">
     <div class="card-image"><img src="images/IMG_7284.jpg" alt="Frequence Vrouwen K457" loading="lazy"></div>
     <div class="card-number"><span>K457</span></div>
+    <div class="card-notes"></div>
   </a>
 </div>
+
+<script>
+(function () {
+  var KEY = 'frequenceView';
+  var grid = document.querySelector('.products-grid');
+  var buttons = document.querySelectorAll('.view-btn');
+  var cache = {};
+  var observer = null;
+
+  function setActiveButton(view) {
+    buttons.forEach(function (btn) {
+      btn.classList.toggle('active', btn.getAttribute('data-view') === view);
+    });
+  }
+
+  function loadNotes(card) {
+    var notesEl = card.querySelector('.card-notes');
+    if (!notesEl || notesEl.getAttribute('data-loaded')) return;
+    notesEl.setAttribute('data-loaded', '1');
+    var href = card.getAttribute('href');
+    if (cache[href]) {
+      notesEl.innerHTML = cache[href];
+      return;
+    }
+    notesEl.innerHTML = '<span class="notes-loading">Noten laden…</span>';
+    fetch(href).then(function (res) {
+      return res.text();
+    }).then(function (html) {
+      var doc = new DOMParser().parseFromString(html, 'text/html');
+      var blocks = doc.querySelectorAll('.note-block');
+      var markup = '';
+      blocks.forEach(function (block) { markup += block.outerHTML; });
+      cache[href] = markup;
+      notesEl.innerHTML = markup;
+    }).catch(function () {
+      notesEl.innerHTML = '<span class="notes-error">Noten konden niet worden geladen.</span>';
+    });
+  }
+
+  function watchCards() {
+    if (observer || !('IntersectionObserver' in window)) {
+      document.querySelectorAll('.product-card').forEach(loadNotes);
+      return;
+    }
+    observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) loadNotes(entry.target);
+      });
+    }, { rootMargin: '300px 0px' });
+    document.querySelectorAll('.product-card').forEach(function (card) {
+      observer.observe(card);
+    });
+  }
+
+  function applyView(view) {
+    grid.classList.remove('view-1', 'view-2', 'view-3');
+    grid.classList.add('view-' + view);
+    setActiveButton(view);
+    if (view === '1') watchCards();
+  }
+
+  buttons.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var view = btn.getAttribute('data-view');
+      localStorage.setItem(KEY, view);
+      applyView(view);
+    });
+  });
+
+  var saved = localStorage.getItem(KEY);
+  var initial = saved || (window.matchMedia('(max-width: 700px)').matches ? '2' : '3');
+  applyView(initial);
+})();
+</script>
 
 </body>
 </html>
