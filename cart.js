@@ -126,16 +126,16 @@
     link.className = 'loris-cart-nav-link';
     link.title = 'Winkelwagen';
     link.setAttribute('aria-label', 'Winkelwagen');
-    link.style.cssText = 'position:relative;display:inline-flex;align-items:center;color:inherit;text-decoration:none;transition:color .3s;';
+    link.style.cssText = 'position:relative;display:inline-flex;align-items:center;color:#c9a45c;text-decoration:none;transition:opacity .3s;';
     link.innerHTML =
-      '<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
-        '<path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>' +
-        '<line x1="3" y1="6" x2="21" y2="6"/>' +
-        '<path d="M16 10a4 4 0 01-8 0"/>' +
+      '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+        '<circle cx="9" cy="21" r="1"/>' +
+        '<circle cx="20" cy="21" r="1"/>' +
+        '<path d="M1 1h4l2.68 13.39a2 2 0 001.98 1.61h9.72a2 2 0 001.98-1.61L23 6H6"/>' +
       '</svg>' +
       '<span class="loris-cart-count" style="position:absolute;top:-8px;right:-10px;background:#c9a45c;color:#0a0a0a;border-radius:50%;width:17px;height:17px;font-size:10px;font-weight:700;display:' + (count > 0 ? 'flex' : 'none') + ';align-items:center;justify-content:center;font-family:Montserrat,sans-serif;line-height:1;">' + count + '</span>';
-    link.addEventListener('mouseenter', function () { link.style.color = '#c9a45c'; });
-    link.addEventListener('mouseleave', function () { link.style.color = ''; });
+    link.addEventListener('mouseenter', function () { link.style.opacity = '0.75'; });
+    link.addEventListener('mouseleave', function () { link.style.opacity = '1'; });
     return link;
   }
 
