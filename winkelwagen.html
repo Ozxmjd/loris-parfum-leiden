@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Winkelwagen — Loris Parfum Leiden</title>
+<meta name="description" content="Uw winkelwagen bij Loris Parfum Leiden. Bekijk uw geselecteerde parfums en ga verder naar afrekenen.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --white: #ffffff;
+    --gold: #c9a45c;
+    --gold-light: #e0c896;
+    --gray: #6b6b6b;
+    --off-white: #f7f5f0;
+    --border: #e8e3d8;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Montserrat', sans-serif; background: var(--off-white); color: var(--black); }
+
+  /* ===== Header ===== */
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(10,10,10,0.96);
+    backdrop-filter: blur(10px);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+  }
+  .logo span { font-size: 11px; letter-spacing: 4px; color: var(--gold); font-family: 'Montserrat', sans-serif; font-weight: 400; }
+  nav { display: flex; gap: 28px; align-items: center; }
+  nav a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  nav a:hover { color: var(--gold); }
+
+  /* ===== Page Header ===== */
+  .page-header {
+    padding: 130px 40px 50px;
+    text-align: center;
+    background: linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%);
+    color: var(--white);
+  }
+  .eyebrow {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .page-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(42px, 8vw, 72px);
+    font-weight: 700;
+    letter-spacing: 2px;
+    margin-bottom: 0;
+  }
+
+  /* ===== Cart Section ===== */
+  .cart-section {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 60px 24px 100px;
+  }
+
+  /* ===== Cart Items ===== */
+  .cart-items { display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px; }
+
+  .cart-item {
+    background: var(--white);
+    border: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 80px 1fr auto auto;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+  }
+  .cart-item-img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border: 1px solid var(--border);
+    display: block;
+  }
+  .cart-item-img-placeholder {
+    width: 80px;
+    height: 80px;
+    background: var(--off-white);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gray);
+    font-size: 22px;
+  }
+  .cart-item-info { min-width: 0; }
+  .cart-item-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--black);
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .cart-item-cat {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gray);
+  }
+  .cart-item-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--gold);
+    white-space: nowrap;
+  }
+
+  /* Qty controls */
+  .qty-control {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    border: 1px solid var(--border);
+  }
+  .qty-btn {
+    width: 34px;
+    height: 34px;
+    background: var(--white);
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+    color: var(--black);
+    transition: background .2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+  .qty-btn:hover { background: var(--gold); color: var(--black); }
+  .qty-num {
+    width: 40px;
+    height: 34px;
+    text-align: center;
+    border: none;
+    border-left: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    background: var(--white);
+    color: var(--black);
+    -moz-appearance: textfield;
+  }
+  .qty-num::-webkit-inner-spin-button,
+  .qty-num::-webkit-outer-spin-button { -webkit-appearance: none; }
+
+  /* Remove button */
+  .remove-btn {
+    width: 34px;
+    height: 34px;
+    background: none;
+    border: 1px solid var(--border);
+    cursor: pointer;
+    color: var(--gray);
+    transition: all .2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .remove-btn:hover { background: #fdf0f0; border-color: #e0a0a0; color: #c0392b; }
+
+  /* ===== Totaal ===== */
+  .cart-summary {
+    background: var(--white);
+    border: 1px solid var(--border);
+    padding: 28px 28px 24px;
+    margin-bottom: 40px;
+  }
+  .summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    font-size: 14px;
+    color: var(--gray);
+    border-bottom: 1px solid var(--border);
+  }
+  .summary-row:last-child { border-bottom: none; }
+  .summary-row.total {
+    padding-top: 16px;
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--black);
+  }
+  .summary-row.total span:last-child { color: var(--gold); }
+
+  /* ===== Checkout Section ===== */
+  .checkout-section { }
+  .checkout-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    text-align: center;
+  }
+  .checkout-subtitle {
+    font-size: 12px;
+    color: var(--gray);
+    letter-spacing: 1px;
+    text-align: center;
+    margin-bottom: 28px;
+  }
+  .checkout-divider {
+    width: 40px;
+    height: 2px;
+    background: var(--gold);
+    margin: 0 auto 26px;
+  }
+
+  .stripe-buttons { display: flex; flex-direction: column; gap: 14px; margin-bottom: 24px; }
+
+  .stripe-btn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 24px;
+    background: var(--black);
+    color: var(--white);
+    border: 2px solid var(--black);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all .3s;
+  }
+  .stripe-btn:hover { background: var(--gold); border-color: var(--gold); color: var(--black); }
+  .stripe-btn .stripe-badge {
+    background: var(--gold);
+    color: var(--black);
+    border-radius: 3px;
+    padding: 3px 10px;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0;
+    transition: background .3s, color .3s;
+  }
+  .stripe-btn:hover .stripe-badge { background: var(--black); color: var(--white); }
+
+  .checkout-or {
+    text-align: center;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin: 20px 0;
+    position: relative;
+  }
+  .checkout-or::before, .checkout-or::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 38%;
+    height: 1px;
+    background: var(--border);
+  }
+  .checkout-or::before { left: 0; }
+  .checkout-or::after { right: 0; }
+
+  .whatsapp-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    padding: 18px 24px;
+    background: #25d366;
+    color: var(--white);
+    border: none;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background .3s;
+  }
+  .whatsapp-btn:hover { background: #1ab855; }
+
+  .checkout-note {
+    margin-top: 16px;
+    font-size: 11px;
+    color: var(--gray);
+    text-align: center;
+    line-height: 1.7;
+    letter-spacing: 0.3px;
+  }
+
+  /* ===== Stripe niet geconfigureerd ===== */
+  .stripe-not-configured {
+    background: #fffbf0;
+    border: 1px solid var(--gold);
+    padding: 16px 20px;
+    font-size: 12px;
+    color: var(--black);
+    line-height: 1.7;
+    margin-bottom: 14px;
+  }
+  .stripe-not-configured strong { color: var(--gold); }
+
+  /* ===== Lege winkelwagen ===== */
+  .cart-empty {
+    text-align: center;
+    padding: 80px 24px;
+  }
+  .cart-empty-icon {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 28px;
+    color: var(--border);
+  }
+  .cart-empty h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+  .cart-empty p {
+    color: var(--gray);
+    font-size: 14px;
+    margin-bottom: 32px;
+  }
+  .back-to-shop {
+    display: inline-block;
+    padding: 14px 36px;
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 2px solid var(--black);
+    transition: all .3s;
+  }
+  .back-to-shop:hover { background: var(--gold); border-color: var(--gold); color: var(--black); }
+
+  /* ===== Responsive ===== */
+  @media (max-width: 600px) {
+    header { padding: 18px 20px; }
+    nav { display: none; }
+    .page-header { padding: 110px 20px 40px; }
+    .cart-section { padding: 40px 16px 80px; }
+    .cart-item {
+      grid-template-columns: 64px 1fr;
+      grid-template-rows: auto auto;
+    }
+    .cart-item-img, .cart-item-img-placeholder { width: 64px; height: 64px; }
+    .cart-item-info { grid-column: 2; }
+    .qty-control { grid-column: 1; grid-row: 2; }
+    .cart-item-price { grid-column: 2; grid-row: 2; text-align: right; }
+    .remove-btn { position: absolute; top: 16px; right: 16px; }
+    .cart-item { position: relative; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="logo">LORIS PARFUM<span>LEIDEN</span></a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="parfum.html">Onze Producten</a>
+    <a href="index.html#over-ons">Over Ons</a>
+    <a href="index.html#contact">Contact</a>
+    <a href="zoeken.html" title="Zoeken" aria-label="Zoeken" style="display:inline-flex;align-items:center;color:#fff;transition:color .3s;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></a>
+  </nav>
+</header>
+
+<section class="page-header">
+  <span class="eyebrow">Loris Parfum Leiden</span>
+  <h1 class="page-title">Winkelwagen</h1>
+</section>
+
+<main class="cart-section" id="cart-root">
+  <!-- Wordt gevuld door JavaScript hieronder -->
+</main>
+
+<script src="cart.js"></script>
+<script>
+(function () {
+  var lc = window.lorisCart;
+  var root = document.getElementById('cart-root');
+
+  function fmt(num) {
+    return '€' + num.toFixed(2).replace('.', ',');
+  }
+
+  function renderCart() {
+    var cart = lc.getCart();
+    root.innerHTML = '';
+
+    if (cart.length === 0) {
+      renderEmpty();
+      return;
+    }
+
+    // ===== Cart items =====
+    var itemsDiv = document.createElement('div');
+    itemsDiv.className = 'cart-items';
+
+    cart.forEach(function (item) {
+      var row = document.createElement('div');
+      row.className = 'cart-item';
+
+      // Afbeelding
+      if (item.image) {
+        var img = document.createElement('img');
+        img.src = item.image;
+        img.alt = item.name;
+        img.className = 'cart-item-img';
+        row.appendChild(img);
+      } else {
+        var ph = document.createElement('div');
+        ph.className = 'cart-item-img-placeholder';
+        ph.textContent = '🫙';
+        row.appendChild(ph);
+      }
+
+      // Info
+      var info = document.createElement('div');
+      info.className = 'cart-item-info';
+      info.innerHTML =
+        '<div class="cart-item-name">' + escHtml(item.name) + '</div>' +
+        '<div class="cart-item-cat">' + escHtml(item.category) + '</div>';
+      row.appendChild(info);
+
+      // Qty control
+      var qtyWrap = document.createElement('div');
+      qtyWrap.className = 'qty-control';
+      qtyWrap.innerHTML =
+        '<button class="qty-btn" data-action="minus">&#8722;</button>' +
+        '<input type="number" class="qty-num" value="' + item.qty + '" min="1" max="99">' +
+        '<button class="qty-btn" data-action="plus">+</button>';
+      qtyWrap.querySelector('[data-action="minus"]').addEventListener('click', function () {
+        if (item.qty > 1) {
+          lc.updateQty(item.name, item.category, item.qty - 1);
+        } else {
+          lc.removeFromCart(item.name, item.category);
+        }
+        renderCart();
+      });
+      qtyWrap.querySelector('[data-action="plus"]').addEventListener('click', function () {
+        lc.updateQty(item.name, item.category, item.qty + 1);
+        renderCart();
+      });
+      qtyWrap.querySelector('.qty-num').addEventListener('change', function () {
+        var v = parseInt(this.value, 10);
+        if (v < 1 || isNaN(v)) v = 1;
+        lc.updateQty(item.name, item.category, v);
+        renderCart();
+      });
+      row.appendChild(qtyWrap);
+
+      // Prijs + verwijder
+      var priceWrap = document.createElement('div');
+      priceWrap.style.cssText = 'display:flex;flex-direction:column;align-items:flex-end;gap:10px;';
+      priceWrap.innerHTML =
+        '<div class="cart-item-price">' + fmt(item.price * item.qty) + '</div>';
+      var rmBtn = document.createElement('button');
+      rmBtn.className = 'remove-btn';
+      rmBtn.title = 'Verwijder';
+      rmBtn.setAttribute('aria-label', 'Verwijder ' + item.name);
+      rmBtn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>';
+      rmBtn.addEventListener('click', function () {
+        lc.removeFromCart(item.name, item.category);
+        renderCart();
+      });
+      priceWrap.appendChild(rmBtn);
+      row.appendChild(priceWrap);
+
+      itemsDiv.appendChild(row);
+    });
+
+    root.appendChild(itemsDiv);
+
+    // ===== Totaal =====
+    var total = cart.reduce(function (s, i) { return s + i.price * i.qty; }, 0);
+    var totalItems = cart.reduce(function (s, i) { return s + i.qty; }, 0);
+
+    var summary = document.createElement('div');
+    summary.className = 'cart-summary';
+    summary.innerHTML =
+      '<div class="summary-row"><span>Aantal producten</span><span>' + totalItems + '</span></div>' +
+      '<div class="summary-row"><span>Verzendkosten</span><span style="color:#0a0a0a;">Gratis bij afhalen</span></div>' +
+      '<div class="summary-row total"><span>Totaal</span><span>' + fmt(total) + '</span></div>';
+    root.appendChild(summary);
+
+    // ===== Checkout =====
+    renderCheckout(cart, total);
+  }
+
+  function renderCheckout(cart, total) {
+    var checkoutDiv = document.createElement('div');
+    checkoutDiv.className = 'checkout-section';
+    checkoutDiv.innerHTML =
+      '<h2 class="checkout-title">Afrekenen</h2>' +
+      '<div class="checkout-divider"></div>' +
+      '<p class="checkout-subtitle">Betaal eenvoudig via Stripe of WhatsApp</p>';
+
+    // Groepeer per Stripe-categorie
+    var groups = {};
+    cart.forEach(function (item) {
+      var key = lc.CATEGORY_STRIPE_KEY[item.category] || 'overig';
+      if (!groups[key]) {
+        groups[key] = { qty: 0, total: 0, label: getCategoryLabel(key) };
+      }
+      groups[key].qty += item.qty;
+      groups[key].total += item.price * item.qty;
+    });
+
+    var stripeDiv = document.createElement('div');
+    stripeDiv.className = 'stripe-buttons';
+
+    var allConfigured = true;
+    Object.keys(groups).forEach(function (key) {
+      var g = groups[key];
+      var link = lc.STRIPE_LINKS[key] || '';
+      var isPlaceholder = !link || link.indexOf('VERVANG') !== -1;
+
+      if (isPlaceholder) {
+        allConfigured = false;
+        var notice = document.createElement('div');
+        notice.className = 'stripe-not-configured';
+        notice.innerHTML =
+          '<strong>Stripe nog niet gekoppeld voor ' + escHtml(g.label) + '.</strong><br>' +
+          'Voeg jouw Stripe Payment Link URL in <code>cart.js</code> in bij <code>STRIPE_LINKS.' + key + '</code>.';
+        stripeDiv.appendChild(notice);
+      } else {
+        var url = link + '?prefilled_quantity=' + g.qty;
+        var btn = document.createElement('a');
+        btn.className = 'stripe-btn';
+        btn.href = url;
+        btn.target = '_blank';
+        btn.rel = 'noopener noreferrer';
+        btn.innerHTML =
+          '<span>' + g.qty + '× ' + escHtml(g.label) + ' betalen via Stripe</span>' +
+          '<span class="stripe-badge">' + fmt(g.total) + '</span>';
+        stripeDiv.appendChild(btn);
+      }
+    });
+
+    checkoutDiv.appendChild(stripeDiv);
+
+    // WhatsApp scheidingslijn
+    var or = document.createElement('div');
+    or.className = 'checkout-or';
+    or.textContent = 'of';
+    checkoutDiv.appendChild(or);
+
+    // WhatsApp knop
+    var orderLines = cart.map(function (item) {
+      return item.qty + '× ' + item.name + ' (' + item.category + ') — ' + fmt(item.price * item.qty);
+    });
+    var waMsg =
+      'Hallo, ik wil graag de volgende parfums bestellen bij Loris Parfum Leiden:\n\n' +
+      orderLines.join('\n') +
+      '\n\nTotaal: ' + fmt(total) + '\n\nKunt u de betaallink opsturen? Bedankt!';
+    var waUrl = 'https://wa.me/' + lc.WHATSAPP_NR + '?text=' + encodeURIComponent(waMsg);
+
+    var waBtn = document.createElement('a');
+    waBtn.className = 'whatsapp-btn';
+    waBtn.href = waUrl;
+    waBtn.target = '_blank';
+    waBtn.rel = 'noopener noreferrer';
+    waBtn.innerHTML =
+      '<svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>' +
+      'Bestel via WhatsApp';
+    checkoutDiv.appendChild(waBtn);
+
+    checkoutDiv.innerHTML += '<p class="checkout-note">Afhalen bij Loris Parfum Leiden · Haarlemmerstraat · Leiden<br>Wij bevestigen uw bestelling zo snel mogelijk via WhatsApp.</p>';
+
+    root.appendChild(checkoutDiv);
+  }
+
+  function renderEmpty() {
+    var emptyDiv = document.createElement('div');
+    emptyDiv.className = 'cart-empty';
+    emptyDiv.innerHTML =
+      '<div class="cart-empty-icon">' +
+        '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>' +
+      '</div>' +
+      '<h2>Uw winkelwagen is leeg</h2>' +
+      '<p>Voeg producten toe via onze parfumcollectie.</p>' +
+      '<a href="parfum.html" class="back-to-shop">Ontdek de collectie</a>';
+    root.appendChild(emptyDiv);
+  }
+
+  function getCategoryLabel(key) {
+    var labels = {
+      frequence: 'Frequence',
+      dubai: 'Dubai',
+      niche: 'Niche 50ml',
+      dmar: 'DMAR',
+      extract: 'Extract',
+      overig: 'Overig',
+    };
+    return labels[key] || key;
+  }
+
+  function escHtml(str) {
+    return String(str)
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;');
+  }
+
+  renderCart();
+  window.addEventListener('loris-cart-updated', renderCart);
+}());
+</script>
+
+</body>
+</html>
