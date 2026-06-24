@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mystery Collectie — Loris Parfum Leiden</title>
+<meta name="description" content="Ontdek de Mystery Collectie van Loris Parfum Leiden. Mysterieuze, diepe geuren met een onvergetelijk karakter.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --black: #0a0a0a; --white: #ffffff; --gold: #c9a45c; --gold-light: #e0c896; --gray: #6b6b6b; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Montserrat', sans-serif; background: var(--white); color: var(--black); }
+  header {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(10,10,10,0.95); backdrop-filter: blur(10px);
+    padding: 20px 40px; display: flex; justify-content: space-between; align-items: center;
+  }
+  .logo { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--white); letter-spacing: 2px; text-transform: uppercase; text-decoration: none; display: flex; flex-direction: column; line-height: 1.1; }
+  .logo span { font-size: 11px; letter-spacing: 4px; color: var(--gold); font-family: 'Montserrat', sans-serif; font-weight: 400; }
+  nav { display: flex; gap: 30px; align-items: center; }
+  nav a { color: var(--white); text-decoration: none; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; transition: color 0.3s; }
+  nav a:hover { color: var(--gold); }
+  .page-header {
+    padding: 140px 40px 50px; text-align: center;
+    background: linear-gradient(rgba(10,10,10,0.65), rgba(10,10,10,0.88)), url('images/IMG_7044.WEBP') center/cover no-repeat;
+    color: var(--white);
+  }
+  .back-link { display: inline-flex; align-items: center; gap: 8px; color: var(--gold); text-decoration: none; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 30px; border: 1px solid var(--gold); padding: 10px 20px; transition: all 0.3s; }
+  .back-link:hover { background: var(--gold); color: var(--black); }
+  .page-header h1 { font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 600; margin-bottom: 16px; }
+  .page-header p { color: #bbb; font-size: 16px; max-width: 560px; margin: 0 auto; }
+  .view-toolbar { display: flex; justify-content: center; gap: 14px; padding: 50px 40px 0; }
+  .view-btn { display: inline-flex; align-items: center; justify-content: center; width: 46px; height: 46px; border: 1px solid #e6e0d2; background: var(--white); color: var(--black); cursor: pointer; transition: border-color 0.3s ease, color 0.3s ease, background 0.3s ease; }
+  .view-btn svg { width: 20px; height: 20px; }
+  .view-btn:hover { border-color: var(--gold); color: var(--gold); }
+  .view-btn.active { border-color: var(--gold); background: var(--black); color: var(--gold); }
+  .products-grid { max-width: 1300px; margin: 0 auto; padding: 30px 40px 120px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  .products-grid.view-3 { grid-template-columns: repeat(3, 1fr); }
+  .products-grid.view-2 { grid-template-columns: repeat(2, 1fr); }
+  .products-grid.view-1 { grid-template-columns: 1fr; }
+  .product-card { display: block; background: var(--white); border: 1px solid #e6e0d2; text-decoration: none; overflow: hidden; transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease; }
+  .product-card:hover { border-color: var(--gold); box-shadow: 0 18px 36px rgba(0,0,0,0.1); transform: translateY(-6px); }
+  .card-image { aspect-ratio: 1 / 1; overflow: hidden; background: #f7f5f0; }
+  .card-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+  .product-card:hover .card-image img { transform: scale(1.06); }
+  .card-info { padding: 18px 16px 22px; text-align: center; }
+  .card-info::before { content: ''; display: block; width: 28px; height: 2px; background: var(--gold); margin: 0 auto 10px; }
+  .card-name { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; letter-spacing: 1px; color: var(--black); transition: color 0.3s ease; display: block; margin-bottom: 6px; line-height: 1.2; }
+  .product-card:hover .card-name { color: var(--gold); }
+  .card-meta { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gray); }
+  .cat-v { color: #a05570; }
+  .cat-m { color: #4a6fa0; }
+  .cat-u { color: #507060; }
+  .products-grid.view-2 .card-name { font-size: 22px; }
+  .card-notes { display: none; }
+  .products-grid.view-1 .product-card { display: grid; grid-template-columns: 220px 1fr; gap: 10px 32px; padding: 24px; align-items: start; }
+  .products-grid.view-1 .card-image { grid-column: 1; grid-row: 1 / 3; }
+  .products-grid.view-1 .card-info { grid-column: 2; grid-row: 1; text-align: left; padding: 0; }
+  .products-grid.view-1 .card-info::before { margin: 0 0 10px; }
+  .products-grid.view-1 .card-notes { grid-column: 2; grid-row: 2; display: flex; flex-direction: column; gap: 14px; }
+  .card-notes .note-heading { font-family: 'Playfair Display', serif; font-size: 13px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gray); margin-bottom: 8px; }
+  .card-notes .note-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .card-notes .note-chip { display: inline-flex; align-items: center; gap: 6px; border: 1px solid #e6e0d2; background: #fbfaf7; padding: 6px 14px; border-radius: 30px; font-size: 12.5px; color: var(--black); }
+  .card-notes .note-chip .emoji { font-size: 14px; line-height: 1; }
+  .card-notes .notes-loading, .card-notes .notes-error { font-size: 13px; color: var(--gray); font-style: italic; }
+  @media (max-width: 700px) { .view-toolbar { padding: 30px 20px 0; gap: 10px; } .view-btn { width: 40px; height: 40px; } .products-grid { padding: 24px 20px 90px; gap: 18px; } .page-header h1 { font-size: 32px; } nav { display: none; } }
+  @media (max-width: 600px) { .products-grid.view-1 .product-card { grid-template-columns: 1fr; } .products-grid.view-1 .card-image { grid-row: 1; max-width: 240px; margin: 0 auto; } .products-grid.view-1 .card-info { grid-row: 2; text-align: center; } .products-grid.view-1 .card-info::before { margin: 0 auto 10px; } .products-grid.view-1 .card-notes { grid-row: 3; } }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="logo">LORIS PARFUM<span>LEIDEN</span></a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="parfum.html">Onze Producten</a>
+    <a href="index.html#over-ons">Over Ons</a>
+    <a href="index.html#openingstijden">Openingstijden</a>
+    <a href="index.html#locatie">Locatie</a>
+    <a href="index.html#contact">Contact</a>
+    <a href="zoeken.html" title="Zoeken" aria-label="Zoeken" style="display:inline-flex;align-items:center;color:var(--white);transition:color .3s;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></a>
+  </nav>
+</header>
+
+<div class="page-header">
+  <a href="parfum.html" class="back-link">← Terug naar collecties</a>
+  <h1>Mystery Collectie</h1>
+  <p>Mysterieuze, diepe geuren met een onvergetelijk karakter.</p>
+</div>
+
+<div class="view-toolbar" role="group" aria-label="Weergave wisselen">
+  <button type="button" class="view-btn" data-view="3" title="3 kolommen" aria-label="3 kolommen">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="4" width="5" height="16"></rect><rect x="9.5" y="4" width="5" height="16"></rect><rect x="17" y="4" width="5" height="16"></rect></svg>
+  </button>
+  <button type="button" class="view-btn" data-view="2" title="2 kolommen" aria-label="2 kolommen">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="8" height="16"></rect><rect x="13" y="4" width="8" height="16"></rect></svg>
+  </button>
+  <button type="button" class="view-btn" data-view="1" title="1 kolom met noten" aria-label="1 kolom met noten">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="4" y="3" width="16" height="9"></rect><line x1="4" y1="16" x2="20" y2="16"></line><line x1="4" y1="19" x2="16" y2="19"></line></svg>
+  </button>
+</div>
+
+<div class="products-grid">
+
+  <a href="lavender-patchouli.html" class="product-card">
+    <div class="card-image"><img src="images/IMG_7044.WEBP" alt="Lavender Patchouli" loading="lazy"></div>
+    <div class="card-info"><span class="card-name">Lavender Patchouli</span><div class="card-meta"><span class="cat-u">Unisex</span></div></div>
+    <div class="card-notes"></div>
+  </a>
+
+  <a href="oud-bergamot.html" class="product-card">
+    <div class="card-image"><img src="images/IMG_7044.WEBP" alt="Oud Bergamot" loading="lazy"></div>
+    <div class="card-info"><span class="card-name">Oud Bergamot</span><div class="card-meta"><span class="cat-u">Unisex</span></div></div>
+    <div class="card-notes"></div>
+  </a>
+
+  <a href="passion-delight.html" class="product-card">
+    <div class="card-image"><img src="images/IMG_7044.WEBP" alt="Passion Delight" loading="lazy"></div>
+    <div class="card-info"><span class="card-name">Passion Delight</span><div class="card-meta"><span class="cat-u">Unisex</span></div></div>
+    <div class="card-notes"></div>
+  </a>
+
+  <a href="big-victory.html" class="product-card">
+    <div class="card-image"><img src="images/IMG_7044.WEBP" alt="Big Victory" loading="lazy"></div>
+    <div class="card-info"><span class="card-name">Big Victory</span><div class="card-meta"><span class="cat-m">Man</span></div></div>
+    <div class="card-notes"></div>
+  </a>
+
+  <a href="king-oud.html" class="product-card">
+    <div class="card-image"><img src="images/IMG_7044.WEBP" alt="King Oud" loading="lazy"></div>
+    <div class="card-info"><span class="card-name">King Oud</span><div class="card-meta"><span class="cat-m">Man</span></div></div>
+    <div class="card-notes"></div>
+  </a>
+
+  <a href="iris-leather.html" class="product-card">
+    <div class="card-image"><img src="images/IMG_7044.WEBP" alt="Iris Leather" loading="lazy"></div>
+    <div class="card-info"><span class="card-name">Iris Leather</span><div class="card-meta"><span class="cat-u">Unisex</span></div></div>
+    <div class="card-notes"></div>
+  </a>
+
+</div>
+
+<script>
+(function () {
+  var KEY = 'mysteryView';
+  var grid = document.querySelector('.products-grid');
+  var buttons = document.querySelectorAll('.view-btn');
+  var cache = {};
+  var observer = null;
+  function setActiveButton(view) { buttons.forEach(function(btn){ btn.classList.toggle('active', btn.getAttribute('data-view') === view); }); }
+  function loadNotes(card) {
+    var notesEl = card.querySelector('.card-notes');
+    if (!notesEl || notesEl.getAttribute('data-loaded')) return;
+    notesEl.setAttribute('data-loaded', '1');
+    var href = card.getAttribute('href');
+    if (cache[href]) { notesEl.innerHTML = cache[href]; return; }
+    notesEl.innerHTML = '<span class="notes-loading">Noten laden…</span>';
+    fetch(href).then(function(res){ return res.text(); }).then(function(html){
+      var doc = new DOMParser().parseFromString(html, 'text/html');
+      var blocks = doc.querySelectorAll('.note-block');
+      var markup = '';
+      blocks.forEach(function(block){ markup += block.outerHTML; });
+      cache[href] = markup;
+      notesEl.innerHTML = markup;
+    }).catch(function(){ notesEl.innerHTML = '<span class="notes-error">Noten konden niet worden geladen.</span>'; });
+  }
+  function watchCards() {
+    if (observer || !('IntersectionObserver' in window)) { document.querySelectorAll('.product-card').forEach(loadNotes); return; }
+    observer = new IntersectionObserver(function(entries){ entries.forEach(function(entry){ if (entry.isIntersecting) loadNotes(entry.target); }); }, { rootMargin: '300px 0px' });
+    document.querySelectorAll('.product-card').forEach(function(card){ observer.observe(card); });
+  }
+  function applyView(view) { grid.classList.remove('view-1','view-2','view-3'); grid.classList.add('view-'+view); setActiveButton(view); if (view==='1') watchCards(); }
+  buttons.forEach(function(btn){ btn.addEventListener('click', function(){ var view=btn.getAttribute('data-view'); localStorage.setItem(KEY,view); applyView(view); }); });
+  var saved = localStorage.getItem(KEY);
+  var initial = saved || (window.matchMedia('(max-width: 700px)').matches ? '2' : '3');
+  applyView(initial);
+})();
+</script>
+
+</body>
+</html>

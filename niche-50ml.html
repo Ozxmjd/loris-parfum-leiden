@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Niche 50ml — Loris Parfum Leiden</title>
+<meta name="description" content="Ontdek de Niche 50ml collectie van Loris Parfum Leiden. Verfijnde niche-parfums en exclusieve extract parfums.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --black: #0a0a0a; --white: #ffffff; --gold: #c9a45c; --gold-light: #e0c896; --gray: #6b6b6b; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Montserrat', sans-serif; background: var(--white); color: var(--black); }
+  header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(10,10,10,0.95); backdrop-filter: blur(10px); padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; }
+  .logo { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--white); letter-spacing: 2px; text-transform: uppercase; text-decoration: none; display: flex; flex-direction: column; line-height: 1.1; }
+  .logo span { font-size: 11px; letter-spacing: 4px; color: var(--gold); font-family: 'Montserrat', sans-serif; font-weight: 400; }
+  nav { display: flex; gap: 30px; align-items: center; }
+  nav a { color: var(--white); text-decoration: none; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; transition: color 0.3s; }
+  nav a:hover { color: var(--gold); }
+  .page-header {
+    padding: 160px 40px 60px; text-align: center;
+    background: linear-gradient(rgba(10,10,10,0.65), rgba(10,10,10,0.88)), url('images/IMG_7057.jpg') center/cover no-repeat;
+    color: var(--white);
+  }
+  .back-link { display: inline-flex; align-items: center; gap: 8px; color: var(--gold); text-decoration: none; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 30px; border: 1px solid var(--gold); padding: 10px 20px; transition: all 0.3s; }
+  .back-link:hover { background: var(--gold); color: var(--black); }
+  .page-header h1 { font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 600; margin-bottom: 16px; }
+  .page-header p { color: #bbb; font-size: 16px; max-width: 500px; margin: 0 auto; }
+  .categories { max-width: 1000px; margin: 0 auto; padding: 80px 40px 120px; display: grid; grid-template-columns: repeat(2, 1fr); gap: 30px; }
+  .category-card { position: relative; height: 560px; overflow: hidden; cursor: pointer; text-decoration: none; display: block; }
+  .category-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+  .category-card:hover img { transform: scale(1.08); }
+  .category-overlay { position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(0deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 100%); padding: 50px 30px 30px; color: var(--white); }
+  .category-overlay span { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--gold-light); }
+  .category-overlay h2 { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 600; margin: 8px 0 10px; }
+  .category-overlay p { font-size: 14px; color: #ddd; line-height: 1.5; }
+  @media (max-width: 700px) { .categories { grid-template-columns: 1fr; padding: 60px 20px; } .page-header h1 { font-size: 32px; } nav { display: none; } }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="logo">LORIS PARFUM<span>LEIDEN</span></a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="parfum.html">Onze Producten</a>
+    <a href="index.html#over-ons">Over Ons</a>
+    <a href="index.html#openingstijden">Openingstijden</a>
+    <a href="index.html#locatie">Locatie</a>
+    <a href="index.html#contact">Contact</a>
+    <a href="zoeken.html" title="Zoeken" aria-label="Zoeken" style="display:inline-flex;align-items:center;color:var(--white);transition:color .3s;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></a>
+  </nav>
+</header>
+
+<div class="page-header">
+  <a href="parfum.html" class="back-link">← Terug naar collecties</a>
+  <h1>Niche 50ml</h1>
+  <p>Kies uw collectie.</p>
+</div>
+
+<div class="categories">
+  <a href="niche-50ml-classic.html" class="category-card">
+    <img src="images/IMG_7057.jpg" alt="Niche 50ml Classic">
+    <div class="category-overlay">
+      <span>Collectie</span>
+      <h2>Niche 50ml</h2>
+      <p>Verfijnde niche-parfums in een elegant 50ml formaat.</p>
+    </div>
+  </a>
+  <a href="niche-extract.html" class="category-card">
+    <img src="images/IMG_7057.jpg" alt="Extract Parfum New Collection">
+    <div class="category-overlay">
+      <span>New Collection</span>
+      <h2>Extract Parfum</h2>
+      <p>Exclusieve extract parfums met de hoogste concentratie.</p>
+    </div>
+  </a>
+</div>
+
+</body>
+</html>
