@@ -714,6 +714,7 @@
       <option value="Mystery">Mystery</option>
       <option value="Signature">Signature</option>
       <option value="Dubai">Dubai</option>
+      <option value="Extract Parfum">Extract Parfum</option>
     </select>
 
     <div class="filter-sep"></div>
@@ -950,10 +951,9 @@ var PRODUCTS = [
   // Dubai Mannen
   {id:'Business Club',    file:'business-club.html',    img:'images/IMG_7041.WEBP', cat:'Mannen',  col:'Dubai', top:['Grapefruit','Citroen','Bergamot'],          mid:['Gember','Jasmijn','Melon'],                        bas:['Sandelhout','Patchouli','Witte Musk','Cederhout']},
   {id:'VIP Men',          file:'vip-men.html',          img:'images/IMG_7041.WEBP', cat:'Mannen',  col:'Dubai', top:['Grapefruit','Zee-akkord','Mandarijn'],       mid:['Jasmijn','Laurierblad'],                           bas:['Eikenmoss','Amber','Musk','Guaiac Hout']},
-  {id:'Idole',            file:'idole.html',            img:'images/IMG_7041.WEBP', cat:'Mannen',  col:'Dubai', top:['Saffraan','Bergamot'],                       mid:['Oud','Bulgaarse Roos'],                            bas:['Amber','Eikenmoss','Tonkaboon']},
   {id:'Earth',            file:'earth.html',            img:'images/IMG_7041.WEBP', cat:'Mannen',  col:'Dubai', top:['Grapefruit','Lavendel'],                     mid:['Hazelaarsbloesem'],                                bas:['Patchouli','Eikenmoss','Vetiver']},
   {id:'Iceberg Blue',     file:'iceberg-blue.html',     img:'images/IMG_7041.WEBP', cat:'Mannen',  col:'Dubai', top:['Bergamot','Peper'],                          mid:['Lavendel','Geranium','Roze Peper'],                 bas:['Cederhout','Vetiver','Amber']},
-  {id:'Uniq Black',       file:'uniq-black.html',       img:'images/IMG_7041.WEBP', cat:'Mannen',  col:'Dubai', top:['Bergamot','Violet'],                         mid:['Iris'],                                            bas:['Vetiver','Patchouli','Amber','Musk','Hout']},
+  {id:'Uniq Black',       file:'uniq-black.html',       img:'images/IMG_7041.WEBP', cat:'Mannen',  col:'Dubai', top:['Bergamot','Violet'],                         mid:['Iris','Vetiver','Patchouli'],                      bas:['Amber','Musk','Hout']},
   {id:'Nexus',            file:'nexus.html',            img:'images/IMG_7041.WEBP', cat:'Mannen',  col:'Dubai', top:['Sinaasappel','Citroen','Bergamot'],          mid:['Geranium','Lavendel'],                             bas:['Vanille','Sandelhout','Amber']},
   {id:'Endless Love Man', file:'endless-love-man.html', img:'images/IMG_7041.WEBP', cat:'Mannen',  col:'Dubai', top:['Kardemom','Leder','Jasmijn'],                mid:['Patchouli'],                                       bas:['Amber','Witte Mos']},
   {id:'Narcotige Intense',file:'narcotige-intense.html',img:'images/IMG_7041.WEBP', cat:'Mannen',  col:'Dubai', top:['Lychee','Bergamot','Perzik'],                mid:['Pioenroos','Oranjebloesem','Jasmijn'],             bas:['Musk','Mos','Houtachtige Noten']},
@@ -970,24 +970,45 @@ var PRODUCTS = [
   {id:'Dmar Al Taheron',  file:'dmar-al-taheron.html',  img:'images/IMG_7044.WEBP', cat:'Mannen',  col:'Dubai', top:['Bergamot','Saffraan'],                       mid:['Oud','Roos'],                                      bas:['Amber','Tonkaboon','Musk']},
   // Dubai Vrouwen
   {id:'Aura',             file:'aura.html',             img:'images/IMG_7041.WEBP', cat:'Vrouwen', col:'Dubai', top:['Amandel','Koffie','Bergamot'],               mid:['Tuberoos','Jasmijn Sambac'],                       bas:['Tonkaboon','Cacao','Sandelhout']},
-  {id:'Angel Wings',      file:'angel-wings.html',      img:'images/IMG_7041.WEBP', cat:'Vrouwen', col:'Dubai', top:['Osmanthus','Appel'],                         mid:['Waterlelie','Lotus','Jasmijn','Kamperfoelie'],      bas:['Musk','Cashmirhout','Iris']},
+  {id:'Angel Wings',      file:'angel-wings.html',      img:'images/IMG_7041.WEBP', cat:'Vrouwen', col:'Dubai', top:['Osmanthus','Appel','Waterlelie'],             mid:['Lotus','Jasmijn','Kamperfoelie'],      bas:['Musk','Cashmirhout','Iris']},
   {id:'Giza',             file:'giza.html',             img:'images/IMG_7041.WEBP', cat:'Vrouwen', col:'Dubai', top:['Peer','Roze Peper','Oranjebloesem'],         mid:['Koffie','Jasmijn','Bittere Amandel'],              bas:['Vanille','Patchouli','Cashmirhout','Cederhout']},
   {id:'Iceberg White',    file:'iceberg-white.html',    img:'images/IMG_7041.WEBP', cat:'Vrouwen', col:'Dubai', top:['Roze Peper','Citroen','Bergamot'],           mid:['Jasmijn','Iris','Hyacint'],                        bas:['Patchouli','Witte Musk','Vanille','Amber']},
   {id:'Javou Midnight 75ml',file:'javou-midnight.html', img:'images/IMG_7041.WEBP', cat:'Vrouwen', col:'Dubai', top:['Aldehyden','Zwarte Bes','Lychee'],           mid:['Buchu Bladeren','Roos','Meidoorn'],                 bas:['Heliotrope','Iris','Vanille']},
-  {id:'Endless Love Vrouw',file:'endless-love-vrouw.html',img:'images/IMG_7041.WEBP',cat:'Vrouwen',col:'Dubai', top:['Bloedroos','Mandarijn'],                     mid:['Honing','Gardenia','Oranjebloesem','Jasmijn'],     bas:['Perzik','Bijenwas','Karamel','Patchouli']},
+  {id:'Endless Love Vrouw',file:'endless-love-vrouw.html',img:'images/IMG_7041.WEBP',cat:'Vrouwen',col:'Dubai', top:['Bloedroos','Mandarijn'],                     mid:['Honing','Gardenia','Oranjebloesem','Jasmijn','Perzik'], bas:['Bijenwas','Karamel','Patchouli']},
   {id:'Sahra',            file:'sahra.html',            img:'images/IMG_7041.WEBP', cat:'Vrouwen', col:'Dubai', top:['Jasmijn','Perzik','Bergamot'],               mid:['Roos','Iris'],                                     bas:['Musk','Vetiver','Sandelhout']},
   {id:'Bint Sheikh',      file:'bint-sheikh.html',      img:'images/IMG_7041.WEBP', cat:'Vrouwen', col:'Dubai', top:['Bloedroos','Mandarijn'],                     mid:['Honing','Gardenia','Oranjebloesem'],               bas:['Bijenwas','Karamel','Patchouli']},
   {id:'Mesaytara',        file:'mesaytara.html',        img:'images/IMG_7041.WEBP', cat:'Vrouwen', col:'Dubai', top:['Bloedroos','Mandarijn'],                     mid:['Honing','Gardenia','Oranjebloesem','Jasmijn'],     bas:['Bijenwas','Karamel','Patchouli','Zoethout']},
-  {id:'Javou Midnight 100ml',file:'javou-midnight-100ml.html',img:'images/IMG_7041.WEBP',cat:'Vrouwen',col:'Dubai',top:['Aldehyden','Zwarte Bes','Lychee'],        mid:['Buchu Bladeren','Roos','Meidoorn'],                 bas:['Heliotrope','Iris','Vanille']},
-  {id:'Rose Amrys',       file:'rose-amrys.html',       img:'images/IMG_7041.WEBP', cat:'Vrouwen', col:'Dubai', top:['Roos','Bergamot'],                           mid:['Oud'],                                             bas:['Amber','Musk','Sandelhout']},
   {id:'Dmar Black Shine', file:'dmar-black-shine.html', img:'images/IMG_7044.WEBP', cat:'Vrouwen', col:'Dubai', top:['Tuberoos','Bergamot'],                       mid:['Jasmijn','Iris'],                                  bas:['Musk','Amber','Sandelhout']},
   {id:'Dmar Love',        file:'dmar-love.html',        img:'images/IMG_7044.WEBP', cat:'Vrouwen', col:'Dubai', top:['Bloedroos','Mandarijn'],                     mid:['Honing','Gardenia','Oranjebloesem'],               bas:['Bijenwas','Karamel','Patchouli']},
   {id:'Dmar Queen',       file:'dmar-queen.html',       img:'images/IMG_7044.WEBP', cat:'Vrouwen', col:'Dubai', top:['Roos','Bergamot'],                           mid:['Jasmijn','Iris'],                                  bas:['Musk','Amber','Vanille']},
   // Dubai Unisex
   {id:'Narcotige',        file:'narcotige.html',        img:'images/IMG_7041.WEBP', cat:'Unisex',  col:'Dubai', top:['Lychee','Bergamot','Perzik'],                mid:['Pioenroos','Oranjebloesem','Jasmijn'],             bas:['Musk','Mos','Houtachtige Noten']},
-  {id:'Shrazad',          file:'shrazad.html',          img:'images/IMG_7041.WEBP', cat:'Unisex',  col:'Dubai', top:['Bergamot','Rozemarijn'],                     mid:['Oud','Amber'],                                     bas:['Leder','Musk','Vetiver']},
-  {id:'Oriental Oud',     file:'oriental-oud.html',     img:'images/IMG_7041.WEBP', cat:'Unisex',  col:'Dubai', top:['Bergamot','Rozemarijn'],                     mid:['Oud','Amber'],                                     bas:['Leder','Musk','Vetiver']},
+  {id:'Shrazad',          file:'shrazad.html',          img:'images/IMG_7041.WEBP', cat:'Unisex',  col:'Dubai', top:['Bergamot','Rozemarijn'],                     mid:['Oud','Amber','Leder'],                             bas:['Musk','Vetiver']},
+  {id:'Oriental Oud',     file:'oriental-oud.html',     img:'images/IMG_7041.WEBP', cat:'Unisex',  col:'Dubai', top:['Bergamot','Rozemarijn'],                     mid:['Oud','Amber','Leder'],                             bas:['Musk','Vetiver']},
   {id:'Wild Horse',       file:'wild-horse.html',       img:'images/IMG_7041.WEBP', cat:'Unisex',  col:'Dubai', top:['Saffraan','Bergamot'],                       mid:['Oud','Bulgaarse Roos'],                            bas:['Amber','Eikenmoss','Tonkaboon']},
+  // Mystery
+  {id:'Lavender Patchouli', file:'lavender-patchouli.html', img:'images/1938530316.png', cat:'Unisex', col:'Mystery', top:['Lavendel','Tonkaboon','Citrus'],         mid:['Tonka','Amber'],                         bas:['Sandelhout','Amber','Vanille']},
+  {id:'Oud Bergamot',       file:'oud-bergamot.html',       img:'images/1938530871.png', cat:'Unisex', col:'Mystery', top:['Mandarijn','Bergamot'],                    mid:['Oud','Roos'],                            bas:['Patchouli','Sandelhout','Amber']},
+  {id:'Passion Delight',    file:'passion-delight.html',    img:'images/1938531657.png', cat:'Unisex', col:'Mystery', top:['Passievrucht','Perzik','Peer','Framboos','Zwarte Bes'], mid:['Lelie van de Dal'],        bas:['Musk','Sandelhout','Vanille','Patchouli']},
+  {id:'Big Victory',        file:'big-victory.html',        img:'images/1938528117.jpg', cat:'Mannen', col:'Mystery', top:['Saffraan','Nootmuskaat','Lavendel'],       mid:['Oud'],                                   bas:['Patchouli','Musk']},
+  {id:'King Oud',           file:'king-oud.html',           img:'images/1938529845.png', cat:'Mannen', col:'Mystery', top:['Bergamot','Gember'],                      mid:['Zoethout','Oud'],                        bas:['Musk','Vanille']},
+  {id:'Iris Leather',       file:'iris-leather.html',       img:'images/1938529269.jpg', cat:'Unisex', col:'Mystery', top:['Jeneverbes','Peper','Mastic'],             mid:['Leder','Iris'],                          bas:['Amber','Musk','Sandelhout']},
+  // Niche 50ml
+  {id:'Aoud Cafe',          file:'aoud-cafe.html',          img:'images/2124691686.jpeg', cat:'Unisex', col:'Niche 50ml', top:['Koffie','Roos'],                     mid:['Vanille'],                               bas:['Amber','Witte Musk']},
+  {id:'Amber Leather',      file:'amber-leather.html',      img:'images/2029157487.png', cat:'Unisex', col:'Niche 50ml', top:['Framboos','Saffraan','Tijm'],          mid:['Wierook','Jasmijn'],                     bas:['Leder','Suède','Amber']},
+  {id:'Buhur',              file:'buhur.html',              img:'images/2029259535.png', cat:'Unisex', col:'Niche 50ml', top:['Saffraan','Bergamot'],                  mid:['Oud','Roos'],                            bas:['Amber','Musk','Sandelhout']},
+  {id:'Bronze Wood',        file:'bronze-wood.html',        img:'images/2029285806.png', cat:'Unisex', col:'Niche 50ml', top:['Peer','Roze Peper','Oranjebloesem'],   mid:['Koffie','Jasmijn','Bittere Amandel'],    bas:['Vanille','Patchouli','Cashmirhout','Cederhout']},
+  {id:'River Wood',         file:'river-wood.html',         img:'images/2077599576.png', cat:'Unisex', col:'Niche 50ml', top:['Saffraan','Italiaanse Mandarijn'],      mid:['Osmanthus','Immortelle','Viooltjesblad'], bas:['Minerale noten','Suède','Akigalawood','Cederhout','Musk']},
+  {id:'Niche Black Oud',    file:'niche-black-oud.html',    img:'images/2029290711.png', cat:'Unisex', col:'Niche 50ml', top:['Mandarijn','Bergamot'],                  mid:['Oud','Roos'],                            bas:['Patchouli','Sandelhout','Amber']},
+  {id:'Red Current',        file:'red-current.html',        img:'images/1836015060.jpg', cat:'Vrouwen', col:'Niche 50ml', top:['Lychee','Zwarte Bes'],                  mid:['Roos','Jasmijn'],                        bas:['Vetiver','Vanille','Musk']},
+  {id:'Oud Wood',           file:'oud-wood.html',           img:'images/2029276608.png', cat:'Unisex', col:'Niche 50ml', top:['Oud','Rozenhout','Cardamom'],            mid:['Sandelhout','Vetiver'],                  bas:['Amber','Tonkaboon','Vanille']},
+  {id:'Silk Mood',          file:'silk-mood.html',          img:'images/2029290714.png', cat:'Unisex', col:'Niche 50ml', top:['Bulgaarse Roos','Turkse Roos'],          mid:['Oud'],                                   bas:['Vanille','Amber','Benzoin','Caramel','Musk']},
+  {id:'Coco Vanilla',       file:'coco-vanilla.html',       img:'images/2029285947.png', cat:'Vrouwen', col:'Niche 50ml', top:['Kokosnoot','Vanille'],                  mid:['Jasmijn','Sandelhout'],                  bas:['Musk','Amber','Cederhout']},
+  {id:'Rose Amyris',        file:'rose-amyris.html',        img:'images/2029286175.png', cat:'Vrouwen', col:'Niche 50ml', top:['Citroen','Roos'],                       mid:['Vanille','Jasmijn'],                     bas:['Musk','Cederhout']},
+  // Extract Parfum
+  {id:'Blue Aura',          file:'blue-aura.html',          img:'images/2370243099.jpg', cat:'Unisex', col:'Extract Parfum', top:['Peer','Bergamot','Mandarijn','Gember'], mid:['Oranjebloesem','Georgywood'],       bas:['Musk','Akigalawood','Cederhout']},
+  {id:'Vanilla Absolute',   file:'vanilla-absolute.html',   img:'images/2370248556.jpg', cat:'Unisex', col:'Extract Parfum', top:['Kokosnoot Poeder','Heliotroop'],    mid:['Madagaskar Vanille'],                    bas:['Vanilla Extract','Witte Musk','Muskus','Heilig Hout','Kokosnoot']},
+  {id:'Gentle Nude',        file:'gentle-nude.html',        img:'images/2370246822.jpg', cat:'Unisex', col:'Extract Parfum', top:['Jeneverbes','Nootmuskaat','Koriander'], mid:['Vanille','Amberwood'],               bas:['Musk','Amber']},
   // Signature
   {id:'Lady Rose',        file:'lady-rose.html',        img:'images/IMG_7058.jpg',  cat:'Vrouwen', col:'Signature', top:['Roos','Bergamot'],                       mid:['Jasmijn','Oud'],                                   bas:['Amber','Musk','Sandelhout']},
   {id:'Royal',            file:'royal.html',            img:'images/IMG_7058.jpg',  cat:'Mannen',  col:'Signature', top:['Bergamot','Sinaasappel'],                mid:['Oud','Amber'],                                     bas:['Sandelhout','Musk','Vanille']},
@@ -1019,7 +1040,7 @@ var PRODUCTS = [
 var state = { q: '', cat: '', col: '', top: '', mid: '', bas: '', sort: 'num-asc' };
 
 // ===== FILTER + RENDER =====
-var NON_FREQUENCE = ['Niche 50ml','Niche 70ml','Mystery'];
+var NON_FREQUENCE = ['Niche 70ml'];
 
 function normalise(s) { return s.toLowerCase().replace(/[-\s]/g, ''); }
 
