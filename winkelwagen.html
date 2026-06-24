@@ -540,10 +540,10 @@
       '<div class="checkout-divider"></div>' +
       '<p class="checkout-subtitle">Betaal eenvoudig via Stripe of WhatsApp</p>';
 
-    // Groepeer per Stripe-categorie
+    // Groepeer per Stripe-categorie (product-override heeft voorrang)
     var groups = {};
     cart.forEach(function (item) {
-      var key = lc.CATEGORY_STRIPE_KEY[item.category] || 'overig';
+      var key = item.stripeKey || lc.CATEGORY_STRIPE_KEY[item.category] || 'overig';
       if (!groups[key]) {
         groups[key] = { qty: 0, total: 0, label: getCategoryLabel(key) };
       }
@@ -630,12 +630,13 @@
 
   function getCategoryLabel(key) {
     var labels = {
-      frequence: 'Frequence',
-      dubai: 'Dubai',
-      niche: 'Niche 50ml',
-      dmar: 'DMAR',
-      extract: 'Extract',
-      overig: 'Overig',
+      frequence:   'Frequence',
+      dubai_50ml:  'Dubai 50ml',
+      dubai_100ml: 'Dubai 100ml',
+      niche:       'Niche / Mystery / Extract',
+      dmar:        'DMAR / Wild Horse',
+      signature:   'Signature',
+      overig:      'Overig',
     };
     return labels[key] || key;
   }

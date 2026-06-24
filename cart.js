@@ -1,51 +1,64 @@
 /**
  * Loris Parfum Leiden — Winkelwagen Systeem
  *
- * STRIPE SETUP (eenmalig in Stripe Dashboard):
- * 1. Ga naar https://dashboard.stripe.com/payment-links
- * 2. Maak een Payment Link per collectie:
- *    - Product: "Frequence Parfum"   Prijs: €14,95   Stel "Aanpasbare hoeveelheid" in
- *    - Product: "Dubai Parfum"       Prijs: €19,95   Stel "Aanpasbare hoeveelheid" in
- *    - Product: "Niche 50ml Parfum"  Prijs: €24,95   Stel "Aanpasbare hoeveelheid" in
- *    - Product: "DMAR Parfum"        Prijs: €30,00   Stel "Aanpasbare hoeveelheid" in
- *    - Product: "Extract Parfum"     Prijs: €35,00   Stel "Aanpasbare hoeveelheid" in
- * 3. Kopieer de URL (https://buy.stripe.com/...) en plak die hieronder
+ * STRIPE PAYMENT LINKS (al geconfigureerd):
+ *    Frequence (E/K/U)          €19,99  → frequence
+ *    Niche 50ml / Mystery /
+ *      Extract Parfum           €35,00  → niche
+ *    DMAR / Wild Horse          €30,00  → dmar
+ *    Dubai 50ml                 €30,00  → dubai_50ml
+ *    Dubai 100ml                €40,00  → dubai_100ml
+ *    Signature                  €39,99  → signature
+ *
+ * Dubai 100ml producten: pas de titel van die pagina's aan naar
+ *   "NAAM — Dubai 100ml — Loris Parfum Leiden"  (of voeg een override toe hieronder)
  */
 
 (function () {
   'use strict';
 
   // ===== STRIPE PAYMENT LINKS =====
-  // VERVANG de placeholder-URLs hieronder met jouw echte Stripe Payment Link URLs
   var STRIPE_LINKS = {
-    frequence: 'https://buy.stripe.com/VERVANG_FREQUENCE_LINK',
-    dubai:     'https://buy.stripe.com/VERVANG_DUBAI_LINK',
-    niche:     'https://buy.stripe.com/VERVANG_NICHE_LINK',
-    dmar:      'https://buy.stripe.com/VERVANG_DMAR_LINK',
-    extract:   'https://buy.stripe.com/VERVANG_EXTRACT_LINK',
+    frequence:   'https://buy.stripe.com/bJeaEX5OZ26P7EB7A06sw00',
+    niche:       'https://buy.stripe.com/bJe4gz3GRaDl4spbQg6sw01', // Niche 50ml + Mystery + Extract
+    dmar:        'https://buy.stripe.com/4gM9AT4KV12L1gd07y6sw02', // DMAR + Wild Horse
+    dubai_50ml:  'https://buy.stripe.com/cNidR94KV8vdaQNf2s6sw03',
+    dubai_100ml: 'https://buy.stripe.com/cNi5kD4KV9zh5wt2fG6sw04',
+    signature:   'https://buy.stripe.com/6oU00j5OZfXF9MJ1bC6sw05',
   };
 
   var WHATSAPP_NR = '31639135752';
 
   // ===== PRIJZEN PER CATEGORIE =====
   var CATEGORY_PRICES = {
-    'Frequence Mannen':  14.95,
-    'Frequence Vrouwen': 14.95,
-    'Frequence Unisex':  14.95,
-    'Dubai Collectie':   19.95,
-    'Niche 50ml':        24.95,
-    'DMAR Collectie':    30.00,
-    'Extract Parfum':    35.00,
+    'Frequence Mannen':    19.99,
+    'Frequence Vrouwen':   19.99,
+    'Frequence Unisex':    19.99,
+    'Dubai Collectie':     30.00, // 50ml standaard; 100ml via Dubai 100ml categorie
+    'Dubai 100ml':         40.00,
+    'Niche 50ml':          35.00,
+    'Mystery Collectie':   35.00,
+    'DMAR Collectie':      30.00,
+    'Extract Parfum':      35.00,
+    'Signature Collectie': 39.99,
   };
 
   var CATEGORY_STRIPE_KEY = {
-    'Frequence Mannen':  'frequence',
-    'Frequence Vrouwen': 'frequence',
-    'Frequence Unisex':  'frequence',
-    'Dubai Collectie':   'dubai',
-    'Niche 50ml':        'niche',
-    'DMAR Collectie':    'dmar',
-    'Extract Parfum':    'extract',
+    'Frequence Mannen':    'frequence',
+    'Frequence Vrouwen':   'frequence',
+    'Frequence Unisex':    'frequence',
+    'Dubai Collectie':     'dubai_50ml',
+    'Dubai 100ml':         'dubai_100ml',
+    'Niche 50ml':          'niche',
+    'Mystery Collectie':   'niche',
+    'DMAR Collectie':      'dmar',
+    'Extract Parfum':      'niche',
+    'Signature Collectie': 'signature',
+  };
+
+  // Productspecifieke overrides (overschrijft categorie-prijs/Stripe-link)
+  var PRODUCT_OVERRIDES = {
+    'Wild Horse': { stripeKey: 'dmar', price: 30.00 },
   };
 
   // ===== WINKELWAGEN FUNCTIES =====
@@ -64,7 +77,7 @@
     return getCart().reduce(function (s, i) { return s + i.qty; }, 0);
   }
 
-  function addToCart(name, category, price, image) {
+  function addToCart(name, category, price, image, stripeKey) {
     var cart = getCart();
     var existing = null;
     for (var i = 0; i < cart.length; i++) {
@@ -73,7 +86,9 @@
     if (existing) {
       existing.qty += 1;
     } else {
-      cart.push({ name: name, category: category, price: price, image: image, qty: 1 });
+      var item = { name: name, category: category, price: price, image: image, qty: 1 };
+      if (stripeKey) item.stripeKey = stripeKey;
+      cart.push(item);
     }
     saveCart(cart);
   }
@@ -150,10 +165,18 @@
     // Productpagina titels volgen: "PRODUCTNAAM — CATEGORIE — Loris Parfum Leiden"
     var parts = document.title.split(' — ');
     if (parts.length === 3 && parts[2].trim() === 'Loris Parfum Leiden') {
+      var name = parts[0].trim();
       var category = parts[1].trim();
+
+      // Productspecifieke override (bijv. Wild Horse → DMAR-link)
+      var override = PRODUCT_OVERRIDES[name];
+      if (override) {
+        return { name: name, category: category, price: override.price, stripeKey: override.stripeKey };
+      }
+
       var price = CATEGORY_PRICES[category];
       if (price) {
-        return { name: parts[0].trim(), category: category, price: price };
+        return { name: name, category: category, price: price };
       }
     }
     return null;
@@ -191,7 +214,7 @@
       btn.style.color = '#fff';
     });
     btn.addEventListener('click', function () {
-      addToCart(product.name, product.category, product.price, image);
+      addToCart(product.name, product.category, product.price, image, product.stripeKey || null);
       var fb = div.querySelector('.loris-atc-feedback');
       fb.textContent = '✓ Toegevoegd aan winkelwagen';
       btn.textContent = 'Nog een toevoegen';
@@ -232,6 +255,7 @@
     getCartCount: getCartCount,
     STRIPE_LINKS: STRIPE_LINKS,
     CATEGORY_STRIPE_KEY: CATEGORY_STRIPE_KEY,
+    PRODUCT_OVERRIDES: PRODUCT_OVERRIDES,
     WHATSAPP_NR: WHATSAPP_NR,
   };
 
