@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bedankt voor uw bestelling — Loris Parfum Leiden</title>
+<meta name="description" content="Uw bestelling is ontvangen. Bedankt voor uw aankoop bij Loris Parfum Leiden.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --white: #ffffff;
+    --gold: #c9a45c;
+    --gold-light: #e0c896;
+    --gray: #6b6b6b;
+    --off-white: #f7f5f0;
+    --border: #e8e3d8;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Montserrat', sans-serif; background: var(--off-white); color: var(--black); }
+
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(10,10,10,0.96);
+    backdrop-filter: blur(10px);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+  }
+  .logo span { font-size: 11px; letter-spacing: 4px; color: var(--gold); font-family: 'Montserrat', sans-serif; font-weight: 400; }
+  nav { display: flex; gap: 28px; align-items: center; }
+  nav a {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+  nav a:hover { color: var(--gold); }
+
+  .page-header {
+    padding: 130px 40px 60px;
+    text-align: center;
+    background: linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%);
+    color: var(--white);
+  }
+  .eyebrow {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .page-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 7vw, 64px);
+    font-weight: 700;
+    letter-spacing: 2px;
+  }
+
+  .confirmation-section {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 80px 24px 120px;
+    text-align: center;
+  }
+
+  .check-icon {
+    width: 72px;
+    height: 72px;
+    margin: 0 auto 36px;
+    background: var(--black);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .check-icon svg { color: var(--gold); }
+
+  .divider {
+    width: 48px;
+    height: 2px;
+    background: var(--gold);
+    margin: 28px auto;
+  }
+
+  .confirmation-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(26px, 5vw, 36px);
+    font-weight: 600;
+    color: var(--black);
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+  }
+
+  .confirmation-text {
+    font-size: 15px;
+    color: var(--gray);
+    line-height: 1.9;
+    margin-bottom: 12px;
+  }
+
+  .confirmation-note {
+    font-size: 12px;
+    color: var(--gray);
+    letter-spacing: 0.5px;
+    line-height: 1.8;
+    margin-bottom: 48px;
+    padding: 20px 24px;
+    background: var(--white);
+    border: 1px solid var(--border);
+  }
+  .confirmation-note strong { color: var(--black); font-weight: 600; }
+
+  .action-buttons {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-block;
+    padding: 16px 40px;
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 2px solid var(--black);
+    transition: all .3s;
+  }
+  .btn-primary:hover { background: var(--gold); border-color: var(--gold); color: var(--black); }
+
+  .btn-secondary {
+    display: inline-block;
+    padding: 16px 40px;
+    background: transparent;
+    color: var(--black);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    text-decoration: none;
+    border: 2px solid var(--black);
+    transition: all .3s;
+  }
+  .btn-secondary:hover { background: var(--black); color: var(--white); }
+
+  @media (max-width: 600px) {
+    header { padding: 18px 20px; }
+    nav { display: none; }
+    .page-header { padding: 110px 20px 50px; }
+    .confirmation-section { padding: 60px 16px 80px; }
+    .action-buttons { flex-direction: column; align-items: center; }
+    .btn-primary, .btn-secondary { width: 100%; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="logo">LORIS PARFUM<span>LEIDEN</span></a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="parfum.html">Onze Producten</a>
+    <a href="index.html#over-ons">Over Ons</a>
+    <a href="index.html#contact">Contact</a>
+    <a href="zoeken.html" title="Zoeken" aria-label="Zoeken" style="display:inline-flex;align-items:center;color:#fff;transition:color .3s;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></a>
+  </nav>
+</header>
+
+<section class="page-header">
+  <span class="eyebrow">Loris Parfum Leiden</span>
+  <h1 class="page-title">Bedankt!</h1>
+</section>
+
+<main class="confirmation-section">
+
+  <div class="check-icon">
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="20 6 9 17 4 12"/>
+    </svg>
+  </div>
+
+  <h2 class="confirmation-title">Uw bestelling is bevestigd</h2>
+  <div class="divider"></div>
+
+  <p class="confirmation-text">
+    Bedankt voor uw aankoop bij Loris Parfum Leiden.<br>
+    Uw betaling is succesvol ontvangen.
+  </p>
+
+  <div class="confirmation-note">
+    <strong>Afhalen</strong><br>
+    U kunt uw bestelling ophalen op<br>
+    Haarlemmerstraat, Leiden.<br><br>
+    Wij nemen zo snel mogelijk contact met u op via WhatsApp<br>
+    om een afhaaltijd af te spreken.
+  </div>
+
+  <div class="action-buttons">
+    <a href="parfum.html" class="btn-primary">Meer Parfums</a>
+    <a href="index.html" class="btn-secondary">Terug naar Home</a>
+  </div>
+
+</main>
+
+<script src="cart.js"></script>
+
+</body>
+</html>

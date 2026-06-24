@@ -1,31 +1,7 @@
-/**
- * Loris Parfum Leiden — Winkelwagen Systeem
- *
- * STRIPE PAYMENT LINKS (al geconfigureerd):
- *    Frequence (E/K/U)          €19,99  → frequence
- *    Niche 50ml / Mystery /
- *      Extract Parfum           €35,00  → niche
- *    DMAR / Wild Horse          €30,00  → dmar
- *    Dubai 50ml                 €30,00  → dubai_50ml
- *    Dubai 100ml                €40,00  → dubai_100ml
- *    Signature                  €39,99  → signature
- *
- * Dubai 100ml producten: pas de titel van die pagina's aan naar
- *   "NAAM — Dubai 100ml — Loris Parfum Leiden"  (of voeg een override toe hieronder)
- */
+// Loris Parfum Leiden — Winkelwagen Systeem
 
 (function () {
   'use strict';
-
-  // ===== STRIPE PAYMENT LINKS =====
-  var STRIPE_LINKS = {
-    frequence:   'https://buy.stripe.com/bJeaEX5OZ26P7EB7A06sw00',
-    niche:       'https://buy.stripe.com/bJe4gz3GRaDl4spbQg6sw01', // Niche 50ml + Mystery + Extract
-    dmar:        'https://buy.stripe.com/4gM9AT4KV12L1gd07y6sw02', // DMAR + Wild Horse
-    dubai_50ml:  'https://buy.stripe.com/cNidR94KV8vdaQNf2s6sw03',
-    dubai_100ml: 'https://buy.stripe.com/cNi5kD4KV9zh5wt2fG6sw04',
-    signature:   'https://buy.stripe.com/6oU00j5OZfXF9MJ1bC6sw05',
-  };
 
   var WHATSAPP_NR = '31639135752';
 
@@ -43,22 +19,8 @@
     'Signature Collectie': 39.99,
   };
 
-  var CATEGORY_STRIPE_KEY = {
-    'Frequence Mannen':    'frequence',
-    'Frequence Vrouwen':   'frequence',
-    'Frequence Unisex':    'frequence',
-    'Dubai Collectie':     'dubai_50ml',
-    'Dubai 100ml':         'dubai_100ml',
-    'Niche 50ml':          'niche',
-    'Mystery Collectie':   'niche',
-    'DMAR Collectie':      'dmar',
-    'Extract Parfum':      'niche',
-    'Signature Collectie': 'signature',
-  };
-
-  // Productspecifieke overrides (overschrijft categorie-prijs/Stripe-link)
   var PRODUCT_OVERRIDES = {
-    'Wild Horse': { stripeKey: 'dmar', price: 30.00 },
+    'Wild Horse': { price: 30.00 },
   };
 
   // ===== WINKELWAGEN FUNCTIES =====
@@ -194,7 +156,7 @@
       // Productspecifieke override (bijv. Wild Horse → DMAR-link)
       var override = PRODUCT_OVERRIDES[name];
       if (override) {
-        return { name: name, category: category, price: override.price, stripeKey: override.stripeKey };
+        return { name: name, category: category, price: override.price };
       }
 
       var price = CATEGORY_PRICES[category];
@@ -308,9 +270,6 @@
     removeFromCart: removeFromCart,
     updateQty: updateQty,
     getCartCount: getCartCount,
-    STRIPE_LINKS: STRIPE_LINKS,
-    CATEGORY_STRIPE_KEY: CATEGORY_STRIPE_KEY,
-    PRODUCT_OVERRIDES: PRODUCT_OVERRIDES,
     WHATSAPP_NR: WHATSAPP_NR,
   };
 

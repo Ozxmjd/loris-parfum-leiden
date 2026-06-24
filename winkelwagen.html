@@ -538,61 +538,59 @@
     checkoutDiv.innerHTML =
       '<h2 class="checkout-title">Afrekenen</h2>' +
       '<div class="checkout-divider"></div>' +
-      '<p class="checkout-subtitle">Betaal eenvoudig via Stripe of WhatsApp</p>';
+      '<p class="checkout-subtitle">Betaal veilig via Stripe of via WhatsApp</p>';
 
-    // Groepeer per Stripe-categorie (product-override heeft voorrang)
-    var groups = {};
-    cart.forEach(function (item) {
-      var key = item.stripeKey || lc.CATEGORY_STRIPE_KEY[item.category] || 'overig';
-      if (!groups[key]) {
-        groups[key] = { qty: 0, total: 0, label: getCategoryLabel(key) };
-      }
-      groups[key].qty += item.qty;
-      groups[key].total += item.price * item.qty;
+    // ===== Stripe checkout knop =====
+    var stripeBtn = document.createElement('button');
+    stripeBtn.className = 'stripe-btn';
+    stripeBtn.style.cssText = 'width:100%;margin-bottom:24px;';
+    stripeBtn.innerHTML =
+      '<span>Afrekenen via Stripe</span>' +
+      '<span class="stripe-badge">' + fmt(total) + '</span>';
+
+    stripeBtn.addEventListener('click', function () {
+      stripeBtn.disabled = true;
+      stripeBtn.querySelector('span').textContent = 'Even geduld…';
+
+      var items = cart.map(function (item) {
+        return { name: item.name, category: item.category, price: item.price, qty: item.qty };
+      });
+
+      fetch('https://ai-review-bot-production.up.railway.app/api/create-checkout-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ items: items })
+      })
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        if (data.url) {
+          window.location.href = data.url;
+        } else {
+          throw new Error(data.error || 'Onbekende fout');
+        }
+      })
+      .catch(function (err) {
+        stripeBtn.disabled = false;
+        stripeBtn.querySelector('span').textContent = 'Afrekenen via Stripe';
+        var errP = document.createElement('p');
+        errP.style.cssText = 'color:#c0392b;font-size:12px;text-align:center;margin:0 0 16px;';
+        errP.textContent = 'Fout: ' + err.message + '. Probeer opnieuw of gebruik WhatsApp.';
+        stripeBtn.insertAdjacentElement('afterend', errP);
+        setTimeout(function () { if (errP.parentNode) errP.parentNode.removeChild(errP); }, 6000);
+      });
     });
 
-    var stripeDiv = document.createElement('div');
-    stripeDiv.className = 'stripe-buttons';
+    checkoutDiv.appendChild(stripeBtn);
 
-    var allConfigured = true;
-    Object.keys(groups).forEach(function (key) {
-      var g = groups[key];
-      var link = lc.STRIPE_LINKS[key] || '';
-      var isPlaceholder = !link || link.indexOf('VERVANG') !== -1;
-
-      if (isPlaceholder) {
-        allConfigured = false;
-        var notice = document.createElement('div');
-        notice.className = 'stripe-not-configured';
-        notice.innerHTML =
-          '<strong>Stripe nog niet gekoppeld voor ' + escHtml(g.label) + '.</strong><br>' +
-          'Voeg jouw Stripe Payment Link URL in <code>cart.js</code> in bij <code>STRIPE_LINKS.' + key + '</code>.';
-        stripeDiv.appendChild(notice);
-      } else {
-        var url = link + '?prefilled_quantity=' + g.qty;
-        var btn = document.createElement('a');
-        btn.className = 'stripe-btn';
-        btn.href = url;
-        btn.target = '_blank';
-        btn.rel = 'noopener noreferrer';
-        btn.innerHTML =
-          '<span>' + g.qty + '× ' + escHtml(g.label) + ' betalen via Stripe</span>' +
-          '<span class="stripe-badge">' + fmt(g.total) + '</span>';
-        stripeDiv.appendChild(btn);
-      }
-    });
-
-    checkoutDiv.appendChild(stripeDiv);
-
-    // WhatsApp scheidingslijn
+    // ===== Of-scheidingslijn =====
     var or = document.createElement('div');
     or.className = 'checkout-or';
     or.textContent = 'of';
     checkoutDiv.appendChild(or);
 
-    // WhatsApp knop
+    // ===== WhatsApp knop =====
     var orderLines = cart.map(function (item) {
-      return item.qty + '× ' + item.name + ' (' + item.category + ') — ' + fmt(item.price * item.qty);
+      return item.qty + '\xd7 ' + item.name + ' (' + item.category + ') — ' + fmt(item.price * item.qty);
     });
     var waMsg =
       'Hallo, ik wil graag de volgende parfums bestellen bij Loris Parfum Leiden:\n\n' +
@@ -610,7 +608,10 @@
       'Bestel via WhatsApp';
     checkoutDiv.appendChild(waBtn);
 
-    checkoutDiv.innerHTML += '<p class="checkout-note">Afhalen bij Loris Parfum Leiden · Haarlemmerstraat · Leiden<br>Wij bevestigen uw bestelling zo snel mogelijk via WhatsApp.</p>';
+    var note = document.createElement('p');
+    note.className = 'checkout-note';
+    note.innerHTML = 'Afhalen bij Loris Parfum Leiden \xb7 Haarlemmerstraat \xb7 Leiden<br>Wij bevestigen uw bestelling zo snel mogelijk via WhatsApp.';
+    checkoutDiv.appendChild(note);
 
     root.appendChild(checkoutDiv);
   }
@@ -626,19 +627,6 @@
       '<p>Voeg producten toe via onze parfumcollectie.</p>' +
       '<a href="parfum.html" class="back-to-shop">Ontdek de collectie</a>';
     root.appendChild(emptyDiv);
-  }
-
-  function getCategoryLabel(key) {
-    var labels = {
-      frequence:   'Frequence',
-      dubai_50ml:  'Dubai 50ml',
-      dubai_100ml: 'Dubai 100ml',
-      niche:       'Niche / Mystery / Extract',
-      dmar:        'DMAR / Wild Horse',
-      signature:   'Signature',
-      overig:      'Overig',
-    };
-    return labels[key] || key;
   }
 
   function escHtml(str) {
