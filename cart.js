@@ -77,16 +77,17 @@
     return getCart().reduce(function (s, i) { return s + i.qty; }, 0);
   }
 
-  function addToCart(name, category, price, image, stripeKey) {
+  function addToCart(name, category, price, image, stripeKey, qty) {
+    var amount = Math.max(1, Math.min(10, parseInt(qty, 10) || 1));
     var cart = getCart();
     var existing = null;
     for (var i = 0; i < cart.length; i++) {
       if (cart[i].name === name && cart[i].category === category) { existing = cart[i]; break; }
     }
     if (existing) {
-      existing.qty += 1;
+      existing.qty = Math.min(10, existing.qty + amount);
     } else {
-      var item = { name: name, category: category, price: price, image: image, qty: 1 };
+      var item = { name: name, category: category, price: price, image: image, qty: amount };
       if (stripeKey) item.stripeKey = stripeKey;
       cart.push(item);
     }
@@ -142,22 +143,44 @@
     if (document.querySelector('.loris-cart-nav-link')) return;
     var cartLink = createCartLink();
 
-    // index.html / parfum.html stijl → .nav-end
+    // === Strategie 1: pagina's met .nav-end (index, parfum, bodycare, huisgeuren) ===
+    // Injecteer VÓÓR de hamburger-knop zodat het icoon ook op mobiel zichtbaar blijft.
     var navEnd = document.querySelector('.nav-end');
-    if (navEnd) { navEnd.appendChild(cartLink); return; }
-
-    // zoeken.html stijl → ul.nav-links (list-item)
-    var navList = document.querySelector('ul.nav-links');
-    if (navList) {
-      var li = document.createElement('li');
-      li.appendChild(cartLink);
-      navList.appendChild(li);
+    if (navEnd) {
+      var toggle = navEnd.querySelector('.nav-toggle, button');
+      if (toggle) {
+        navEnd.insertBefore(cartLink, toggle);
+      } else {
+        navEnd.appendChild(cartLink);
+      }
       return;
     }
 
-    // Productpagina stijl → simpele <nav>
-    var nav = document.querySelector('nav');
-    if (nav) { nav.appendChild(cartLink); }
+    // === Strategie 2: pagina's met .header-inner maar zonder .nav-end (zoeken.html) ===
+    // Injecteer VÓÓR de hamburger-knop in .header-inner.
+    var headerInner = document.querySelector('.header-inner');
+    if (headerInner) {
+      var toggle2 = headerInner.querySelector('.nav-toggle, button');
+      if (toggle2) {
+        headerInner.insertBefore(cartLink, toggle2);
+      } else {
+        headerInner.appendChild(cartLink);
+      }
+      return;
+    }
+
+    // === Strategie 3: simpele nav (frequence, product-pagina's, etc.) ===
+    // <nav> krijgt display:none op mobiel → injecteer in <header> zelf (BUITEN nav).
+    // Header is display:flex → cart-icoon komt rechts van de logo/nav te staan.
+    var header = document.querySelector('header');
+    if (header) {
+      var nav = header.querySelector('nav');
+      if (nav) {
+        header.insertBefore(cartLink, nav.nextSibling);
+      } else {
+        header.appendChild(cartLink);
+      }
+    }
   }
 
   // ===== PRODUCTPAGINA DETECTIE =====
@@ -193,15 +216,44 @@
     div.style.cssText = 'text-align:center;padding:10px 40px 50px;background:#fff;';
     div.innerHTML =
       '<div style="max-width:350px;margin:0 auto;">' +
-        '<p style="font-family:\'Playfair Display\',serif;font-size:30px;font-weight:600;color:#c9a45c;letter-spacing:1px;margin-bottom:22px;">' +
+        // Prijs
+        '<p style="font-family:\'Playfair Display\',serif;font-size:30px;font-weight:600;color:#c9a45c;letter-spacing:1px;margin-bottom:20px;">' +
           '€' + product.price.toFixed(2).replace('.', ',') +
         '</p>' +
+        // Aantal-selector
+        '<div class="loris-qty-wrap" style="display:flex;align-items:center;justify-content:center;margin-bottom:16px;">' +
+          '<button class="loris-qty-minus" style="width:44px;height:44px;background:#0a0a0a;color:#fff;border:none;font-size:22px;line-height:1;cursor:pointer;transition:background .2s;flex-shrink:0;display:flex;align-items:center;justify-content:center;">&#8722;</button>' +
+          '<span class="loris-qty-val" style="width:64px;height:44px;display:flex;align-items:center;justify-content:center;font-family:Montserrat,sans-serif;font-size:15px;font-weight:600;color:#0a0a0a;background:#fff;border-top:1px solid #e6e0d2;border-bottom:1px solid #e6e0d2;border-left:1px solid #e6e0d2;border-right:1px solid #e6e0d2;user-select:none;">1</span>' +
+          '<button class="loris-qty-plus" style="width:44px;height:44px;background:#0a0a0a;color:#fff;border:none;font-size:22px;line-height:1;cursor:pointer;transition:background .2s;flex-shrink:0;display:flex;align-items:center;justify-content:center;">+</button>' +
+        '</div>' +
+        // Knop
         '<button class="loris-atc-btn" style="width:100%;padding:16px 32px;background:#0a0a0a;color:#fff;border:2px solid #0a0a0a;font-family:Montserrat,sans-serif;font-size:13px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;cursor:pointer;transition:all .3s;">' +
           'In Winkelwagen' +
         '</button>' +
         '<p class="loris-atc-feedback" style="margin-top:10px;min-height:18px;font-size:11px;color:#c9a45c;letter-spacing:1px;text-transform:uppercase;font-family:Montserrat,sans-serif;"></p>' +
       '</div>';
 
+    // Aantal-selector logica
+    var qtyVal = div.querySelector('.loris-qty-val');
+    var minusBtn = div.querySelector('.loris-qty-minus');
+    var plusBtn = div.querySelector('.loris-qty-plus');
+
+    function getQty() { return parseInt(qtyVal.textContent, 10) || 1; }
+
+    minusBtn.addEventListener('click', function () {
+      if (getQty() > 1) qtyVal.textContent = getQty() - 1;
+    });
+    plusBtn.addEventListener('click', function () {
+      if (getQty() < 10) qtyVal.textContent = getQty() + 1;
+    });
+
+    // Hover-effecten op qty knoppen
+    [minusBtn, plusBtn].forEach(function (qb) {
+      qb.addEventListener('mouseenter', function () { qb.style.background = '#c9a45c'; });
+      qb.addEventListener('mouseleave', function () { qb.style.background = '#0a0a0a'; });
+    });
+
+    // Hover-effect op atc-knop
     var btn = div.querySelector('.loris-atc-btn');
     btn.addEventListener('mouseenter', function () {
       btn.style.background = '#c9a45c';
@@ -213,11 +265,14 @@
       btn.style.borderColor = '#0a0a0a';
       btn.style.color = '#fff';
     });
+
     btn.addEventListener('click', function () {
-      addToCart(product.name, product.category, product.price, image, product.stripeKey || null);
+      var qty = getQty();
+      addToCart(product.name, product.category, product.price, image, product.stripeKey || null, qty);
       var fb = div.querySelector('.loris-atc-feedback');
-      fb.textContent = '✓ Toegevoegd aan winkelwagen';
-      btn.textContent = 'Nog een toevoegen';
+      fb.textContent = '✓ ' + qty + (qty === 1 ? ' fles' : ' flessen') + ' toegevoegd';
+      btn.textContent = 'Nog meer toevoegen';
+      qtyVal.textContent = '1'; // reset naar 1 na toevoegen
       setTimeout(function () {
         fb.textContent = '';
         btn.textContent = 'In Winkelwagen';
