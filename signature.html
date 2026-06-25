@@ -230,7 +230,7 @@
   fetch(API).then(function(r){ return r.json(); }).then(function(data) {
     var products = Array.isArray(data) ? data : (data.products || []);
     var nieuw = products.filter(function(p) {
-      return p.active !== false && !existing.has((p.name||'').trim().toLowerCase());
+      return p.id && !existing.has((p.name||'').trim().toLowerCase());
     });
     if (!nieuw.length) return;
     var grid = document.getElementById('nt-grid');
