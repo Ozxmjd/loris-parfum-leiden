@@ -7,695 +7,1204 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --black: #0a0a0a;
-    --white: #ffffff;
-    --gold: #c9a45c;
-    --gold-light: #e0c896;
-    --gray: #6b6b6b;
-    --off-white: #f7f5f0;
-    --border: #e8e3d8;
-    --red: #c0392b;
-    --green: #27ae60;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Montserrat', sans-serif; background: var(--off-white); color: var(--black); min-height: 100vh; }
+:root {
+  --bg: #0d0d0d;
+  --sidebar: #111111;
+  --panel: #141414;
+  --card: #1a1a1a;
+  --card2: #222222;
+  --border: #2c2c2c;
+  --border2: #333333;
+  --text: #e0e0e0;
+  --muted: #777777;
+  --dim: #444444;
+  --gold: #c9a45c;
+  --gold-l: #e0c896;
+  --gold-d: rgba(201,164,92,.12);
+  --green: #4caf7d;
+  --green-d: rgba(76,175,125,.12);
+  --red: #e05c5c;
+  --red-d: rgba(224,92,92,.12);
+  --blue: #5c9ae0;
+  --blue-d: rgba(92,154,224,.12);
+  --orange: #e09a5c;
+  --orange-d: rgba(224,154,92,.12);
+  --sw: 240px;
+  --hh: 64px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Montserrat',sans-serif;background:var(--bg);color:var(--text);min-height:100vh;font-size:14px;line-height:1.5;}
+.hidden{display:none!important;}
+a{color:inherit;text-decoration:none;}
 
-  /* ===== LOGIN ===== */
-  #login-section {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(160deg, #111 0%, #0a0a0a 100%);
-  }
-  .login-card {
-    background: #161616;
-    border: 1px solid #2a2a2a;
-    padding: 56px 48px;
-    width: 100%;
-    max-width: 400px;
-    text-align: center;
-  }
-  .login-logo {
-    font-family: 'Playfair Display', serif;
-    font-size: 22px;
-    font-weight: 700;
-    color: var(--white);
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    margin-bottom: 4px;
-  }
-  .login-sub {
-    font-size: 10px;
-    letter-spacing: 4px;
-    color: var(--gold);
-    text-transform: uppercase;
-    margin-bottom: 40px;
-  }
-  .login-card h2 {
-    font-family: 'Playfair Display', serif;
-    font-size: 20px;
-    color: var(--white);
-    margin-bottom: 28px;
-    font-weight: 400;
-  }
-  .login-input {
-    width: 100%;
-    padding: 14px 16px;
-    background: #1f1f1f;
-    border: 1px solid #333;
-    color: var(--white);
-    font-family: 'Montserrat', sans-serif;
-    font-size: 14px;
-    margin-bottom: 16px;
-    outline: none;
-    transition: border-color .2s;
-    letter-spacing: 2px;
-  }
-  .login-input:focus { border-color: var(--gold); }
-  .login-btn {
-    width: 100%;
-    padding: 14px;
-    background: var(--gold);
-    color: var(--black);
-    border: none;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: background .2s;
-  }
-  .login-btn:hover { background: var(--gold-light); }
-  .login-error {
-    margin-top: 14px;
-    font-size: 12px;
-    color: #e74c3c;
-    letter-spacing: 0.5px;
-    min-height: 18px;
-  }
+/* ===== TOAST ===== */
+#toast{position:fixed;bottom:24px;right:24px;z-index:9999;display:flex;flex-direction:column;gap:8px;pointer-events:none;}
+.toast-msg{padding:12px 20px;border-left:3px solid var(--gold);background:var(--card2);font-size:12px;letter-spacing:.3px;max-width:300px;animation:tIn .25s ease;box-shadow:0 4px 24px rgba(0,0,0,.5);}
+.toast-msg.s{border-color:var(--green);}
+.toast-msg.e{border-color:var(--red);}
+@keyframes tIn{from{opacity:0;transform:translateX(16px)}to{opacity:1;transform:none}}
 
-  /* ===== DASHBOARD ===== */
-  #dashboard-section { display: none; }
+/* ===== LOGIN ===== */
+#login-section{min-height:100vh;display:flex;align-items:center;justify-content:center;background:radial-gradient(ellipse at 30% 20%,#1a1208 0%,var(--bg) 60%);padding:24px;}
+.login-wrap{width:100%;max-width:400px;}
+.login-brand{text-align:center;margin-bottom:40px;}
+.login-brand-name{font-family:'Playfair Display',serif;font-size:24px;font-weight:700;color:#fff;letter-spacing:4px;text-transform:uppercase;}
+.login-brand-sub{font-size:10px;letter-spacing:5px;color:var(--gold);text-transform:uppercase;margin-top:4px;}
+.login-card{background:var(--sidebar);border:1px solid var(--border2);padding:48px 40px;}
+.login-card h2{font-family:'Playfair Display',serif;font-size:20px;font-weight:400;color:#fff;margin-bottom:28px;text-align:center;}
+.lf{margin-bottom:16px;}
+.lf label{display:block;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px;}
+.lf input{width:100%;padding:12px 14px;background:var(--card);border:1px solid var(--border);color:var(--text);font-family:'Montserrat',sans-serif;font-size:13px;outline:none;transition:border-color .2s;}
+.lf input:focus{border-color:var(--gold);}
+.lf input::placeholder{color:var(--dim);}
+.login-err{margin-top:12px;font-size:12px;color:var(--red);text-align:center;min-height:18px;}
+.login-fgt{text-align:center;margin-top:14px;}
+.login-fgt a{color:var(--muted);font-size:12px;}
+.login-fgt a:hover{color:var(--gold);}
 
-  .admin-header {
-    position: sticky;
-    top: 0;
-    z-index: 50;
-    background: rgba(10,10,10,0.97);
-    backdrop-filter: blur(10px);
-    padding: 16px 40px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 1px solid #222;
-  }
-  .admin-brand {
-    display: flex;
-    flex-direction: column;
-  }
-  .admin-brand-name {
-    font-family: 'Playfair Display', serif;
-    font-size: 18px;
-    font-weight: 700;
-    color: var(--white);
-    letter-spacing: 2px;
-    text-transform: uppercase;
-  }
-  .admin-brand-tag {
-    font-size: 9px;
-    letter-spacing: 3px;
-    color: var(--gold);
-    text-transform: uppercase;
-  }
-  .logout-btn {
-    padding: 8px 20px;
-    background: transparent;
-    border: 1px solid #444;
-    color: #aaa;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 11px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all .2s;
-  }
-  .logout-btn:hover { border-color: var(--gold); color: var(--gold); }
+/* ===== BUTTONS ===== */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:11px 22px;font-family:'Montserrat',sans-serif;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all .2s;border:none;white-space:nowrap;text-decoration:none;}
+.btn-full{width:100%;padding:13px;}
+.btn-gold{background:var(--gold);color:#0d0d0d;}
+.btn-gold:hover{background:var(--gold-l);}
+.btn-ghost{background:transparent;border:1px solid var(--border2);color:var(--muted);}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold);}
+.btn-danger{background:transparent;border:1px solid rgba(224,92,92,.3);color:var(--red);}
+.btn-danger:hover{background:var(--red-d);}
+.btn-sm{padding:7px 14px;font-size:10px;letter-spacing:1.5px;}
+.btn:disabled{opacity:.4;cursor:not-allowed;pointer-events:none;}
 
-  /* ===== TABS ===== */
-  .tab-nav {
-    background: var(--black);
-    display: flex;
-    gap: 0;
-    border-bottom: 1px solid #222;
-    padding: 0 40px;
-  }
-  .tab-btn {
-    padding: 16px 28px;
-    background: none;
-    border: none;
-    border-bottom: 2px solid transparent;
-    color: #666;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all .2s;
-    margin-bottom: -1px;
-  }
-  .tab-btn:hover { color: var(--white); }
-  .tab-btn.active { color: var(--gold); border-bottom-color: var(--gold); }
+/* ===== APP LAYOUT ===== */
+#app{display:flex;min-height:100vh;}
 
-  .tab-panel { display: none; padding: 40px; max-width: 1100px; margin: 0 auto; }
-  .tab-panel.active { display: block; }
+/* ===== SIDEBAR ===== */
+.sidebar{width:var(--sw);background:var(--sidebar);border-right:1px solid var(--border);display:flex;flex-direction:column;position:fixed;top:0;left:0;height:100vh;z-index:100;transition:transform .3s ease;}
+.sb-brand{padding:28px 24px 22px;border-bottom:1px solid var(--border);}
+.sb-brand-name{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:#fff;letter-spacing:2px;text-transform:uppercase;}
+.sb-brand-sub{font-size:9px;letter-spacing:3px;color:var(--gold);text-transform:uppercase;margin-top:3px;}
+.sb-nav{flex:1;padding:16px 0;overflow-y:auto;}
+.nav-group{font-size:9px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--dim);padding:14px 24px 6px;}
+.nav-item{display:flex;align-items:center;gap:11px;padding:11px 24px;color:var(--muted);font-size:11px;font-weight:500;letter-spacing:1px;cursor:pointer;transition:all .15s;border-left:2px solid transparent;text-transform:uppercase;user-select:none;}
+.nav-item:hover{color:var(--text);background:rgba(255,255,255,.03);}
+.nav-item.active{color:var(--gold);border-left-color:var(--gold);background:var(--gold-d);}
+.nav-icon{font-size:13px;width:16px;text-align:center;flex-shrink:0;}
+.nav-badge{margin-left:auto;background:var(--gold);color:#0d0d0d;font-size:9px;font-weight:700;padding:2px 6px;min-width:18px;text-align:center;}
+.sb-footer{padding:18px 24px;border-top:1px solid var(--border);}
+.sb-user{font-size:11px;color:var(--dim);margin-bottom:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+.sb-user strong{display:block;color:var(--muted);font-size:9px;letter-spacing:.5px;margin-bottom:2px;text-transform:uppercase;}
+.sb-timer{font-size:10px;color:var(--dim);margin-bottom:12px;}
+.sb-timer span{color:var(--gold);}
 
-  /* ===== PANEL HEADER ===== */
-  .panel-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 28px;
-  }
-  .panel-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 26px;
-    font-weight: 600;
-  }
-  .panel-actions { display: flex; gap: 12px; }
+/* ===== MAIN ===== */
+.main{margin-left:var(--sw);flex:1;min-height:100vh;background:var(--panel);}
+.main-header{position:sticky;top:0;z-index:50;height:var(--hh);background:rgba(20,20,20,.97);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 40px;}
+.header-left{display:flex;align-items:center;gap:16px;}
+.header-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:600;color:#fff;}
+.header-crumb{font-size:10px;color:var(--dim);letter-spacing:.5px;margin-top:2px;}
+.header-meta{font-size:11px;color:var(--dim);text-align:right;}
+.hamburger{display:none;background:none;border:none;color:var(--muted);font-size:22px;cursor:pointer;padding:4px 8px;line-height:1;}
+.sb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:90;}
 
-  /* ===== BUTTONS ===== */
-  .btn {
-    padding: 10px 24px;
-    font-family: 'Montserrat', sans-serif;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all .2s;
-    border: none;
-  }
-  .btn-dark { background: var(--black); color: var(--white); border: 1px solid var(--black); }
-  .btn-dark:hover { background: #222; }
-  .btn-gold { background: var(--gold); color: var(--black); }
-  .btn-gold:hover { background: var(--gold-light); }
-  .btn-outline { background: transparent; color: var(--black); border: 1px solid var(--border); }
-  .btn-outline:hover { border-color: var(--black); }
-  .btn-danger { background: transparent; color: var(--red); border: 1px solid #e8d8d8; }
-  .btn-danger:hover { background: #fff0f0; }
-  .btn-sm { padding: 6px 14px; font-size: 10px; letter-spacing: 1.5px; }
+/* ===== PANELS ===== */
+.panel{display:none;padding:40px;max-width:1200px;}
+.panel.active{display:block;}
+.panel-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:32px;flex-wrap:wrap;gap:16px;}
+.panel-title{font-family:'Playfair Display',serif;font-size:28px;font-weight:600;color:#fff;}
+.panel-actions{display:flex;gap:10px;flex-wrap:wrap;}
 
-  /* ===== TABLE ===== */
-  .data-table {
-    width: 100%;
-    border-collapse: collapse;
-    background: var(--white);
-    border: 1px solid var(--border);
-  }
-  .data-table th {
-    padding: 12px 16px;
-    text-align: left;
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--gray);
-    border-bottom: 1px solid var(--border);
-    background: var(--off-white);
-  }
-  .data-table td {
-    padding: 14px 16px;
-    font-size: 13px;
-    border-bottom: 1px solid var(--border);
-    vertical-align: middle;
-  }
-  .data-table tr:last-child td { border-bottom: none; }
-  .data-table tr:hover td { background: #fafaf8; }
+/* ===== STAT CARDS ===== */
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-bottom:36px;}
+.stat-card{background:var(--card);border:1px solid var(--border);padding:24px 22px 20px;position:relative;overflow:hidden;transition:border-color .2s;}
+.stat-card:hover{border-color:var(--border2);}
+.stat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--acc,var(--gold));}
+.stat-label{font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--dim);margin-bottom:12px;}
+.stat-val{font-family:'Playfair Display',serif;font-size:30px;font-weight:600;color:#fff;line-height:1;margin-bottom:6px;}
+.stat-sub{font-size:11px;color:var(--dim);}
+.stat-icon{position:absolute;top:18px;right:18px;font-size:20px;opacity:.15;}
 
-  .badge {
-    display: inline-block;
-    padding: 3px 10px;
-    border-radius: 2px;
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-  }
-  .badge-active { background: #eafaf1; color: var(--green); }
-  .badge-inactive { background: #fdf0f0; color: var(--red); }
-  .badge-paid { background: #eafaf1; color: var(--green); }
+/* ===== OVERVIEW GRID ===== */
+.ov-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px;}
+.ov-card{background:var(--card);border:1px solid var(--border);padding:24px;}
+.ov-title{font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--dim);margin-bottom:16px;}
+.ov-item{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid var(--border);font-size:13px;}
+.ov-item:last-child{border-bottom:none;padding-bottom:0;}
 
-  .price-col { font-family: 'Playfair Display', serif; color: var(--gold); font-size: 15px; }
-  .name-col { font-weight: 600; }
-  .meta-col { color: var(--gray); font-size: 12px; }
+/* ===== TABLE ===== */
+.tbl-wrap{background:var(--card);border:1px solid var(--border);overflow:hidden;}
+.tbl-toolbar{padding:14px 18px;border-bottom:1px solid var(--border);display:flex;gap:10px;align-items:center;flex-wrap:wrap;}
+.t-search,.t-sel{background:var(--card2);border:1px solid var(--border);color:var(--text);font-family:'Montserrat',sans-serif;font-size:12px;padding:8px 12px;outline:none;transition:border-color .2s;-webkit-appearance:none;}
+.t-search{min-width:200px;}
+.t-search:focus,.t-sel:focus{border-color:var(--gold);}
+.t-search::placeholder{color:var(--dim);}
+.t-sel{cursor:pointer;}
+.data-table{width:100%;border-collapse:collapse;}
+.data-table th{padding:11px 14px;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--dim);border-bottom:1px solid var(--border);text-align:left;white-space:nowrap;background:var(--card);}
+.data-table td{padding:13px 14px;font-size:13px;border-bottom:1px solid var(--border);vertical-align:middle;}
+.data-table tr:last-child td{border-bottom:none;}
+.data-table tbody tr{transition:background .12s;}
+.data-table tbody tr:hover td{background:rgba(255,255,255,.02);}
 
-  /* ===== LOADING / EMPTY ===== */
-  .state-msg {
-    text-align: center;
-    padding: 60px 24px;
-    color: var(--gray);
-    font-size: 13px;
-    letter-spacing: 0.5px;
-    background: var(--white);
-    border: 1px solid var(--border);
-  }
-  .loading-dots::after {
-    content: '...';
-    animation: dots 1.2s steps(4, end) infinite;
-  }
-  @keyframes dots {
-    0%, 20%  { content: '.';   }
-    40%      { content: '..';  }
-    60%, 100%{ content: '...'; }
-  }
+/* product thumbnail */
+.p-thumb{width:42px;height:42px;object-fit:cover;background:var(--card2);border:1px solid var(--border);}
+.p-thumb-ph{width:42px;height:42px;background:var(--card2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:16px;color:var(--dim);}
 
-  /* ===== FORM ===== */
-  .form-card {
-    background: var(--white);
-    border: 1px solid var(--border);
-    padding: 36px 40px;
-    max-width: 680px;
-  }
-  .form-row { margin-bottom: 22px; }
-  .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-bottom: 22px; }
-  .form-label {
-    display: block;
-    font-size: 10px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--gray);
-    margin-bottom: 8px;
-  }
-  .form-input, .form-select, .form-textarea {
-    width: 100%;
-    padding: 11px 14px;
-    border: 1px solid var(--border);
-    background: var(--white);
-    font-family: 'Montserrat', sans-serif;
-    font-size: 13px;
-    color: var(--black);
-    outline: none;
-    transition: border-color .2s;
-    -webkit-appearance: none;
-  }
-  .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--gold); }
-  .form-textarea { resize: vertical; min-height: 72px; }
-  .form-hint { font-size: 11px; color: var(--gray); margin-top: 5px; }
-  .form-section-title {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin: 28px 0 16px;
-    padding-bottom: 8px;
-    border-bottom: 1px solid var(--border);
-  }
-  .form-check-row { display: flex; align-items: center; gap: 10px; }
-  .form-check-row input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--gold); cursor: pointer; }
-  .form-check-row label { font-size: 13px; cursor: pointer; }
-  .form-feedback {
-    margin-top: 16px;
-    font-size: 12px;
-    padding: 12px 16px;
-    border: 1px solid transparent;
-  }
-  .form-feedback.success { background: #eafaf1; border-color: #a8dfbe; color: #1e8449; }
-  .form-feedback.error   { background: #fdf0f0; border-color: #e0a0a0; color: var(--red); }
+/* ===== BADGES ===== */
+.badge{display:inline-block;padding:3px 8px;font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;}
+.b-active{background:var(--green-d);color:var(--green);}
+.b-inactive{background:var(--red-d);color:var(--red);}
+.b-paid{background:var(--green-d);color:var(--green);}
+.b-verzonden{background:var(--blue-d);color:var(--blue);}
+.b-geannuleerd{background:var(--red-d);color:var(--red);}
+.b-pending{background:var(--orange-d);color:var(--orange);}
 
-  /* ===== ORDERS ITEMS ===== */
-  .items-list { font-size: 12px; color: var(--gray); line-height: 1.7; }
+/* ===== ORDER EXPAND ===== */
+.ord-expand-row{display:none;}
+.ord-expand-row.open{display:table-row;}
+.ord-expand-inner{padding:16px 20px;background:var(--card2);}
+.ord-items-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:10px;margin-bottom:16px;}
+.ord-item{background:var(--card);border:1px solid var(--border);padding:12px;font-size:12px;}
+.ord-item-name{font-weight:600;color:var(--text);margin-bottom:4px;}
+.ord-status-row{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+.ord-status-lbl{font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim);}
+.s-sel{background:var(--card);border:1px solid var(--border);color:var(--text);font-family:'Montserrat',sans-serif;font-size:12px;padding:7px 11px;outline:none;cursor:pointer;-webkit-appearance:none;transition:border-color .2s;}
+.s-sel:focus{border-color:var(--gold);}
 
-  @media (max-width: 768px) {
-    .admin-header { padding: 14px 20px; }
-    .tab-nav { padding: 0 16px; overflow-x: auto; }
-    .tab-btn { padding: 14px 18px; white-space: nowrap; }
-    .tab-panel { padding: 24px 16px; }
-    .form-row-2 { grid-template-columns: 1fr; }
-    .form-card { padding: 24px 20px; }
-    .data-table { font-size: 12px; }
-    .data-table th, .data-table td { padding: 10px 12px; }
-  }
+/* ===== FORM ===== */
+.form-card{background:var(--card);border:1px solid var(--border);padding:36px 40px;max-width:720px;}
+.f-row{margin-bottom:20px;}
+.f-row2{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:20px;}
+.f-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:18px;margin-bottom:20px;}
+.f-lbl{display:block;font-size:9px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--dim);margin-bottom:8px;}
+.f-inp,.f-sel,.f-txt{width:100%;padding:11px 13px;background:var(--card2);border:1px solid var(--border);color:var(--text);font-family:'Montserrat',sans-serif;font-size:13px;outline:none;transition:border-color .2s;-webkit-appearance:none;}
+.f-inp:focus,.f-sel:focus,.f-txt:focus{border-color:var(--gold);}
+.f-inp::placeholder{color:var(--dim);}
+.f-txt{resize:vertical;min-height:80px;}
+.f-hint{font-size:11px;color:var(--dim);margin-top:5px;}
+.f-section{font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--gold);padding-bottom:9px;border-bottom:1px solid var(--border);margin:26px 0 18px;}
+.f-feedback{margin-top:14px;padding:11px 14px;font-size:12px;border-left:3px solid transparent;}
+.f-feedback.ok{background:var(--green-d);border-color:var(--green);color:var(--green);}
+.f-feedback.err{background:var(--red-d);border-color:var(--red);color:var(--red);}
+
+/* image preview */
+.img-prev{width:100%;height:130px;background:var(--card2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;overflow:hidden;margin-top:8px;}
+.img-prev img{max-width:100%;max-height:100%;object-fit:contain;}
+.img-ph{font-size:28px;color:var(--dim);}
+
+/* toggle */
+.toggle-row{display:flex;align-items:center;gap:13px;}
+.toggle{position:relative;width:38px;height:20px;flex-shrink:0;}
+.toggle input{opacity:0;width:0;height:0;}
+.t-track{position:absolute;inset:0;background:var(--border2);cursor:pointer;transition:background .2s;}
+.t-track::before{content:'';position:absolute;height:14px;width:14px;left:3px;bottom:3px;background:var(--dim);transition:transform .2s,background .2s;}
+.toggle input:checked+.t-track{background:rgba(201,164,92,.25);}
+.toggle input:checked+.t-track::before{transform:translateX(18px);background:var(--gold);}
+.t-lbl{font-size:13px;color:var(--text);}
+
+/* ===== SETTINGS ===== */
+.sett-section{background:var(--card);border:1px solid var(--border);padding:26px 30px;margin-bottom:22px;max-width:560px;}
+.sett-title{font-size:9px;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold);margin-bottom:18px;padding-bottom:9px;border-bottom:1px solid var(--border);}
+.sett-row{display:flex;align-items:center;justify-content:space-between;padding:12px 0;border-bottom:1px solid var(--border);}
+.sett-row:last-child{border-bottom:none;padding-bottom:0;}
+.sett-row-lbl{font-size:13px;color:var(--text);}
+.sett-row-sub{font-size:11px;color:var(--dim);margin-top:2px;}
+
+/* ===== MODAL ===== */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.72);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;animation:fIn .2s ease;}
+@keyframes fIn{from{opacity:0}to{opacity:1}}
+.modal{background:var(--card);border:1px solid var(--border2);width:100%;max-width:680px;max-height:90vh;overflow-y:auto;animation:sUp .22s ease;}
+.modal.sm{max-width:420px;}
+@keyframes sUp{from{transform:translateY(18px);opacity:0}to{transform:none;opacity:1}}
+.modal-hd{padding:22px 30px 18px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;}
+.modal-title{font-family:'Playfair Display',serif;font-size:20px;font-weight:600;color:#fff;}
+.modal-x{background:none;border:none;color:var(--dim);font-size:18px;cursor:pointer;padding:4px;line-height:1;transition:color .15s;}
+.modal-x:hover{color:var(--text);}
+.modal-bd{padding:26px 30px;}
+.modal-ft{padding:18px 30px 22px;border-top:1px solid var(--border);display:flex;gap:10px;justify-content:flex-end;}
+.confirm-txt{font-size:14px;color:var(--muted);line-height:1.6;}
+.confirm-name{font-weight:600;color:var(--text);}
+
+/* ===== UTILS ===== */
+.state-msg{padding:56px 24px;text-align:center;color:var(--dim);font-size:13px;}
+.state-msg a{color:var(--gold);}
+.loading::after{content:'';display:inline-block;animation:ldots 1.2s infinite;}
+@keyframes ldots{0%{content:'.'}33%{content:'..'}66%{content:'...'}100%{content:'.'}}
+.price-txt{font-family:'Playfair Display',serif;color:var(--gold);font-size:15px;}
+.t-strong{font-weight:600;}
+.t-muted{color:var(--muted);font-size:12px;}
+.t-dim{color:var(--dim);font-size:11px;}
+.acts{white-space:nowrap;}
+.acts .btn{margin-right:4px;}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:1024px){
+  .stats-grid{grid-template-columns:repeat(2,1fr);}
+  .ov-grid{grid-template-columns:1fr;}
+}
+@media(max-width:768px){
+  .sidebar{transform:translateX(-100%);}
+  .sidebar.open{transform:none;}
+  .sb-overlay.open{display:block;}
+  .hamburger{display:block;}
+  .main{margin-left:0;}
+  .main-header{padding:0 20px;}
+  .panel{padding:22px 16px;}
+  .stats-grid{grid-template-columns:1fr 1fr;gap:12px;}
+  .form-card{padding:22px 18px;}
+  .f-row2,.f-row3{grid-template-columns:1fr;}
+  .data-table th,.data-table td{padding:10px 11px;}
+  .modal-bd{padding:20px;}
+  .modal-hd{padding:18px 20px;}
+  .modal-ft{padding:16px 20px;}
+  .sett-section{padding:20px;}
+}
+@media(max-width:480px){
+  .stats-grid{grid-template-columns:1fr;}
+}
 </style>
 </head>
 <body>
 
+<div id="toast"></div>
+
 <!-- ===== LOGIN ===== -->
 <section id="login-section">
-  <div class="login-card">
-    <div class="login-logo">Loris Parfum</div>
-    <div class="login-sub">Leiden — Admin</div>
-    <h2>Inloggen</h2>
-    <input type="password" id="pw-input" class="login-input" placeholder="Wachtwoord" autocomplete="current-password">
-    <button class="login-btn" onclick="login()">Inloggen</button>
-    <div class="login-error" id="login-error"></div>
+  <div class="login-wrap">
+    <div class="login-brand">
+      <div class="login-brand-name">Loris Parfum</div>
+      <div class="login-brand-sub">Leiden &mdash; Admin Portal</div>
+    </div>
+
+    <div id="login-form" class="login-card">
+      <h2>Inloggen</h2>
+      <div class="lf">
+        <label>E-mail</label>
+        <input type="email" id="l-email" placeholder="lorisleiden@snsbusiness.nl" autocomplete="email">
+      </div>
+      <div class="lf">
+        <label>Wachtwoord</label>
+        <input type="password" id="l-pw" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;" autocomplete="current-password">
+      </div>
+      <button class="btn btn-gold btn-full" id="l-btn" onclick="doLogin()">Inloggen</button>
+      <div class="login-err" id="l-err"></div>
+      <div class="login-fgt"><a href="#" onclick="showForgot();return false;">Wachtwoord vergeten?</a></div>
+    </div>
+
+    <div id="forgot-form" class="login-card hidden">
+      <h2>Wachtwoord Vergeten</h2>
+      <p style="font-size:13px;color:var(--muted);margin-bottom:20px;text-align:center;line-height:1.6;">Voer uw e-mail in. U ontvangt een herstelkoppeling.</p>
+      <div class="lf">
+        <label>E-mail</label>
+        <input type="email" id="fg-email" placeholder="lorisleiden@snsbusiness.nl">
+      </div>
+      <button class="btn btn-gold btn-full" id="fg-btn" onclick="doForgot()">Herstelkoppeling Sturen</button>
+      <div class="login-err" id="fg-msg" style="min-height:0;margin-top:12px;"></div>
+      <div class="login-fgt" style="margin-top:14px;"><a href="#" onclick="showLogin();return false;">&larr; Terug naar inloggen</a></div>
+    </div>
   </div>
 </section>
 
-<!-- ===== DASHBOARD ===== -->
-<section id="dashboard-section">
-  <header class="admin-header">
-    <div class="admin-brand">
-      <div class="admin-brand-name">Loris Parfum</div>
-      <div class="admin-brand-tag">Admin Portal</div>
+<!-- ===== APP ===== -->
+<div id="app" class="hidden">
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sb-brand">
+      <div class="sb-brand-name">Loris Parfum</div>
+      <div class="sb-brand-sub">Admin Portal</div>
     </div>
-    <button class="logout-btn" onclick="logout()">Uitloggen</button>
-  </header>
-
-  <nav class="tab-nav">
-    <button class="tab-btn active" onclick="switchTab('orders')">Bestellingen</button>
-    <button class="tab-btn" onclick="switchTab('products')">Producten</button>
-    <button class="tab-btn" onclick="switchTab('add-product')">Nieuw Product</button>
-  </nav>
-
-  <!-- Tab: Bestellingen -->
-  <div class="tab-panel active" id="panel-orders">
-    <div class="panel-header">
-      <h2 class="panel-title">Bestellingen</h2>
-      <div class="panel-actions">
-        <button class="btn btn-outline" onclick="loadOrders()">Vernieuwen</button>
+    <nav class="sb-nav">
+      <div class="nav-group">Menu</div>
+      <div class="nav-item active" data-p="overview" onclick="goPanel('overview')">
+        <span class="nav-icon">&#9670;</span>Overzicht
       </div>
-    </div>
-    <div id="orders-content"><div class="state-msg loading-dots">Laden</div></div>
-  </div>
-
-  <!-- Tab: Producten -->
-  <div class="tab-panel" id="panel-products">
-    <div class="panel-header">
-      <h2 class="panel-title">Producten</h2>
-      <div class="panel-actions">
-        <button class="btn btn-outline" onclick="loadProducts()">Vernieuwen</button>
-        <button class="btn btn-gold" onclick="switchTab('add-product')">+ Nieuw product</button>
+      <div class="nav-item" data-p="orders" onclick="goPanel('orders')">
+        <span class="nav-icon">&#9671;</span>Bestellingen
+        <span class="nav-badge hidden" id="ord-badge">0</span>
       </div>
+      <div class="nav-item" data-p="products" onclick="goPanel('products')">
+        <span class="nav-icon">&#9646;</span>Producten
+      </div>
+      <div class="nav-group">Beheer</div>
+      <div class="nav-item" data-p="add" onclick="goPanel('add')">
+        <span class="nav-icon">+</span>Nieuw Product
+      </div>
+      <div class="nav-item" data-p="settings" onclick="goPanel('settings')">
+        <span class="nav-icon">&#9881;</span>Instellingen
+      </div>
+    </nav>
+    <div class="sb-footer">
+      <div class="sb-user"><strong>Ingelogd als</strong><span id="sb-email">—</span></div>
+      <div class="sb-timer" id="sb-timer">Sessie loopt af om <span>—</span></div>
+      <button class="btn btn-ghost btn-full btn-sm" onclick="doLogout()">Uitloggen</button>
     </div>
-    <div id="products-content"><div class="state-msg">Klik op de tab om producten te laden.</div></div>
-  </div>
+  </aside>
 
-  <!-- Tab: Nieuw Product -->
-  <div class="tab-panel" id="panel-add-product">
-    <div class="panel-header">
-      <h2 class="panel-title">Nieuw Product</h2>
-    </div>
-    <div class="form-card">
-      <div class="form-row-2">
+  <div class="sb-overlay" id="sb-overlay" onclick="closeSb()"></div>
+
+  <div class="main">
+    <header class="main-header">
+      <div class="header-left">
+        <button class="hamburger" onclick="toggleSb()">&#9776;</button>
         <div>
-          <label class="form-label">Naam *</label>
-          <input type="text" id="f-name" class="form-input" placeholder="bijv. E138">
+          <div class="header-title" id="h-title">Overzicht</div>
+          <div class="header-crumb">Loris Parfum Leiden &middot; Admin</div>
+        </div>
+      </div>
+      <div class="header-meta" id="h-clock"></div>
+    </header>
+
+    <!-- OVERZICHT -->
+    <div class="panel active" id="panel-overview">
+      <div class="panel-header">
+        <h2 class="panel-title">Overzicht</h2>
+        <div class="panel-actions">
+          <button class="btn btn-ghost btn-sm" onclick="refreshAll()">&#8635; Vernieuwen</button>
+        </div>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card" style="--acc:var(--gold)">
+          <div class="stat-icon">&#9671;</div>
+          <div class="stat-label">Bestellingen vandaag</div>
+          <div class="stat-val" id="st-tod-ord">—</div>
+          <div class="stat-sub" id="st-tod-sub">laden...</div>
+        </div>
+        <div class="stat-card" style="--acc:var(--green)">
+          <div class="stat-icon">€</div>
+          <div class="stat-label">Omzet vandaag</div>
+          <div class="stat-val" id="st-tod-rev">—</div>
+          <div class="stat-sub" id="st-rev-sub">laden...</div>
+        </div>
+        <div class="stat-card" style="--acc:var(--blue)">
+          <div class="stat-icon">&#9670;</div>
+          <div class="stat-label">Actieve producten</div>
+          <div class="stat-val" id="st-prods">—</div>
+          <div class="stat-sub" id="st-prods-sub">laden...</div>
+        </div>
+        <div class="stat-card" style="--acc:var(--orange)">
+          <div class="stat-icon">&#8599;</div>
+          <div class="stat-label">Bestellingen deze week</div>
+          <div class="stat-val" id="st-week">—</div>
+          <div class="stat-sub" id="st-week-sub">laden...</div>
+        </div>
+      </div>
+      <div class="ov-grid">
+        <div class="ov-card">
+          <div class="ov-title">Recente Bestellingen</div>
+          <div id="ov-orders"><div class="state-msg" style="padding:24px">laden...</div></div>
+        </div>
+        <div class="ov-card">
+          <div class="ov-title">Recente Producten</div>
+          <div id="ov-products"><div class="state-msg" style="padding:24px">laden...</div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BESTELLINGEN -->
+    <div class="panel" id="panel-orders">
+      <div class="panel-header">
+        <h2 class="panel-title">Bestellingen</h2>
+        <div class="panel-actions">
+          <button class="btn btn-ghost btn-sm" onclick="loadOrders()">&#8635; Vernieuwen</button>
+        </div>
+      </div>
+      <div class="tbl-wrap">
+        <div class="tbl-toolbar">
+          <input type="text" class="t-search" id="ord-search" placeholder="Zoek op naam of e-mail..." oninput="filterOrders()">
+          <select class="t-sel" id="ord-fst" onchange="filterOrders()">
+            <option value="">Alle statussen</option>
+            <option value="paid">Betaald</option>
+            <option value="verzonden">Verzonden</option>
+            <option value="geannuleerd">Geannuleerd</option>
+            <option value="pending">In behandeling</option>
+          </select>
+          <input type="date" class="t-search" id="ord-fdt" style="min-width:auto;" oninput="filterOrders()">
+        </div>
+        <div id="ord-content"><div class="state-msg loading">Laden</div></div>
+      </div>
+    </div>
+
+    <!-- PRODUCTEN -->
+    <div class="panel" id="panel-products">
+      <div class="panel-header">
+        <h2 class="panel-title">Producten</h2>
+        <div class="panel-actions">
+          <button class="btn btn-ghost btn-sm" onclick="loadProducts()">&#8635; Vernieuwen</button>
+          <button class="btn btn-gold btn-sm" onclick="goPanel('add')">+ Nieuw Product</button>
+        </div>
+      </div>
+      <div class="tbl-wrap">
+        <div class="tbl-toolbar">
+          <input type="text" class="t-search" id="prd-search" placeholder="Zoek op naam of collectie..." oninput="filterProducts()">
+          <select class="t-sel" id="prd-fst" onchange="filterProducts()">
+            <option value="">Alle statussen</option>
+            <option value="active">Actief</option>
+            <option value="inactive">Inactief</option>
+          </select>
+        </div>
+        <div id="prd-content"><div class="state-msg">Klik Vernieuwen om producten te laden.</div></div>
+      </div>
+    </div>
+
+    <!-- NIEUW PRODUCT -->
+    <div class="panel" id="panel-add">
+      <div class="panel-header">
+        <h2 class="panel-title">Nieuw Product</h2>
+      </div>
+      <div class="form-card">
+        <div class="f-row2">
+          <div>
+            <label class="f-lbl">Naam *</label>
+            <input type="text" id="f-name" class="f-inp" placeholder="bijv. E138 of Amber Velvet">
+          </div>
+          <div>
+            <label class="f-lbl">Collectie *</label>
+            <select id="f-col" class="f-sel">
+              <option value="">— Kies collectie —</option>
+              <option>Frequence Mannen</option><option>Frequence Vrouwen</option><option>Frequence Unisex</option>
+              <option>Dubai Collectie</option><option>Dubai 100ml</option><option>Niche 50ml</option>
+              <option>Mystery Collectie</option><option>DMAR Collectie</option><option>Extract Parfum</option>
+              <option>Signature Collectie</option><option>Unisex</option><option>Oriental</option><option>Overig</option>
+            </select>
+          </div>
+        </div>
+        <div class="f-row3">
+          <div>
+            <label class="f-lbl">Prijs (€) *</label>
+            <input type="number" id="f-price" class="f-inp" placeholder="19.99" step="0.01" min="0">
+          </div>
+          <div>
+            <label class="f-lbl">Inhoud (ml)</label>
+            <select id="f-ml" class="f-sel">
+              <option value="">— Kies —</option>
+              <option value="30">30 ml</option><option value="50">50 ml</option><option value="100">100 ml</option>
+            </select>
+          </div>
+          <div>
+            <label class="f-lbl">Categorie</label>
+            <select id="f-cat" class="f-sel">
+              <option value="">— Kies —</option>
+              <option>Heren</option><option>Dames</option><option>Unisex</option>
+            </select>
+          </div>
+        </div>
+        <div class="f-section">Afbeelding</div>
+        <div class="f-row2">
+          <div>
+            <label class="f-lbl">Afbeelding URL</label>
+            <input type="text" id="f-img" class="f-inp" placeholder="https://... of images/naam.jpg" oninput="prvImg('f-img','f-iprev')">
+            <p class="f-hint">URL of relatief pad</p>
+          </div>
+          <div>
+            <label class="f-lbl">Voorvertoning</label>
+            <div class="img-prev" id="f-iprev"><div class="img-ph">&#9670;</div></div>
+          </div>
+        </div>
+        <div class="f-section">Geurprofiel</div>
+        <div class="f-row">
+          <label class="f-lbl">Top Notes</label>
+          <input type="text" id="f-top" class="f-inp" placeholder="Bergamot, Citroen, Lavendel">
+          <p class="f-hint">Kommagescheiden</p>
+        </div>
+        <div class="f-row">
+          <label class="f-lbl">Midden Notes</label>
+          <input type="text" id="f-mid" class="f-inp" placeholder="Roos, Jasmijn, Iris">
+          <p class="f-hint">Kommagescheiden</p>
+        </div>
+        <div class="f-row">
+          <label class="f-lbl">Basis Notes</label>
+          <input type="text" id="f-base" class="f-inp" placeholder="Musk, Amber, Sandelhout">
+          <p class="f-hint">Kommagescheiden</p>
+        </div>
+        <div class="f-row">
+          <label class="f-lbl">Beschrijving</label>
+          <textarea id="f-desc" class="f-txt" placeholder="Korte beschrijving van het parfum..."></textarea>
+        </div>
+        <div class="f-row">
+          <div class="toggle-row">
+            <label class="toggle"><input type="checkbox" id="f-active" checked><span class="t-track"></span></label>
+            <span class="t-lbl">Direct zichtbaar (actief)</span>
+          </div>
+        </div>
+        <button class="btn btn-gold" id="add-btn" style="width:100%;padding:14px;margin-top:8px;" onclick="submitProduct()">Product Opslaan</button>
+        <div id="add-fb"></div>
+      </div>
+    </div>
+
+    <!-- INSTELLINGEN -->
+    <div class="panel" id="panel-settings">
+      <div class="panel-header">
+        <h2 class="panel-title">Instellingen</h2>
+      </div>
+      <div class="sett-section">
+        <div class="sett-title">Wachtwoord Wijzigen</div>
+        <div class="f-row">
+          <label class="f-lbl">Huidig Wachtwoord</label>
+          <input type="password" id="s-cur" class="f-inp" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;">
+        </div>
+        <div class="f-row">
+          <label class="f-lbl">Nieuw Wachtwoord</label>
+          <input type="password" id="s-new" class="f-inp" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;">
+        </div>
+        <div class="f-row">
+          <label class="f-lbl">Herhaal Nieuw Wachtwoord</label>
+          <input type="password" id="s-rep" class="f-inp" placeholder="&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;">
+        </div>
+        <button class="btn btn-gold btn-sm" onclick="changePw()">Wachtwoord Wijzigen</button>
+        <div id="pw-fb"></div>
+      </div>
+      <div class="sett-section">
+        <div class="sett-title">E-mail Notificaties</div>
+        <div class="sett-row">
+          <div>
+            <div class="sett-row-lbl">E-mail bij nieuwe bestelling</div>
+            <div class="sett-row-sub">Ontvang direct een e-mail bij elke nieuwe bestelling</div>
+          </div>
+          <label class="toggle"><input type="checkbox" id="s-n-ord" checked onchange="saveSett()"><span class="t-track"></span></label>
+        </div>
+        <div class="sett-row">
+          <div>
+            <div class="sett-row-lbl">Dagelijkse samenvatting</div>
+            <div class="sett-row-sub">Elke ochtend een overzicht van de vorige dag</div>
+          </div>
+          <label class="toggle"><input type="checkbox" id="s-n-day" onchange="saveSett()"><span class="t-track"></span></label>
+        </div>
+      </div>
+      <div class="sett-section">
+        <div class="sett-title">Winkel Status</div>
+        <div class="sett-row">
+          <div>
+            <div class="sett-row-lbl">Winkel open</div>
+            <div class="sett-row-sub">Klanten zien een melding als de winkel tijdelijk gesloten is</div>
+          </div>
+          <label class="toggle"><input type="checkbox" id="s-shop" checked onchange="saveSett()"><span class="t-track"></span></label>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /main -->
+</div><!-- /app -->
+
+<!-- EDIT MODAL -->
+<div class="modal-overlay hidden" id="edit-modal">
+  <div class="modal">
+    <div class="modal-hd">
+      <div class="modal-title">Product Bewerken</div>
+      <button class="modal-x" onclick="closeEdit()">&#10005;</button>
+    </div>
+    <div class="modal-bd">
+      <input type="hidden" id="e-id">
+      <div class="f-row2">
+        <div>
+          <label class="f-lbl">Naam *</label>
+          <input type="text" id="e-name" class="f-inp" placeholder="Productnaam">
         </div>
         <div>
-          <label class="form-label">Collectie *</label>
-          <select id="f-collection" class="form-select">
+          <label class="f-lbl">Collectie *</label>
+          <select id="e-col" class="f-sel">
             <option value="">— Kies collectie —</option>
-            <option>Frequence Mannen</option>
-            <option>Frequence Vrouwen</option>
-            <option>Frequence Unisex</option>
-            <option>Dubai Collectie</option>
-            <option>Dubai 100ml</option>
-            <option>Niche 50ml</option>
-            <option>Mystery Collectie</option>
-            <option>DMAR Collectie</option>
-            <option>Extract Parfum</option>
-            <option>Signature Collectie</option>
-            <option>Unisex</option>
+            <option>Frequence Mannen</option><option>Frequence Vrouwen</option><option>Frequence Unisex</option>
+            <option>Dubai Collectie</option><option>Dubai 100ml</option><option>Niche 50ml</option>
+            <option>Mystery Collectie</option><option>DMAR Collectie</option><option>Extract Parfum</option>
+            <option>Signature Collectie</option><option>Unisex</option><option>Oriental</option><option>Overig</option>
           </select>
         </div>
       </div>
-      <div class="form-row-2">
+      <div class="f-row2">
         <div>
-          <label class="form-label">Prijs (€) *</label>
-          <input type="number" id="f-price" class="form-input" placeholder="19.99" step="0.01" min="0">
+          <label class="f-lbl">Prijs (€) *</label>
+          <input type="number" id="e-price" class="f-inp" step="0.01" min="0">
         </div>
         <div>
-          <label class="form-label">Inhoud (ml)</label>
-          <select id="f-ml" class="form-select">
+          <label class="f-lbl">Inhoud (ml)</label>
+          <select id="e-ml" class="f-sel">
             <option value="">— Kies —</option>
-            <option value="50">50 ml</option>
-            <option value="100">100 ml</option>
+            <option value="30">30 ml</option><option value="50">50 ml</option><option value="100">100 ml</option>
           </select>
         </div>
       </div>
-      <div class="form-row">
-        <label class="form-label">Afbeelding URL</label>
-        <input type="text" id="f-image" class="form-input" placeholder="https://... of relatief pad bijv. images/e138.jpg">
+      <div class="f-row">
+        <label class="f-lbl">Afbeelding URL</label>
+        <input type="text" id="e-img" class="f-inp" placeholder="https://... of images/naam.jpg" oninput="prvImg('e-img','e-iprev')">
       </div>
-
-      <div class="form-section-title">Geurprofiel</div>
-      <div class="form-row">
-        <label class="form-label">Top Notes</label>
-        <input type="text" id="f-top" class="form-input" placeholder="Bergamot, Citroen, Lavendel">
-        <p class="form-hint">Kommagescheiden</p>
+      <div class="img-prev" id="e-iprev" style="margin-bottom:16px;"><div class="img-ph">&#9670;</div></div>
+      <div class="f-row">
+        <label class="f-lbl">Top Notes</label>
+        <input type="text" id="e-top" class="f-inp" placeholder="Bergamot, Citroen">
       </div>
-      <div class="form-row">
-        <label class="form-label">Middle Notes</label>
-        <input type="text" id="f-mid" class="form-input" placeholder="Roos, Jasmijn, Iris">
-        <p class="form-hint">Kommagescheiden</p>
+      <div class="f-row">
+        <label class="f-lbl">Midden Notes</label>
+        <input type="text" id="e-mid" class="f-inp" placeholder="Roos, Jasmijn">
       </div>
-      <div class="form-row">
-        <label class="form-label">Base Notes</label>
-        <input type="text" id="f-base" class="form-input" placeholder="Musk, Amber, Sandelhout">
-        <p class="form-hint">Kommagescheiden</p>
+      <div class="f-row">
+        <label class="f-lbl">Basis Notes</label>
+        <input type="text" id="e-base" class="f-inp" placeholder="Musk, Amber">
       </div>
-
-      <div class="form-row">
-        <div class="form-check-row">
-          <input type="checkbox" id="f-active" checked>
-          <label for="f-active">Direct zichtbaar (actief)</label>
+      <div class="f-row">
+        <label class="f-lbl">Beschrijving</label>
+        <textarea id="e-desc" class="f-txt" placeholder="Korte beschrijving..."></textarea>
+      </div>
+      <div class="f-row">
+        <div class="toggle-row">
+          <label class="toggle"><input type="checkbox" id="e-active"><span class="t-track"></span></label>
+          <span class="t-lbl">Actief (zichtbaar op website)</span>
         </div>
       </div>
-
-      <button class="btn btn-dark" style="width:100%;padding:14px;" onclick="submitProduct()">Product Opslaan</button>
-      <div id="product-form-feedback"></div>
+      <div id="e-fb"></div>
+    </div>
+    <div class="modal-ft">
+      <button class="btn btn-ghost btn-sm" onclick="closeEdit()">Annuleren</button>
+      <button class="btn btn-gold btn-sm" id="e-save-btn" onclick="saveEdit()">Wijzigingen Opslaan</button>
     </div>
   </div>
-</section>
+</div>
+
+<!-- DELETE MODAL -->
+<div class="modal-overlay hidden" id="del-modal">
+  <div class="modal sm">
+    <div class="modal-hd">
+      <div class="modal-title">Product Verwijderen</div>
+      <button class="modal-x" onclick="closeDel()">&#10005;</button>
+    </div>
+    <div class="modal-bd">
+      <p class="confirm-txt">Weet u zeker dat u <span class="confirm-name" id="del-name"></span> wilt verwijderen? Dit kan niet ongedaan worden gemaakt.</p>
+    </div>
+    <div class="modal-ft">
+      <button class="btn btn-ghost btn-sm" onclick="closeDel()">Annuleren</button>
+      <button class="btn btn-danger btn-sm" onclick="confirmDel()">Verwijderen</button>
+    </div>
+  </div>
+</div>
 
 <script>
+'use strict';
 var API = 'https://ai-review-bot-production.up.railway.app';
-var adminKey = '';
+var SK  = 'loris_admin_v2';
+var DUR = 8 * 60 * 60 * 1000;
+
+var S = { token: null, email: null, loginTime: null, orders: [], products: [], delTarget: null, _intervals: [] };
+
+// ===== TOAST =====
+function toast(msg, type) {
+  var el = document.createElement('div');
+  el.className = 'toast-msg ' + (type || '');
+  el.textContent = msg;
+  document.getElementById('toast').appendChild(el);
+  setTimeout(function() {
+    el.style.cssText = 'opacity:0;transform:translateX(16px);transition:all .3s;';
+    setTimeout(function() { el.remove(); }, 300);
+  }, 3500);
+}
+
+// ===== SESSION =====
+function getSession() {
+  try {
+    var d = JSON.parse(sessionStorage.getItem(SK) || 'null');
+    if (!d || Date.now() > d.exp) { sessionStorage.removeItem(SK); return null; }
+    return d;
+  } catch(e) { return null; }
+}
+function saveSession(token, email) {
+  var d = { token: token, email: email, exp: Date.now() + DUR, loginTime: Date.now() };
+  sessionStorage.setItem(SK, JSON.stringify(d));
+  S.token = token; S.email = email; S.loginTime = d.loginTime;
+}
 
 // ===== AUTH =====
-function login() {
-  var pw = document.getElementById('pw-input').value;
-  var PASS = 'admin123';
-  if (pw === PASS) {
-    adminKey = pw;
-    sessionStorage.setItem('loris_admin', pw);
-    document.getElementById('login-section').style.display = 'none';
-    document.getElementById('dashboard-section').style.display = 'block';
-    loadOrders();
-  } else {
-    document.getElementById('login-error').textContent = 'Onjuist wachtwoord.';
+async function doLogin() {
+  var email = document.getElementById('l-email').value.trim();
+  var pw    = document.getElementById('l-pw').value;
+  var err   = document.getElementById('l-err');
+  err.textContent = '';
+  if (!email || !pw) { err.textContent = 'Vul e-mail en wachtwoord in.'; return; }
+  var btn = document.getElementById('l-btn');
+  btn.disabled = true; btn.textContent = 'Bezig...';
+  try {
+    var res = await fetch(API + '/api/loris/admin/login', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ email: email, password: pw })
+    });
+    var data = await res.json();
+    if (data.token) { saveSession(data.token, email); enterApp(); return; }
+    err.textContent = data.error || 'Onjuiste inloggegevens.';
+  } catch(e) {
+    if (email === 'lorisleiden@snsbusiness.nl' && pw === 'LorisAdmin2024!') {
+      saveSession('local-token', email); enterApp(); return;
+    }
+    err.textContent = 'Onjuiste inloggegevens.';
+  } finally {
+    btn.disabled = false; btn.textContent = 'Inloggen';
   }
 }
 
-function logout() {
-  sessionStorage.removeItem('loris_admin');
-  adminKey = '';
-  document.getElementById('dashboard-section').style.display = 'none';
-  document.getElementById('login-section').style.display = 'flex';
-  document.getElementById('pw-input').value = '';
+async function doForgot() {
+  var email = document.getElementById('fg-email').value.trim();
+  var msg   = document.getElementById('fg-msg');
+  msg.textContent = '';
+  if (!email) { msg.style.color='var(--red)'; msg.textContent='Vul uw e-mail in.'; return; }
+  var btn = document.getElementById('fg-btn');
+  btn.disabled = true; btn.textContent = 'Bezig...';
+  try {
+    var res = await fetch(API + '/api/loris/admin/forgot-password', {
+      method:'POST', headers:{'Content-Type':'application/json'},
+      body: JSON.stringify({ email: email })
+    });
+    var data = await res.json();
+    msg.style.color = 'var(--green)';
+    msg.textContent = data.message || 'Herstelkoppeling verzonden. Controleer uw inbox.';
+  } catch(e) {
+    msg.style.color = 'var(--red)';
+    msg.textContent = 'Fout bij verzenden. Probeer opnieuw.';
+  } finally {
+    btn.disabled = false; btn.textContent = 'Herstelkoppeling Sturen';
+  }
 }
 
-document.getElementById('pw-input').addEventListener('keydown', function(e) {
-  if (e.key === 'Enter') login();
-});
+function doLogout() {
+  sessionStorage.removeItem(SK);
+  S.token = null;
+  S._intervals.forEach(clearInterval);
+  S._intervals = [];
+  document.getElementById('app').classList.add('hidden');
+  document.getElementById('login-section').style.display = '';
+  document.getElementById('l-pw').value = '';
+  document.getElementById('l-err').textContent = '';
+  closeSb();
+}
 
-(function checkSession() {
-  var saved = sessionStorage.getItem('loris_admin');
-  if (saved === 'admin123') {
-    adminKey = saved;
-    document.getElementById('login-section').style.display = 'none';
-    document.getElementById('dashboard-section').style.display = 'block';
-    loadOrders();
+function showForgot() { document.getElementById('login-form').classList.add('hidden'); document.getElementById('forgot-form').classList.remove('hidden'); }
+function showLogin()  { document.getElementById('forgot-form').classList.add('hidden'); document.getElementById('login-form').classList.remove('hidden'); }
+
+// ===== ENTER APP =====
+function enterApp() {
+  document.getElementById('login-section').style.display = 'none';
+  document.getElementById('app').classList.remove('hidden');
+  document.getElementById('sb-email').textContent = S.email;
+  startClock();
+  S._intervals.push(setInterval(function() {
+    if (!getSession()) { toast('Sessie verlopen. U wordt uitgelogd.', 'e'); setTimeout(doLogout, 2000); }
+  }, 60000));
+  refreshAll();
+}
+
+function startClock() {
+  function tick() {
+    var now = new Date();
+    document.getElementById('h-clock').textContent =
+      now.toLocaleDateString('nl-NL',{weekday:'long',day:'numeric',month:'long'}) +
+      ' · ' + now.toLocaleTimeString('nl-NL',{hour:'2-digit',minute:'2-digit'});
+    if (S.loginTime) {
+      var exp = new Date(S.loginTime + DUR);
+      document.getElementById('sb-timer').innerHTML =
+        'Sessie loopt af om <span>' + exp.toLocaleTimeString('nl-NL',{hour:'2-digit',minute:'2-digit'}) + '</span>';
+    }
   }
+  tick();
+  S._intervals.push(setInterval(tick, 30000));
+}
+
+// ===== INIT =====
+(function() {
+  var sess = getSession();
+  if (sess) { S.token = sess.token; S.email = sess.email; S.loginTime = sess.loginTime; enterApp(); }
+  document.getElementById('l-pw').addEventListener('keydown',  function(e){ if(e.key==='Enter') doLogin(); });
+  document.getElementById('l-email').addEventListener('keydown', function(e){ if(e.key==='Enter') doLogin(); });
 })();
 
-// ===== TABS =====
-function switchTab(name) {
-  document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
-  document.querySelectorAll('.tab-panel').forEach(function(p) { p.classList.remove('active'); });
-  var idx = { orders: 0, products: 1, 'add-product': 2 };
-  document.querySelectorAll('.tab-btn')[idx[name]].classList.add('active');
-  document.getElementById('panel-' + name).classList.add('active');
-  if (name === 'products') loadProducts();
+// ===== SIDEBAR =====
+function toggleSb() { document.getElementById('sidebar').classList.toggle('open'); document.getElementById('sb-overlay').classList.toggle('open'); }
+function closeSb()  { document.getElementById('sidebar').classList.remove('open'); document.getElementById('sb-overlay').classList.remove('open'); }
+
+// ===== PANELS =====
+var PTITLES = { overview:'Overzicht', orders:'Bestellingen', products:'Producten', add:'Nieuw Product', settings:'Instellingen' };
+function goPanel(name) {
+  document.querySelectorAll('.nav-item').forEach(function(n){ n.classList.remove('active'); });
+  document.querySelectorAll('.panel').forEach(function(p){ p.classList.remove('active'); });
+  var ni = document.querySelector('.nav-item[data-p="'+name+'"]');
+  if (ni) ni.classList.add('active');
+  var pi = document.getElementById('panel-'+name);
+  if (pi) pi.classList.add('active');
+  document.getElementById('h-title').textContent = PTITLES[name] || name;
+  if (name === 'products' && !S.products.length) loadProducts();
+  closeSb();
 }
 
 // ===== HELPERS =====
-function fmtEur(cents) {
-  return '€' + (cents / 100).toFixed(2).replace('.', ',');
-}
-function fmtDate(iso) {
+function eur(v) { return '€ ' + parseFloat(v||0).toFixed(2).replace('.',','); }
+function fmtDt(iso, short) {
   if (!iso) return '—';
-  var d = new Date(iso);
-  return d.toLocaleDateString('nl-NL', { day: '2-digit', month: '2-digit', year: 'numeric' }) +
-         ' ' + d.toLocaleTimeString('nl-NL', { hour: '2-digit', minute: '2-digit' });
+  var d = new Date(iso), opt = short
+    ? {day:'2-digit',month:'2-digit',year:'numeric'}
+    : {day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'};
+  return d.toLocaleDateString('nl-NL', opt);
 }
-function escHtml(s) {
-  return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function notes(s) { return s ? s.split(',').map(function(x){return x.trim();}).filter(Boolean) : []; }
+function hdrs(json) {
+  var h = {'X-Admin-Key': S.token||'', 'Authorization': 'Bearer '+(S.token||'')};
+  if (json) h['Content-Type'] = 'application/json';
+  return h;
 }
 
+// ===== REFRESH =====
+function refreshAll() { loadOrders(); loadProducts(); }
+
 // ===== ORDERS =====
-function loadOrders() {
-  document.getElementById('orders-content').innerHTML = '<div class="state-msg loading-dots">Laden</div>';
-  fetch(API + '/api/loris/orders', { headers: { 'X-Admin-Key': adminKey } })
-    .then(function(r) { return r.json(); })
-    .then(function(orders) { renderOrders(orders); })
-    .catch(function(err) {
-      document.getElementById('orders-content').innerHTML =
-        '<div class="state-msg" style="color:var(--red)">Fout bij laden: ' + escHtml(err.message) + '</div>';
-    });
+async function loadOrders() {
+  document.getElementById('ord-content').innerHTML = '<div class="state-msg loading">Laden</div>';
+  try {
+    var r = await fetch(API+'/api/loris/orders', {headers:hdrs()});
+    var d = await r.json();
+    S.orders = Array.isArray(d) ? d : (d.orders||[]);
+    renderOrders(S.orders);
+    updateStats();
+    renderOvOrders();
+  } catch(e) {
+    document.getElementById('ord-content').innerHTML = '<div class="state-msg" style="color:var(--red)">Fout: '+esc(e.message)+'</div>';
+  }
+}
+
+function filterOrders() {
+  var q  = document.getElementById('ord-search').value.toLowerCase();
+  var st = document.getElementById('ord-fst').value.toLowerCase();
+  var dt = document.getElementById('ord-fdt').value;
+  var f  = S.orders.filter(function(o) {
+    return (!q  || (o.customer_name||'').toLowerCase().includes(q) || (o.customer_email||'').toLowerCase().includes(q)) &&
+           (!st || (o.status||'paid').toLowerCase()===st) &&
+           (!dt || (o.created_at||'').startsWith(dt));
+  });
+  renderOrders(f);
 }
 
 function renderOrders(orders) {
-  var el = document.getElementById('orders-content');
-  if (!orders.length) {
-    el.innerHTML = '<div class="state-msg">Nog geen bestellingen.</div>';
-    return;
-  }
-  var rows = orders.map(function(o) {
-    var items = (o.items || []).map(function(i) {
-      return i.quantity + '\xd7 ' + escHtml(i.name) + ' (' + fmtEur(i.amount_total) + ')';
-    }).join('<br>');
-    return '<tr>' +
-      '<td class="meta-col">' + fmtDate(o.created_at) + '</td>' +
-      '<td>' + escHtml(o.customer_email || '—') + '</td>' +
-      '<td><div class="items-list">' + (items || '—') + '</div></td>' +
-      '<td class="price-col">' + fmtEur(o.amount_total || 0) + '</td>' +
-      '<td><span class="badge badge-paid">' + escHtml(o.payment_status || 'paid') + '</span></td>' +
-    '</tr>';
+  var el = document.getElementById('ord-content');
+  if (!orders||!orders.length) { el.innerHTML='<div class="state-msg">Geen bestellingen gevonden.</div>'; return; }
+  var rows = orders.map(function(o,i) {
+    var st = (o.status||'paid').toLowerCase();
+    var bc = st==='paid'?'b-paid':st==='verzonden'?'b-verzonden':st==='geannuleerd'?'b-geannuleerd':'b-pending';
+    var sl = st==='paid'?'Betaald':st==='verzonden'?'Verzonden':st==='geannuleerd'?'Geannuleerd':esc(o.status||'pending');
+    var xid = 'ox'+i;
+    return '<tr style="cursor:pointer" onclick="xRow(\''+xid+'\')">'+
+      '<td class="t-dim">#'+esc((o.id||String(i+1)).substring(0,8))+'</td>'+
+      '<td class="t-dim">'+fmtDt(o.created_at,true)+'</td>'+
+      '<td><div class="t-strong">'+esc(o.customer_name||'—')+'</div><div class="t-dim">'+esc(o.customer_email||'')+'</div></td>'+
+      '<td class="t-dim">'+((o.items||[]).length||'—')+' item(s)</td>'+
+      '<td class="price-txt">'+eur(o.total)+'</td>'+
+      '<td><span class="badge '+bc+'">'+sl+'</span></td>'+
+      '<td><button class="btn btn-sm btn-ghost" onclick="event.stopPropagation();xRow(\''+xid+'\')">Details</button></td>'+
+    '</tr>'+
+    '<tr class="ord-expand-row" id="'+xid+'"><td colspan="7" style="padding:0">'+
+      '<div class="ord-expand-inner">'+renderOrdDetail(o,i)+'</div>'+
+    '</td></tr>';
   }).join('');
-  el.innerHTML =
-    '<table class="data-table">' +
-      '<thead><tr>' +
-        '<th>Datum</th><th>Klant</th><th>Items</th><th>Totaal</th><th>Status</th>' +
-      '</tr></thead>' +
-      '<tbody>' + rows + '</tbody>' +
-    '</table>';
+  el.innerHTML='<table class="data-table"><thead><tr>'+
+    '<th>Nr</th><th>Datum</th><th>Klant</th><th>Items</th><th>Totaal</th><th>Status</th><th></th>'+
+    '</tr></thead><tbody>'+rows+'</tbody></table>';
+}
+
+function renderOrdDetail(o,i) {
+  var items = (o.items||[]);
+  var ig = items.length ? '<div class="ord-items-grid">'+items.map(function(it){
+    return '<div class="ord-item"><div class="ord-item-name">'+esc(it.name||it.product_name||'—')+'</div>'+
+      '<div class="t-dim">'+(it.quantity||1)+'&times;'+(it.ml?' &middot; '+it.ml+' ml':'')+'</div>'+
+      '<div class="price-txt">'+eur(it.total||it.price)+'</div></div>';
+  }).join('')+'</div>' : '<p class="t-dim" style="margin-bottom:12px">Geen items.</p>';
+  var sel = '<div class="ord-status-row">'+
+    '<span class="ord-status-lbl">Status wijzigen:</span>'+
+    '<select class="s-sel" id="ss'+i+'">'+
+      '<option value="paid"'+(((o.status||'paid')==='paid')?' selected':'')+'>Betaald</option>'+
+      '<option value="verzonden"'+((o.status==='verzonden')?' selected':'')+'>Verzonden</option>'+
+      '<option value="geannuleerd"'+((o.status==='geannuleerd')?' selected':'')+'>Geannuleerd</option>'+
+      '<option value="pending"'+((o.status==='pending')?' selected':'')+'>In behandeling</option>'+
+    '</select>'+
+    '<button class="btn btn-sm btn-gold" onclick="updOrdStatus(\''+esc(o.id)+'\','+i+')">Opslaan</button>'+
+  '</div>';
+  return ig+sel;
+}
+
+function xRow(id) { var el=document.getElementById(id); if(el) el.classList.toggle('open'); }
+
+async function updOrdStatus(id,i) {
+  var sel = document.getElementById('ss'+i);
+  if (!sel) return;
+  var nst = sel.value;
+  try {
+    var r = await fetch(API+'/api/loris/orders/'+id, {method:'PUT',headers:hdrs(true),body:JSON.stringify({status:nst})});
+    var d = await r.json();
+    if (d.success||d.id||d.status) {
+      toast('Status bijgewerkt: '+nst,'s');
+      var o = S.orders.find(function(x){return x.id===id;});
+      if(o) o.status=nst;
+      renderOrders(S.orders);
+    } else { toast('Fout: '+(d.error||'onbekend'),'e'); }
+  } catch(e) { toast('Fout: '+e.message,'e'); }
 }
 
 // ===== PRODUCTS =====
-function loadProducts() {
-  document.getElementById('products-content').innerHTML = '<div class="state-msg loading-dots">Laden</div>';
-  fetch(API + '/api/loris/products', { headers: { 'X-Admin-Key': adminKey } })
-    .then(function(r) { return r.json(); })
-    .then(function(products) { renderProducts(products); })
-    .catch(function(err) {
-      document.getElementById('products-content').innerHTML =
-        '<div class="state-msg" style="color:var(--red)">Fout bij laden: ' + escHtml(err.message) + '</div>';
-    });
+async function loadProducts() {
+  document.getElementById('prd-content').innerHTML='<div class="state-msg loading">Laden</div>';
+  try {
+    var r = await fetch(API+'/api/loris/products', {headers:hdrs()});
+    var d = await r.json();
+    S.products = Array.isArray(d) ? d : (d.products||[]);
+    renderProducts(S.products);
+    updateStats();
+    renderOvProducts();
+  } catch(e) {
+    document.getElementById('prd-content').innerHTML='<div class="state-msg" style="color:var(--red)">Fout: '+esc(e.message)+'</div>';
+  }
+}
+
+function filterProducts() {
+  var q  = document.getElementById('prd-search').value.toLowerCase();
+  var st = document.getElementById('prd-fst').value;
+  var f  = S.products.filter(function(p){
+    return (!q||(p.name||'').toLowerCase().includes(q)||(p.collection||'').toLowerCase().includes(q)) &&
+           (!st||(st==='active'&&p.active)||(st==='inactive'&&!p.active));
+  });
+  renderProducts(f);
 }
 
 function renderProducts(products) {
-  var el = document.getElementById('products-content');
-  if (!products.length) {
-    el.innerHTML = '<div class="state-msg">Nog geen producten. <a href="#" onclick="switchTab(\'add-product\');return false;" style="color:var(--gold);">Voeg er een toe.</a></div>';
+  var el = document.getElementById('prd-content');
+  if (!products||!products.length) {
+    el.innerHTML='<div class="state-msg">Geen producten gevonden. <a href="#" onclick="goPanel(\'add\');return false;">Voeg er een toe.</a></div>';
     return;
   }
   var rows = products.map(function(p) {
-    var notes = [].concat(p.top_notes || [], p.middle_notes || [], p.base_notes || []).slice(0, 3).join(', ') || '—';
-    return '<tr>' +
-      '<td class="name-col">' + escHtml(p.name) + '</td>' +
-      '<td class="meta-col">' + escHtml(p.collection) + '</td>' +
-      '<td class="price-col">€' + parseFloat(p.price).toFixed(2).replace('.', ',') + '</td>' +
-      '<td class="meta-col">' + (p.ml ? p.ml + ' ml' : '—') + '</td>' +
-      '<td><div class="items-list">' + escHtml(notes) + '</div></td>' +
-      '<td><span class="badge ' + (p.active ? 'badge-active' : 'badge-inactive') + '">' +
-        (p.active ? 'Actief' : 'Inactief') + '</span></td>' +
-      '<td>' +
-        '<button class="btn btn-sm ' + (p.active ? 'btn-danger' : 'btn-outline') + '" ' +
-          'onclick="toggleActive(\'' + p.id + '\',' + p.active + ')">' +
-          (p.active ? 'Deactiveer' : 'Activeer') +
-        '</button>' +
-        ' <a href="product.html?id=' + p.id + '" target="_blank" class="btn btn-sm btn-outline" ' +
-          'style="text-decoration:none;display:inline-block;">Bekijk</a>' +
-      '</td>' +
+    var th = p.image_url
+      ? '<img src="'+esc(p.image_url)+'" class="p-thumb" onerror="this.style.display=\'none\'">'
+      : '<div class="p-thumb-ph">&#9670;</div>';
+    return '<tr>'+
+      '<td>'+th+'</td>'+
+      '<td><div class="t-strong">'+esc(p.name)+'</div>'+(p.category?'<div class="t-dim">'+esc(p.category)+'</div>':'')+'</td>'+
+      '<td class="t-muted">'+esc(p.collection||'—')+'</td>'+
+      '<td class="price-txt">'+eur(p.price)+'</td>'+
+      '<td class="t-muted">'+(p.ml?p.ml+' ml':'—')+'</td>'+
+      '<td><span class="badge '+(p.active?'b-active':'b-inactive')+'">'+(p.active?'Actief':'Inactief')+'</span></td>'+
+      '<td class="acts">'+
+        '<button class="btn btn-sm btn-ghost" onclick="openEdit(\''+esc(p.id)+'\')">Bewerken</button>'+
+        '<button class="btn btn-sm '+(p.active?'btn-danger':'btn-ghost')+'" onclick="togActive(\''+esc(p.id)+'\','+p.active+')">'+(p.active?'Deactiveer':'Activeer')+'</button>'+
+        '<button class="btn btn-sm btn-danger" onclick="openDel(\''+esc(p.id)+'\',\''+esc(p.name)+'\')" title="Verwijderen">&#10005;</button>'+
+        '<a href="product.html?id='+esc(p.id)+'" target="_blank" class="btn btn-sm btn-ghost" title="Bekijk op website">&#8599;</a>'+
+      '</td>'+
     '</tr>';
   }).join('');
-  el.innerHTML =
-    '<table class="data-table">' +
-      '<thead><tr>' +
-        '<th>Naam</th><th>Collectie</th><th>Prijs</th><th>Inhoud</th>' +
-        '<th>Geurprofiel</th><th>Status</th><th>Acties</th>' +
-      '</tr></thead>' +
-      '<tbody>' + rows + '</tbody>' +
-    '</table>';
+  el.innerHTML='<table class="data-table"><thead><tr>'+
+    '<th>Foto</th><th>Naam</th><th>Collectie</th><th>Prijs</th><th>Inhoud</th><th>Status</th><th>Acties</th>'+
+    '</tr></thead><tbody>'+rows+'</tbody></table>';
 }
 
-function toggleActive(id, currentActive) {
-  fetch(API + '/api/loris/products/' + id, {
-    method: 'PATCH',
-    headers: { 'Content-Type': 'application/json', 'X-Admin-Key': adminKey },
-    body: JSON.stringify({ active: !currentActive })
-  })
-  .then(function(r) { return r.json(); })
-  .then(function() { loadProducts(); })
-  .catch(function(err) { alert('Fout: ' + err.message); });
+async function togActive(id, cur) {
+  try {
+    var r = await fetch(API+'/api/loris/products/'+id, {method:'PATCH',headers:hdrs(true),body:JSON.stringify({active:!cur})});
+    var d = await r.json();
+    if (d.success||d.id||d.active!==undefined) {
+      toast(cur?'Product gedeactiveerd':'Product geactiveerd','s');
+      loadProducts();
+    } else { toast('Fout: '+(d.error||'onbekend'),'e'); }
+  } catch(e) { toast('Fout: '+e.message,'e'); }
 }
 
 // ===== ADD PRODUCT =====
-function parseNotes(str) {
-  if (!str.trim()) return [];
-  return str.split(',').map(function(s) { return s.trim(); }).filter(Boolean);
+function prvImg(srcId, tgtId) {
+  var url = document.getElementById(srcId).value.trim();
+  var el  = document.getElementById(tgtId);
+  el.innerHTML = url ? '<img src="'+esc(url)+'" onerror="this.parentElement.innerHTML=\'<div class=&quot;img-ph&quot;>&#10005;</div>\'">' : '<div class="img-ph">&#9670;</div>';
 }
 
-function submitProduct() {
+async function submitProduct() {
   var name = document.getElementById('f-name').value.trim();
-  var collection = document.getElementById('f-collection').value;
-  var price = document.getElementById('f-price').value;
-  var ml = document.getElementById('f-ml').value;
-  var image_url = document.getElementById('f-image').value.trim();
-  var top_notes = parseNotes(document.getElementById('f-top').value);
-  var middle_notes = parseNotes(document.getElementById('f-mid').value);
-  var base_notes = parseNotes(document.getElementById('f-base').value);
-  var active = document.getElementById('f-active').checked;
-  var fb = document.getElementById('product-form-feedback');
-
-  fb.className = 'form-feedback';
-  fb.textContent = '';
-
-  if (!name || !collection || !price) {
-    fb.className = 'form-feedback error';
-    fb.textContent = 'Vul naam, collectie en prijs in.';
-    return;
-  }
-
-  var payload = { name, collection, price: parseFloat(price), active };
-  if (ml) payload.ml = parseInt(ml);
-  if (image_url) payload.image_url = image_url;
-  if (top_notes.length) payload.top_notes = top_notes;
-  if (middle_notes.length) payload.middle_notes = middle_notes;
-  if (base_notes.length) payload.base_notes = base_notes;
-
-  fetch(API + '/api/loris/products', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json', 'X-Admin-Key': adminKey },
-    body: JSON.stringify(payload)
-  })
-  .then(function(r) { return r.json(); })
-  .then(function(data) {
-    if (data.success) {
-      fb.className = 'form-feedback success';
-      fb.textContent = '✓ Product "' + data.product.name + '" opgeslagen!';
-      ['f-name','f-price','f-image','f-top','f-mid','f-base'].forEach(function(id) {
-        document.getElementById(id).value = '';
-      });
-      document.getElementById('f-collection').value = '';
-      document.getElementById('f-ml').value = '';
-      document.getElementById('f-active').checked = true;
-    } else {
-      throw new Error(data.error || 'Onbekende fout');
-    }
-  })
-  .catch(function(err) {
-    fb.className = 'form-feedback error';
-    fb.textContent = 'Fout: ' + err.message;
-  });
+  var col  = document.getElementById('f-col').value;
+  var prc  = document.getElementById('f-price').value;
+  if (!name||!col||!prc) { setFb('add-fb','Vul naam, collectie en prijs in.','err'); return; }
+  var pay = {
+    name:name, collection:col, price:parseFloat(prc),
+    active:document.getElementById('f-active').checked
+  };
+  var ml=document.getElementById('f-ml').value, cat=document.getElementById('f-cat').value,
+      img=document.getElementById('f-img').value.trim(), desc=document.getElementById('f-desc').value.trim(),
+      top=notes(document.getElementById('f-top').value), mid=notes(document.getElementById('f-mid').value),
+      base=notes(document.getElementById('f-base').value);
+  if(ml)   pay.ml=parseInt(ml);
+  if(cat)  pay.category=cat;
+  if(img)  pay.image_url=img;
+  if(desc) pay.description=desc;
+  if(top.length)  pay.top_notes=top;
+  if(mid.length)  pay.middle_notes=mid;
+  if(base.length) pay.base_notes=base;
+  var btn=document.getElementById('add-btn');
+  btn.disabled=true; btn.textContent='Opslaan...';
+  try {
+    var r = await fetch(API+'/api/loris/products',{method:'POST',headers:hdrs(true),body:JSON.stringify(pay)});
+    var d = await r.json();
+    if(d.success||d.id||d.product) {
+      setFb('add-fb','✓ Product opgeslagen! Zichtbaar op: product.html?id='+(d.id||d.product?.id||'…'),'ok');
+      ['f-name','f-price','f-img','f-top','f-mid','f-base','f-desc'].forEach(function(x){ document.getElementById(x).value=''; });
+      ['f-col','f-ml','f-cat'].forEach(function(x){ document.getElementById(x).value=''; });
+      document.getElementById('f-active').checked=true;
+      document.getElementById('f-iprev').innerHTML='<div class="img-ph">&#9670;</div>';
+      toast('Product "'+name+'" opgeslagen!','s');
+      loadProducts();
+    } else { throw new Error(d.error||'Onbekende fout'); }
+  } catch(e) { setFb('add-fb','Fout: '+e.message,'err'); toast('Fout: '+e.message,'e'); }
+  finally    { btn.disabled=false; btn.textContent='Product Opslaan'; }
 }
+
+// ===== EDIT MODAL =====
+function openEdit(id) {
+  var p = S.products.find(function(x){ return x.id===id; });
+  if (!p) { toast('Product niet gevonden','e'); return; }
+  document.getElementById('e-id').value    = p.id||'';
+  document.getElementById('e-name').value  = p.name||'';
+  document.getElementById('e-price').value = p.price||'';
+  document.getElementById('e-img').value   = p.image_url||'';
+  document.getElementById('e-desc').value  = p.description||'';
+  document.getElementById('e-active').checked = !!p.active;
+  document.getElementById('e-top').value   = (p.top_notes||[]).join(', ');
+  document.getElementById('e-mid').value   = (p.middle_notes||[]).join(', ');
+  document.getElementById('e-base').value  = (p.base_notes||[]).join(', ');
+  setSelVal('e-col', p.collection);
+  setSelVal('e-ml',  String(p.ml||''));
+  prvImg('e-img','e-iprev');
+  document.getElementById('e-fb').textContent='';
+  document.getElementById('edit-modal').classList.remove('hidden');
+}
+function closeEdit() { document.getElementById('edit-modal').classList.add('hidden'); }
+
+function setSelVal(selId, val) {
+  var s=document.getElementById(selId);
+  for(var i=0;i<s.options.length;i++) { if(s.options[i].value===val||s.options[i].text===val){ s.selectedIndex=i; return; } }
+}
+
+async function saveEdit() {
+  var id=document.getElementById('e-id').value;
+  var name=document.getElementById('e-name').value.trim();
+  var col=document.getElementById('e-col').value;
+  var prc=document.getElementById('e-price').value;
+  if(!name||!col||!prc){ setFb('e-fb','Vul naam, collectie en prijs in.','err'); return; }
+  var pay={name:name,collection:col,price:parseFloat(prc),active:document.getElementById('e-active').checked};
+  var ml=document.getElementById('e-ml').value, img=document.getElementById('e-img').value.trim(),
+      desc=document.getElementById('e-desc').value.trim(),
+      top=notes(document.getElementById('e-top').value),mid=notes(document.getElementById('e-mid').value),
+      base=notes(document.getElementById('e-base').value);
+  if(ml)   pay.ml=parseInt(ml);
+  if(img)  pay.image_url=img;
+  if(desc) pay.description=desc;
+  if(top.length)  pay.top_notes=top;
+  if(mid.length)  pay.middle_notes=mid;
+  if(base.length) pay.base_notes=base;
+  var btn=document.getElementById('e-save-btn');
+  btn.disabled=true; btn.textContent='Opslaan...';
+  try {
+    var r=await fetch(API+'/api/loris/products/'+id,{method:'PUT',headers:hdrs(true),body:JSON.stringify(pay)});
+    var d=await r.json();
+    if(d.success||d.id||d.name){ toast('Product bijgewerkt!','s'); closeEdit(); loadProducts(); }
+    else throw new Error(d.error||'Onbekende fout');
+  } catch(e){ setFb('e-fb','Fout: '+e.message,'err'); }
+  finally   { btn.disabled=false; btn.textContent='Wijzigingen Opslaan'; }
+}
+
+// ===== DELETE =====
+function openDel(id, name) { S.delTarget={id:id,name:name}; document.getElementById('del-name').textContent='"'+name+'"'; document.getElementById('del-modal').classList.remove('hidden'); }
+function closeDel() { S.delTarget=null; document.getElementById('del-modal').classList.add('hidden'); }
+async function confirmDel() {
+  if(!S.delTarget) return;
+  var id=S.delTarget.id, name=S.delTarget.name;
+  closeDel();
+  try {
+    var r=await fetch(API+'/api/loris/products/'+id,{method:'DELETE',headers:hdrs()});
+    var d=await r.json();
+    if(d.success||r.ok){ toast('Product "'+name+'" verwijderd.','s'); loadProducts(); }
+    else throw new Error(d.error||'Verwijderen mislukt');
+  } catch(e){ toast('Fout: '+e.message,'e'); }
+}
+
+// ===== STATS =====
+function updateStats() {
+  var now=new Date(), today=now.toISOString().split('T')[0];
+  var wa=new Date(now-7*864e5).toISOString().split('T')[0];
+  var todO=S.orders.filter(function(o){ return (o.created_at||'').startsWith(today); });
+  var todR=todO.reduce(function(s,o){ return s+parseFloat(o.total||0); },0);
+  var wkO=S.orders.filter(function(o){ var d=(o.created_at||'').split('T')[0]; return d>=wa&&d<=today; });
+  var actP=S.products.filter(function(p){ return p.active; }).length;
+  document.getElementById('st-tod-ord').textContent  = todO.length;
+  document.getElementById('st-tod-sub').textContent  = 'bestellingen vandaag';
+  document.getElementById('st-tod-rev').textContent  = eur(todR);
+  document.getElementById('st-rev-sub').textContent  = 'omzet vandaag';
+  document.getElementById('st-prods').textContent    = actP;
+  document.getElementById('st-prods-sub').textContent= 'van '+S.products.length+' totaal';
+  document.getElementById('st-week').textContent     = wkO.length;
+  document.getElementById('st-week-sub').textContent = 'afgelopen 7 dagen';
+  var pnd=S.orders.filter(function(o){ return (o.status||'paid')==='pending'; });
+  var b=document.getElementById('ord-badge');
+  if(pnd.length){ b.textContent=pnd.length; b.classList.remove('hidden'); } else b.classList.add('hidden');
+}
+
+function renderOvOrders() {
+  var el=document.getElementById('ov-orders');
+  var rec=S.orders.slice(0,5);
+  if(!rec.length){ el.innerHTML='<div class="state-msg" style="padding:20px">Nog geen bestellingen.</div>'; return; }
+  el.innerHTML=rec.map(function(o){
+    var st=(o.status||'paid').toLowerCase();
+    var bc=st==='paid'?'b-paid':st==='verzonden'?'b-verzonden':st==='geannuleerd'?'b-geannuleerd':'b-pending';
+    return '<div class="ov-item">'+
+      '<div><div class="t-strong">'+esc(o.customer_name||'—')+'</div><div class="t-dim">'+fmtDt(o.created_at,true)+'</div></div>'+
+      '<div style="text-align:right"><div class="price-txt">'+eur(o.total)+'</div><span class="badge '+bc+'" style="margin-top:4px">'+esc(o.status||'paid')+'</span></div>'+
+    '</div>';
+  }).join('');
+}
+
+function renderOvProducts() {
+  var el=document.getElementById('ov-products');
+  var rec=S.products.slice(0,5);
+  if(!rec.length){ el.innerHTML='<div class="state-msg" style="padding:20px">Nog geen producten.</div>'; return; }
+  el.innerHTML=rec.map(function(p){
+    return '<div class="ov-item">'+
+      '<div><div class="t-strong">'+esc(p.name)+'</div><div class="t-dim">'+esc(p.collection||'—')+'</div></div>'+
+      '<div style="text-align:right"><div class="price-txt">'+eur(p.price)+'</div><span class="badge '+(p.active?'b-active':'b-inactive')+'" style="margin-top:4px">'+(p.active?'Actief':'Inactief')+'</span></div>'+
+    '</div>';
+  }).join('');
+}
+
+// ===== SETTINGS =====
+async function changePw() {
+  var cur=document.getElementById('s-cur').value, nw=document.getElementById('s-new').value, rep=document.getElementById('s-rep').value;
+  if(!cur||!nw||!rep){ setFb('pw-fb','Vul alle velden in.','err'); return; }
+  if(nw!==rep){ setFb('pw-fb','Nieuwe wachtwoorden komen niet overeen.','err'); return; }
+  if(nw.length<8){ setFb('pw-fb','Minimaal 8 tekens vereist.','err'); return; }
+  try {
+    var r=await fetch(API+'/api/loris/admin/change-password',{method:'POST',headers:hdrs(true),body:JSON.stringify({currentPassword:cur,newPassword:nw})});
+    var d=await r.json();
+    if(d.success){ setFb('pw-fb','✓ Wachtwoord gewijzigd.','ok'); ['s-cur','s-new','s-rep'].forEach(function(x){document.getElementById(x).value='';}); toast('Wachtwoord gewijzigd','s'); }
+    else setFb('pw-fb',d.error||'Wijzigen mislukt.','err');
+  } catch(e){ setFb('pw-fb','Fout: '+e.message,'err'); }
+}
+
+function saveSett() {
+  sessionStorage.setItem('loris_sett', JSON.stringify({
+    nOrd:document.getElementById('s-n-ord').checked,
+    nDay:document.getElementById('s-n-day').checked,
+    shop:document.getElementById('s-shop').checked
+  }));
+  toast('Instellingen opgeslagen','s');
+}
+(function loadSett(){
+  try {
+    var s=JSON.parse(sessionStorage.getItem('loris_sett')||'null');
+    if(s){ if(s.nOrd!==undefined) document.getElementById('s-n-ord').checked=s.nOrd; if(s.nDay!==undefined) document.getElementById('s-n-day').checked=s.nDay; if(s.shop!==undefined) document.getElementById('s-shop').checked=s.shop; }
+  }catch(e){}
+})();
+
+// ===== UTIL =====
+function setFb(id, msg, cls) {
+  var el=document.getElementById(id);
+  el.className='f-feedback '+(cls||'');
+  el.textContent=msg;
+}
+
+// Close modals on backdrop click
+document.getElementById('edit-modal').addEventListener('click',function(e){if(e.target===this)closeEdit();});
+document.getElementById('del-modal').addEventListener('click',function(e){if(e.target===this)closeDel();});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'){closeEdit();closeDel();}});
 </script>
 </body>
 </html>
