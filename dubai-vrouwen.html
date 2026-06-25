@@ -113,6 +113,14 @@
     .products-grid.view-1 .card-info::before { margin: 0 auto 10px; }
     .products-grid.view-1 .card-notes { grid-row: 3; }
   }
+  /* ===== Nieuwe Toevoegingen ===== */
+  .nieuwe-toevoegingen { padding: 60px 40px 80px; border-top: 1px solid #e6e0d2; }
+  .nt-inner { max-width: 1300px; margin: 0 auto; }
+  .nt-header { text-align: center; margin-bottom: 40px; }
+  .nt-header::before { content: ''; display: block; width: 28px; height: 2px; background: var(--gold); margin: 0 auto 16px; }
+  .nt-header h2 { font-family: 'Playfair Display', serif; font-size: 36px; font-weight: 600; letter-spacing: 2px; }
+  .nt-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+  @media (max-width: 700px) { .nieuwe-toevoegingen { padding: 40px 20px 60px; } .nt-header h2 { font-size: 26px; } .nt-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; } }
 </style>
 </head>
 <body>
@@ -286,6 +294,41 @@
   var saved = localStorage.getItem(KEY);
   var initial = saved || (window.matchMedia('(max-width: 700px)').matches ? '2' : '3');
   applyView(initial);
+})();
+</script>
+
+<section class="nieuwe-toevoegingen" id="nieuwe-toevoegingen" style="display:none">
+  <div class="nt-inner">
+    <div class="nt-header"><h2>Nieuwe Toevoegingen</h2></div>
+    <div class="nt-grid" id="nt-grid"></div>
+  </div>
+</section>
+
+<script>
+(function() {
+  var API = 'https://ai-review-bot-production.up.railway.app/api/loris/products?collection=Dubai%20Collectie';
+  var existing = new Set();
+  document.querySelectorAll('.card-name').forEach(function(el) {
+    existing.add(el.textContent.trim().toLowerCase());
+  });
+  function esc(s) { return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+  fetch(API).then(function(r){ return r.json(); }).then(function(data) {
+    var products = Array.isArray(data) ? data : (data.products || []);
+    var nieuw = products.filter(function(p) {
+      return p.active !== false && (p.category||'') === 'Dames' && !existing.has((p.name||'').trim().toLowerCase());
+    });
+    if (!nieuw.length) return;
+    var grid = document.getElementById('nt-grid');
+    nieuw.forEach(function(p) {
+      var a = document.createElement('a');
+      a.href = 'product.html?id=' + esc(p.id);
+      a.className = 'product-card';
+      a.innerHTML = '<div class="card-image"><img src="' + esc(p.image_url||'') + '" alt="' + esc(p.name||'') + '" loading="lazy"></div>' +
+        '<div class="card-info"><span class="card-name">' + esc(p.name||'') + '</span><div class="card-meta"><span class="cat-v">Vrouw</span></div></div>';
+      grid.appendChild(a);
+    });
+    document.getElementById('nieuwe-toevoegingen').style.display = '';
+  }).catch(function(){});
 })();
 </script>
 
