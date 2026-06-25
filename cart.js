@@ -267,6 +267,7 @@
   window.lorisCart = {
     getCart: getCart,
     saveCart: saveCart,
+    addToCart: addToCart,
     removeFromCart: removeFromCart,
     updateQty: updateQty,
     getCartCount: getCartCount,

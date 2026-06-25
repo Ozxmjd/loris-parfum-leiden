@@ -545,7 +545,7 @@
     stripeBtn.className = 'stripe-btn';
     stripeBtn.style.cssText = 'width:100%;margin-bottom:24px;';
     stripeBtn.innerHTML =
-      '<span>Afrekenen via Stripe</span>' +
+      '<span>Bestelling plaatsen</span>' +
       '<span class="stripe-badge">' + fmt(total) + '</span>';
 
     stripeBtn.addEventListener('click', function () {
@@ -571,7 +571,7 @@
       })
       .catch(function (err) {
         stripeBtn.disabled = false;
-        stripeBtn.querySelector('span').textContent = 'Afrekenen via Stripe';
+        stripeBtn.querySelector('span').textContent = 'Bestelling plaatsen';
         var errP = document.createElement('p');
         errP.style.cssText = 'color:#c0392b;font-size:12px;text-align:center;margin:0 0 16px;';
         errP.textContent = 'Fout: ' + err.message + '. Probeer opnieuw of gebruik WhatsApp.';

@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laden... — Loris Parfum Leiden</title>
+<meta name="description" content="">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #0a0a0a;
+    --white: #ffffff;
+    --gold: #c9a45c;
+    --gold-light: #e0c896;
+    --gray: #6b6b6b;
+    --off-white: #f7f5f0;
+    --border: #e8e3d8;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Montserrat', sans-serif; background: var(--off-white); color: var(--black); }
+
+  header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(10,10,10,0.96);
+    backdrop-filter: blur(10px);
+    padding: 20px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+  }
+  .logo span { font-size: 11px; letter-spacing: 4px; color: var(--gold); font-family: 'Montserrat', sans-serif; font-weight: 400; }
+  nav { display: flex; gap: 28px; align-items: center; }
+  nav a { color: var(--white); text-decoration: none; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; transition: color .3s; }
+  nav a:hover { color: var(--gold); }
+
+  /* ===== States ===== */
+  .state-screen {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 16px;
+    color: var(--gray);
+    font-size: 13px;
+    letter-spacing: 1px;
+    padding-top: 80px;
+  }
+  .spinner {
+    width: 36px;
+    height: 36px;
+    border: 2px solid var(--border);
+    border-top-color: var(--gold);
+    border-radius: 50%;
+    animation: spin .8s linear infinite;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ===== Product Hero ===== */
+  .product-hero {
+    padding: 130px 40px 60px;
+    background: linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%);
+    text-align: center;
+    color: var(--white);
+  }
+  .product-eyebrow {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .product-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(36px, 7vw, 68px);
+    font-weight: 700;
+    letter-spacing: 3px;
+  }
+
+  /* ===== Product Body ===== */
+  .product-body {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px 100px;
+  }
+
+  /* Image */
+  .photo-section {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 60px 24px;
+  }
+  .photo-frame {
+    max-width: 340px;
+    width: 100%;
+  }
+  .photo-frame img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border: 1px solid var(--border);
+  }
+  .photo-placeholder {
+    width: 280px;
+    height: 280px;
+    background: var(--off-white);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--border);
+    font-size: 64px;
+  }
+
+  /* Add to cart */
+  .atc-section {
+    background: var(--white);
+    padding: 40px;
+    border-bottom: 1px solid var(--border);
+    text-align: center;
+  }
+  .atc-price {
+    font-family: 'Playfair Display', serif;
+    font-size: 34px;
+    font-weight: 600;
+    color: var(--gold);
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .atc-ml {
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gray);
+    margin-bottom: 24px;
+  }
+  .qty-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    max-width: 160px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .qty-btn {
+    width: 44px;
+    height: 44px;
+    background: var(--black);
+    color: var(--white);
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background .2s;
+    flex-shrink: 0;
+  }
+  .qty-btn:hover { background: var(--gold); }
+  .qty-val {
+    width: 72px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 15px;
+    font-weight: 600;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    border-left: none;
+    border-right: none;
+    background: var(--white);
+    user-select: none;
+  }
+  .atc-btn {
+    width: 100%;
+    max-width: 320px;
+    padding: 16px 32px;
+    background: var(--black);
+    color: var(--white);
+    border: 2px solid var(--black);
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all .3s;
+  }
+  .atc-btn:hover { background: var(--gold); border-color: var(--gold); color: var(--black); }
+  .atc-feedback {
+    margin-top: 10px;
+    min-height: 18px;
+    font-size: 11px;
+    color: var(--gold);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  /* Notes */
+  .notes-section {
+    background: var(--white);
+    padding: 48px 40px;
+    border-bottom: 1px solid var(--border);
+  }
+  .notes-eyebrow {
+    font-size: 10px;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 600;
+    margin-bottom: 32px;
+    text-align: center;
+  }
+  .notes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    max-width: 620px;
+    margin: 0 auto;
+  }
+  .note-group h4 {
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--gray);
+    font-weight: 600;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .note-item {
+    font-size: 13px;
+    color: var(--black);
+    padding: 4px 0;
+  }
+
+  @media (max-width: 600px) {
+    header { padding: 18px 20px; }
+    nav { display: none; }
+    .product-hero { padding: 110px 20px 50px; }
+    .atc-section { padding: 32px 20px; }
+    .notes-section { padding: 36px 20px; }
+    .notes-grid { grid-template-columns: 1fr; gap: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <a href="index.html" class="logo">LORIS PARFUM<span>LEIDEN</span></a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="parfum.html">Onze Producten</a>
+    <a href="index.html#over-ons">Over Ons</a>
+    <a href="index.html#contact">Contact</a>
+    <a href="zoeken.html" title="Zoeken" aria-label="Zoeken" style="display:inline-flex;align-items:center;color:#fff;transition:color .3s;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></a>
+  </nav>
+</header>
+
+<div id="loading-state" class="state-screen">
+  <div class="spinner"></div>
+  <span>Laden...</span>
+</div>
+
+<div id="error-state" class="state-screen" style="display:none">
+  <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#c9a45c" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+  <span id="error-msg">Product niet gevonden.</span>
+  <a href="parfum.html" style="color:var(--gold);font-size:12px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;margin-top:8px;">Terug naar collectie</a>
+</div>
+
+<div id="product-content" style="display:none">
+  <section class="product-hero">
+    <span class="product-eyebrow" id="p-collection"></span>
+    <h1 class="product-title" id="p-name"></h1>
+  </section>
+
+  <section class="photo-section">
+    <div class="photo-frame" id="p-image-wrap"></div>
+  </section>
+
+  <div class="product-body">
+    <section class="atc-section">
+      <div class="atc-price" id="p-price"></div>
+      <div class="atc-ml" id="p-ml"></div>
+      <div class="qty-wrap">
+        <button class="qty-btn" id="qty-minus">&#8722;</button>
+        <span class="qty-val" id="qty-val">1</span>
+        <button class="qty-btn" id="qty-plus">+</button>
+      </div>
+      <button class="atc-btn" id="atc-btn">In Winkelwagen</button>
+      <p class="atc-feedback" id="atc-feedback"></p>
+    </section>
+
+    <section class="notes-section" id="notes-section" style="display:none">
+      <p class="notes-eyebrow">Geurprofiel</p>
+      <div class="notes-grid" id="notes-grid"></div>
+    </section>
+  </div>
+</div>
+
+<script src="cart.js"></script>
+<script>
+(function () {
+  var API = 'https://ai-review-bot-production.up.railway.app';
+  var product = null;
+  var qty = 1;
+
+  var id = new URLSearchParams(window.location.search).get('id');
+  if (!id) { showError('Geen product opgegeven.'); return; }
+
+  fetch(API + '/api/loris/products/' + id)
+    .then(function (r) {
+      if (!r.ok) throw new Error('Product niet gevonden (HTTP ' + r.status + ')');
+      return r.json();
+    })
+    .then(function (p) {
+      product = p;
+      renderProduct(p);
+    })
+    .catch(function (err) {
+      showError(err.message);
+    });
+
+  function renderProduct(p) {
+    document.title = p.name + ' — ' + p.collection + ' — Loris Parfum Leiden';
+    document.querySelector('meta[name="description"]').setAttribute('content',
+      p.name + ' uit de ' + p.collection + '. Koop bij Loris Parfum Leiden.');
+
+    document.getElementById('p-collection').textContent = p.collection;
+    document.getElementById('p-name').textContent = p.name;
+    document.getElementById('p-price').textContent =
+      '€' + parseFloat(p.price).toFixed(2).replace('.', ',');
+    document.getElementById('p-ml').textContent = p.ml ? p.ml + ' ml Eau de Parfum' : 'Eau de Parfum';
+
+    var imgWrap = document.getElementById('p-image-wrap');
+    if (p.image_url) {
+      imgWrap.innerHTML = '<img src="' + escHtml(p.image_url) + '" alt="' + escHtml(p.name) + '">';
+    } else {
+      imgWrap.innerHTML = '<div class="photo-placeholder">🫙</div>';
+    }
+
+    renderNotes(p);
+    setupAtcButton(p);
+
+    document.getElementById('loading-state').style.display = 'none';
+    document.getElementById('product-content').style.display = 'block';
+  }
+
+  function renderNotes(p) {
+    var hasNotes = (p.top_notes && p.top_notes.length) ||
+                   (p.middle_notes && p.middle_notes.length) ||
+                   (p.base_notes && p.base_notes.length);
+    if (!hasNotes) return;
+    document.getElementById('notes-section').style.display = 'block';
+    var groups = [
+      { label: 'Top', notes: p.top_notes || [] },
+      { label: 'Hart', notes: p.middle_notes || [] },
+      { label: 'Basis', notes: p.base_notes || [] },
+    ];
+    document.getElementById('notes-grid').innerHTML = groups.map(function (g) {
+      return '<div class="note-group">' +
+        '<h4>' + g.label + '</h4>' +
+        (g.notes.length
+          ? g.notes.map(function (n) { return '<div class="note-item">' + escHtml(n) + '</div>'; }).join('')
+          : '<div class="note-item" style="color:var(--border)">—</div>') +
+        '</div>';
+    }).join('');
+  }
+
+  function setupAtcButton(p) {
+    var qtyVal = document.getElementById('qty-val');
+    var atcBtn = document.getElementById('atc-btn');
+    var fb = document.getElementById('atc-feedback');
+
+    document.getElementById('qty-minus').addEventListener('click', function () {
+      if (qty > 1) { qty--; qtyVal.textContent = qty; }
+    });
+    document.getElementById('qty-plus').addEventListener('click', function () {
+      if (qty < 10) { qty++; qtyVal.textContent = qty; }
+    });
+
+    atcBtn.addEventListener('click', function () {
+      var imgEl = document.querySelector('#p-image-wrap img');
+      var image = imgEl ? imgEl.getAttribute('src') : '';
+      window.lorisCart.addToCart(p.name, p.collection, parseFloat(p.price), image, null, qty);
+      fb.textContent = '✓ ' + qty + (qty === 1 ? ' fles' : ' flessen') + ' toegevoegd';
+      atcBtn.textContent = 'Nog meer toevoegen';
+      qty = 1;
+      qtyVal.textContent = '1';
+      setTimeout(function () { fb.textContent = ''; atcBtn.textContent = 'In Winkelwagen'; }, 3000);
+    });
+  }
+
+  function showError(msg) {
+    document.getElementById('loading-state').style.display = 'none';
+    document.getElementById('error-msg').textContent = msg;
+    document.getElementById('error-state').style.display = 'flex';
+  }
+
+  function escHtml(s) {
+    return String(s || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  }
+}());
+</script>
+</body>
+</html>
