@@ -340,6 +340,64 @@
     100% { transform: scaleY(0); transform-origin: bottom; }
   }
 
+  /* ===== USP Bar ===== */
+  .usp-bar {
+    background: var(--black);
+    padding: 16px 0;
+    overflow: hidden;
+    user-select: none;
+  }
+
+  .usp-track {
+    position: relative;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .usp-item {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: #c9a45c;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    pointer-events: none;
+    padding: 0 24px;
+    white-space: nowrap;
+  }
+
+  .usp-item.active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  @media (max-width: 600px) {
+    .usp-item {
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      white-space: normal;
+      line-height: 1.4;
+    }
+
+    .usp-track {
+      height: auto;
+      min-height: 36px;
+    }
+
+    .usp-item {
+      transform: translateY(6px);
+    }
+  }
+
   /* ===== Collections Section ===== */
   .collections {
     background: var(--black);
@@ -1101,6 +1159,15 @@
   <div class="scroll-indicator"></div>
 </section>
 
+<!-- ===== USP Slider ===== -->
+<div class="usp-bar">
+  <div class="usp-track">
+    <span class="usp-item active">✦ Dermatologisch Getest — Huidvriendelijk &amp; Veilig</span>
+    <span class="usp-item">✦ Cruelty Free — Diervriendelijk &amp; Bewust</span>
+    <span class="usp-item">✦ Op Oliebasis — Langdurige Geurervaring</span>
+  </div>
+</div>
+
 <!-- ===== Collecties ===== -->
 <section class="collections" id="collecties">
   <div class="container">
@@ -1404,6 +1471,29 @@
 
   // Footer year
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  // USP slider
+  (function () {
+    const items = document.querySelectorAll('.usp-item');
+    let current = 0;
+    let startX = 0;
+
+    function goTo(index) {
+      items[current].classList.remove('active');
+      current = (index + items.length) % items.length;
+      items[current].classList.add('active');
+    }
+
+    setInterval(() => goTo(current + 1), 3000);
+
+    const bar = document.querySelector('.usp-bar');
+    bar.addEventListener('click', () => goTo(current + 1));
+    bar.addEventListener('touchstart', e => { startX = e.touches[0].clientX; }, { passive: true });
+    bar.addEventListener('touchend', e => {
+      const diff = startX - e.changedTouches[0].clientX;
+      if (Math.abs(diff) > 40) goTo(diff > 0 ? current + 1 : current - 1);
+    });
+  })();
 </script>
 
 <script src="cart.js"></script>
