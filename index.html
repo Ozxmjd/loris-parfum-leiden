@@ -898,6 +898,35 @@
     margin-bottom: 30px;
   }
 
+  .contact-social {
+    margin-top: 30px;
+    padding-top: 30px;
+    border-top: 1px solid rgba(201, 164, 76, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .contact-social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    color: #c9a45c;
+    font-size: 13px;
+    letter-spacing: 1.5px;
+    font-weight: 400;
+    transition: color 0.3s ease;
+  }
+
+  .contact-social-link:hover {
+    color: var(--gold-light);
+  }
+
+  .contact-social-link svg {
+    flex-shrink: 0;
+  }
+
   /* ===== Footer ===== */
   footer {
     background: #060606;
@@ -1384,6 +1413,29 @@
       <a href="tel:0639135752" class="phone-number">06 39135752</a>
       <div>
         <a href="tel:0639135752" class="btn btn-primary">Bel Nu</a>
+      </div>
+      <div class="contact-social">
+        <a href="mailto:lorisleiden@snsbusiness.nl" class="contact-social-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="4" width="20" height="16" rx="2"/>
+            <path d="M2 7l10 7 10-7"/>
+          </svg>
+          lorisleiden@snsbusiness.nl
+        </a>
+        <a href="https://www.instagram.com/lorisparfum_leiden" class="contact-social-link" target="_blank" rel="noopener noreferrer">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="2" y="2" width="20" height="20" rx="5"/>
+            <circle cx="12" cy="12" r="5"/>
+            <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/>
+          </svg>
+          @lorisparfum_leiden
+        </a>
+        <a href="https://www.tiktok.com/@loris.parfum.leiden" class="contact-social-link" target="_blank" rel="noopener noreferrer">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 12a4 4 0 1 0 4 4V4a5 5 0 0 0 5 5"/>
+          </svg>
+          @loris.parfum.leiden
+        </a>
       </div>
     </div>
   </div>
