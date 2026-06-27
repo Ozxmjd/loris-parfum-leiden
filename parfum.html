@@ -358,6 +358,140 @@
     }
   }
 
+  /* ===== Overige Collecties ===== */
+  .other-collections {
+    background: var(--black);
+    padding: 100px 0;
+  }
+
+  .other-collections .oc-header {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .other-collections .oc-eyebrow {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+
+  .other-collections .oc-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(28px, 4vw, 42px);
+    font-weight: 600;
+    color: var(--white);
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+  }
+
+  .other-collections .oc-divider {
+    width: 60px;
+    height: 2px;
+    background: var(--gold);
+    margin: 0 auto;
+  }
+
+  .oc-grid {
+    display: flex;
+    justify-content: center;
+    gap: 34px;
+    flex-wrap: wrap;
+  }
+
+  .oc-card {
+    flex: 1 1 320px;
+    max-width: 420px;
+    background: var(--black-soft);
+    border: 1px solid rgba(201, 164, 76, 0.25);
+    overflow: hidden;
+    cursor: pointer;
+    transition: border-color 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+  }
+
+  .oc-card:hover {
+    border-color: var(--gold);
+    transform: translateY(-6px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+  }
+
+  .oc-card-image {
+    width: 100%;
+    height: 260px;
+    overflow: hidden;
+    border-bottom: 1px solid var(--gold);
+  }
+
+  .oc-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.7s ease;
+    filter: brightness(0.85);
+  }
+
+  .oc-card:hover .oc-card-image img {
+    transform: scale(1.06);
+    filter: brightness(0.75);
+  }
+
+  .oc-card-body {
+    padding: 32px 28px;
+    text-align: center;
+  }
+
+  .oc-card-body h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--white);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 12px;
+  }
+
+  .oc-card-body p {
+    color: #999;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.7;
+    margin-bottom: 22px;
+  }
+
+  .oc-card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--gold-light);
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .oc-card-link svg {
+    width: 14px;
+    height: 14px;
+    transition: transform 0.3s ease;
+  }
+
+  .oc-card:hover .oc-card-link svg {
+    transform: translateX(5px);
+  }
+
+  @media (max-width: 768px) {
+    .other-collections { padding: 70px 0; }
+    .oc-card { flex: 1 1 100%; max-width: 100%; }
+    .oc-card-image { height: 200px; }
+  }
+
   /* ===== Footer ===== */
   footer {
     background: #060606;
@@ -676,6 +810,48 @@
         </div>
       </div>
 
+
+    </div>
+  </div>
+</section>
+
+<!-- ===== Overige Collecties ===== -->
+<section class="other-collections">
+  <div class="container">
+    <div class="oc-header">
+      <span class="oc-eyebrow">Meer van Loris</span>
+      <h2>Onze Andere Collecties</h2>
+      <div class="oc-divider"></div>
+    </div>
+    <div class="oc-grid">
+
+      <a href="huisgeuren.html" class="oc-card">
+        <div class="oc-card-image">
+          <img src="images/IMG_7059.jpg" alt="Huisgeuren collectie">
+        </div>
+        <div class="oc-card-body">
+          <h3>Huisgeuren</h3>
+          <p>Transformeer uw ruimte met onze exclusieve huisgeuren. Van subtiele sprays tot rijke diffusers.</p>
+          <span class="oc-card-link">
+            Bekijk Collectie
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </div>
+      </a>
+
+      <a href="bodycare.html" class="oc-card">
+        <div class="oc-card-image">
+          <img src="images/IMG_7060.jpg" alt="Bodycare collectie">
+        </div>
+        <div class="oc-card-body">
+          <h3>Bodycare</h3>
+          <p>Verwenner uw huid met onze zorgvuldig samengestelde bodycare producten.</p>
+          <span class="oc-card-link">
+            Bekijk Collectie
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </span>
+        </div>
+      </a>
 
     </div>
   </div>
