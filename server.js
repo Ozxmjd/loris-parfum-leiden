@@ -34,7 +34,11 @@ app.post('/webhook', express.raw({ type: 'application/json' }), async (req, res)
 
   if (event.type === 'checkout.session.completed') {
     const session = event.data.object;
-    await handleCheckoutCompleted(session);
+    try {
+      await handleCheckoutCompleted(session);
+    } catch (err) {
+      console.error('Onverwachte fout in handleCheckoutCompleted:\n', err.stack);
+    }
   }
 
   res.json({ received: true });
@@ -72,16 +76,36 @@ async function handleCheckoutCompleted(session) {
 
   const html = buildEmailHtml({ name, orderNumber, lineItems, total, shipping });
 
+  // E-mail naar klant
   try {
+    console.log(`Versturen e-mail naar: ${email}`);
     await transporter.sendMail({
       from: '"Loris Parfum Leiden" <lorisparfumleiden@gmail.com>',
       to: email,
       subject: 'Bedankt voor uw bestelling bij Loris Parfum Leiden',
       html,
     });
-    console.log(`Bevestigingsmail verstuurd → ${email} (bestelling #${orderNumber})`);
+    console.log('E-mail succesvol verzonden');
   } catch (err) {
-    console.error('Fout bij versturen e-mail:', err.message);
+    console.error('Fout bij versturen bevestigingsmail naar klant:\n', err.stack);
+  }
+
+  // E-mail naar winkel
+  const shopEmail = process.env.GMAIL_USER || 'lorisparfumleiden@gmail.com';
+  const productList = lineItems.length
+    ? lineItems.map(i => `- ${i.description} x${i.quantity}: €${((i.amount_total ?? 0) / 100).toFixed(2)}`).join('\n')
+    : '(geen productdetails beschikbaar)';
+  try {
+    console.log(`Versturen e-mail naar: ${shopEmail}`);
+    await transporter.sendMail({
+      from: '"Loris Parfum Leiden" <lorisparfumleiden@gmail.com>',
+      to: shopEmail,
+      subject: `Nieuwe bestelling #${orderNumber} — €${total}`,
+      text: `Nieuwe bestelling ontvangen!\n\nBestelnummer: #${orderNumber}\nKlant: ${name} <${email}>\nTotaal: €${total}\nOntvangst: ${shipping}\n\nProducten:\n${productList}`,
+    });
+    console.log('E-mail succesvol verzonden');
+  } catch (err) {
+    console.error('Fout bij versturen ordermelding naar winkel:\n', err.stack);
   }
 }
 
