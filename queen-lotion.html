@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Queen — Body Lotion — Loris Parfum Leiden</title>
+<meta name="description" content="Queen Body Lotion 200ml — Koninklijke verzorging met een luxueuze verfijnde geur.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root { --black: #0a0a0a; --white: #ffffff; --gold: #c9a45c; --gold-light: #e0c896; --gray: #6b6b6b; --off-white: #f7f5f0; --border: #e8e3d8; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Montserrat', sans-serif; background: var(--off-white); color: var(--black); }
+  header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(10,10,10,0.95); backdrop-filter: blur(10px); padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; }
+  .logo { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--white); letter-spacing: 2px; text-transform: uppercase; text-decoration: none; display: flex; flex-direction: column; line-height: 1.1; }
+  .logo span { font-size: 11px; letter-spacing: 4px; color: var(--gold); font-family: 'Montserrat', sans-serif; font-weight: 400; }
+  nav { display: flex; gap: 30px; align-items: center; }
+  nav a { color: var(--white); text-decoration: none; font-size: 13px; letter-spacing: 1.5px; text-transform: uppercase; transition: color 0.3s; }
+  nav a:hover { color: var(--gold); }
+  .product-hero { padding: 130px 40px 60px; background: linear-gradient(180deg, #1a1a1a 0%, #0a0a0a 100%); text-align: center; color: var(--white); }
+  .back-link { display: inline-flex; align-items: center; gap: 8px; color: var(--gold); text-decoration: none; font-size: 13px; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 36px; border: 1px solid var(--gold); padding: 10px 20px; transition: all 0.3s; }
+  .back-link:hover { background: var(--gold); color: var(--black); }
+  .product-eyebrow { display: block; font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold-light); font-weight: 600; margin-bottom: 14px; }
+  .product-title { font-family: 'Playfair Display', serif; font-size: clamp(36px, 7vw, 68px); font-weight: 700; letter-spacing: 3px; }
+  .photo-section { background: var(--white); border-bottom: 1px solid var(--border); display: flex; justify-content: center; align-items: center; padding: 60px 24px; }
+  .photo-frame { max-width: 340px; width: 100%; }
+  .photo-frame img { width: 100%; height: auto; display: block; border: 1px solid var(--border); }
+  .product-body { max-width: 900px; margin: 0 auto; padding: 0 24px 100px; }
+  .atc-section { background: var(--white); padding: 40px; border-bottom: 1px solid var(--border); text-align: center; }
+  .atc-desc { font-size: 14px; color: var(--gray); line-height: 1.7; max-width: 480px; margin: 0 auto 28px; }
+  .atc-price { font-family: 'Playfair Display', serif; font-size: 34px; font-weight: 600; color: var(--gold); letter-spacing: 1px; margin-bottom: 8px; }
+  .atc-ml { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--gray); margin-bottom: 24px; }
+  .qty-wrap { display: flex; align-items: center; justify-content: center; margin-bottom: 16px; max-width: 160px; margin-left: auto; margin-right: auto; }
+  .qty-btn { width: 44px; height: 44px; background: var(--black); color: var(--white); border: none; font-size: 22px; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: background .2s; flex-shrink: 0; }
+  .qty-btn:hover { background: var(--gold); }
+  .qty-val { width: 72px; height: 44px; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: 600; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); border-left: none; border-right: none; background: var(--white); user-select: none; }
+  .atc-btn { width: 100%; max-width: 320px; padding: 16px 32px; background: var(--black); color: var(--white); border: 2px solid var(--black); font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 600; letter-spacing: 2.5px; text-transform: uppercase; cursor: pointer; transition: all .3s; }
+  .atc-btn:hover { background: var(--gold); border-color: var(--gold); color: var(--black); }
+  .atc-feedback { margin-top: 10px; min-height: 18px; font-size: 11px; color: var(--gold); letter-spacing: 1px; text-transform: uppercase; }
+  @media (max-width: 600px) { header { padding: 18px 20px; } nav { display: none; } .product-hero { padding: 110px 20px 50px; } .atc-section { padding: 32px 20px; } }
+</style>
+</head>
+<body>
+<header>
+  <a href="index.html" class="logo">LORIS PARFUM<span>LEIDEN</span></a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="parfum.html">Onze Producten</a>
+    <a href="index.html#over-ons">Over Ons</a>
+    <a href="index.html#openingstijden">Openingstijden</a>
+    <a href="index.html#locatie">Locatie</a>
+    <a href="index.html#contact">Contact</a>
+    <a href="zoeken.html" title="Zoeken" aria-label="Zoeken" style="display:inline-flex;align-items:center;color:var(--white);transition:color .3s;"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></a>
+  </nav>
+</header>
+<section class="product-hero">
+  <a href="bodycare-lotion.html" class="back-link">← Terug naar Body Lotion</a>
+  <span class="product-eyebrow">Body Lotion &bull; 200ml</span>
+  <h1 class="product-title">Queen</h1>
+</section>
+<section class="photo-section">
+  <div class="photo-frame"><img src="images/Queenlotion.jpg.webp" alt="Queen Body Lotion" loading="lazy"></div>
+</section>
+<div class="product-body">
+  <section class="atc-section">
+    <p class="atc-desc">Koninklijke verzorging met een luxueuze verfijnde geur.</p>
+    <div class="atc-price">€14,99</div>
+    <div class="atc-ml">200ml Body Lotion</div>
+    <div class="qty-wrap">
+      <button class="qty-btn" id="qty-minus">&#8722;</button>
+      <span class="qty-val" id="qty-val">1</span>
+      <button class="qty-btn" id="qty-plus">+</button>
+    </div>
+    <button class="atc-btn" id="atc-btn">In Winkelwagen</button>
+    <p class="atc-feedback" id="atc-feedback"></p>
+  </section>
+</div>
+<script src="cart.js"></script>
+<script>
+(function () {
+  var qty = 1;
+  var qtyVal = document.getElementById('qty-val');
+  var atcBtn = document.getElementById('atc-btn');
+  var fb = document.getElementById('atc-feedback');
+  document.getElementById('qty-minus').addEventListener('click', function () { if (qty > 1) { qty--; qtyVal.textContent = qty; } });
+  document.getElementById('qty-plus').addEventListener('click', function () { if (qty < 10) { qty++; qtyVal.textContent = qty; } });
+  atcBtn.addEventListener('click', function () {
+    window.lorisCart.addToCart('Queen', 'Body Lotion', 14.99, 'images/Queenlotion.jpg.webp', null, qty);
+    fb.textContent = '✓ ' + qty + (qty === 1 ? ' fles' : ' flessen') + ' toegevoegd';
+    atcBtn.textContent = 'Nog meer toevoegen';
+    qty = 1; qtyVal.textContent = '1';
+    setTimeout(function () { fb.textContent = ''; atcBtn.textContent = 'In Winkelwagen'; }, 3000);
+  });
+}());
+</script>
+</body>
+</html>

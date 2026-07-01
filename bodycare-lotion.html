@@ -41,22 +41,15 @@
   .card-name { font-family: 'Playfair Display', serif; font-size: 18px; font-weight: 700; letter-spacing: 1px; color: var(--black); transition: color 0.3s ease; display: block; margin-bottom: 6px; line-height: 1.2; }
   .product-card:hover .card-name { color: var(--gold); }
   .card-meta { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gray); }
-  .card-notes { display: none; }
+  .card-desc { font-size: 13px; color: var(--gray); line-height: 1.55; margin-top: 8px; display: none; }
   .products-grid.view-2 .card-name { font-size: 22px; }
   .products-grid.view-1 .product-card { display: grid; grid-template-columns: 220px 1fr; gap: 10px 32px; padding: 24px; align-items: start; }
   .products-grid.view-1 .card-image { grid-column: 1; grid-row: 1 / 3; }
   .products-grid.view-1 .card-info { grid-column: 2; grid-row: 1; text-align: left; padding: 0; }
   .products-grid.view-1 .card-info::before { margin: 0 0 10px; }
-  .products-grid.view-1 .card-notes { grid-column: 2; grid-row: 2; display: flex; flex-direction: column; gap: 14px; }
-  .card-notes .note-heading { font-family: 'Playfair Display', serif; font-size: 13px; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gray); margin-bottom: 8px; }
-  .card-notes .note-chips { display: flex; flex-wrap: wrap; gap: 8px; }
-  .card-notes .note-chip { display: inline-flex; align-items: center; gap: 6px; border: 1px solid #e6e0d2; background: #fbfaf7; padding: 6px 14px; border-radius: 30px; font-size: 12.5px; color: var(--black); }
-  .card-notes .note-chip .emoji { font-size: 14px; line-height: 1; }
-  .card-notes .notes-loading, .card-notes .notes-error { font-size: 13px; color: var(--gray); font-style: italic; }
-  .empty-state { grid-column: 1 / -1; text-align: center; padding: 80px 20px; color: var(--gray); }
-  .empty-state p { font-size: 15px; letter-spacing: 0.5px; }
+  .products-grid.view-1 .card-desc { grid-column: 2; grid-row: 2; display: block; }
   @media (max-width: 700px) { .view-toolbar { padding: 30px 20px 0; gap: 10px; } .view-btn { width: 40px; height: 40px; } .products-grid { padding: 24px 20px 90px; gap: 18px; } .page-header h1 { font-size: 32px; } nav { display: none; } }
-  @media (max-width: 600px) { .products-grid.view-1 .product-card { grid-template-columns: 1fr; } .products-grid.view-1 .card-image { grid-row: 1; max-width: 240px; margin: 0 auto; } .products-grid.view-1 .card-info { grid-row: 2; text-align: center; } .products-grid.view-1 .card-info::before { margin: 0 auto 10px; } .products-grid.view-1 .card-notes { grid-row: 3; } }
+  @media (max-width: 600px) { .products-grid.view-1 .product-card { grid-template-columns: 1fr; } .products-grid.view-1 .card-image { grid-row: 1; max-width: 240px; margin: 0 auto; } .products-grid.view-1 .card-info { grid-row: 2; text-align: center; } .products-grid.view-1 .card-info::before { margin: 0 auto 10px; } .products-grid.view-1 .card-desc { grid-row: 3; } }
 </style>
 </head>
 <body>
@@ -93,12 +86,93 @@
 </div>
 
 <div class="products-grid">
-  <div class="empty-state"><p>Producten worden binnenkort toegevoegd.</p></div>
+
+  <a href="bitter-sweet-lotion.html" class="product-card">
+    <div class="card-image"><img src="images/BitterweettBodylostion.jpg.webp" alt="Bitter Sweet Body Lotion" loading="lazy"></div>
+    <div class="card-info">
+      <span class="card-name">Bitter Sweet</span>
+      <span class="card-meta">Body Lotion &bull; 200ml &bull; €14,99</span>
+    </div>
+    <p class="card-desc">Verleidelijke mix van zoet en pittig, diep voedend voor de huid.</p>
+  </a>
+
+  <a href="angels-dream-lotion.html" class="product-card">
+    <div class="card-image"><img src="images/AngelsssDreamBodylotion.jpg.webp" alt="Angel's Dream Body Lotion" loading="lazy"></div>
+    <div class="card-info">
+      <span class="card-name">Angel's Dream</span>
+      <span class="card-meta">Body Lotion &bull; 200ml &bull; €14,99</span>
+    </div>
+    <p class="card-desc">Dromerige bloemige geur, zacht en verzorgend voor de huid.</p>
+  </a>
+
+  <a href="midnight-lotion.html" class="product-card">
+    <div class="card-image"><img src="images/midnightlotion.jpg.webp" alt="Midnight Body Lotion" loading="lazy"></div>
+    <div class="card-info">
+      <span class="card-name">Midnight</span>
+      <span class="card-meta">Body Lotion &bull; 200ml &bull; €14,99</span>
+    </div>
+    <p class="card-desc">Mysterieuze avondgeur, rijke hydraterende formule.</p>
+  </a>
+
+  <a href="moonlight-lotion.html" class="product-card">
+    <div class="card-image"><img src="images/moonlightlotion.jpg.webp" alt="Moonlight Body Lotion" loading="lazy"></div>
+    <div class="card-info">
+      <span class="card-name">Moonlight</span>
+      <span class="card-meta">Body Lotion &bull; 200ml &bull; €14,99</span>
+    </div>
+    <p class="card-desc">Lichte dromerige geur, laat de huid zijdezacht aanvoelen.</p>
+  </a>
+
+  <a href="by-night-lotion.html" class="product-card">
+    <div class="card-image"><img src="images/bynightlotion.jpg.webp" alt="By Night Body Lotion" loading="lazy"></div>
+    <div class="card-info">
+      <span class="card-name">By Night</span>
+      <span class="card-meta">Body Lotion &bull; 200ml &bull; €14,99</span>
+    </div>
+    <p class="card-desc">Sensuele avondgeur, intensief voedend voor de huid.</p>
+  </a>
+
+  <a href="vanilla-sugar-lotion.html" class="product-card">
+    <div class="card-image"><img src="images/vanillasugarlotion.jpg.webp" alt="Vanilla Sugar Body Lotion" loading="lazy"></div>
+    <div class="card-info">
+      <span class="card-name">Vanilla Sugar</span>
+      <span class="card-meta">Body Lotion &bull; 200ml &bull; €14,99</span>
+    </div>
+    <p class="card-desc">Zoete vanille, verwent de huid met warmte en comfort.</p>
+  </a>
+
+  <a href="queen-lotion.html" class="product-card">
+    <div class="card-image"><img src="images/Queenlotion.jpg.webp" alt="Queen Body Lotion" loading="lazy"></div>
+    <div class="card-info">
+      <span class="card-name">Queen</span>
+      <span class="card-meta">Body Lotion &bull; 200ml &bull; €14,99</span>
+    </div>
+    <p class="card-desc">Koninklijke verzorging met een luxueuze verfijnde geur.</p>
+  </a>
+
+  <a href="japanese-cherry-lotion.html" class="product-card">
+    <div class="card-image"><img src="images/japoncicegilotion.jpg.webp" alt="Japanese Cherry Body Lotion" loading="lazy"></div>
+    <div class="card-info">
+      <span class="card-name">Japanese Cherry</span>
+      <span class="card-meta">Body Lotion &bull; 200ml &bull; €14,99</span>
+    </div>
+    <p class="card-desc">Frisse kersenbloesem, licht en hydraterend voor dagelijks gebruik.</p>
+  </a>
+
+  <a href="pink-magnolia-lotion.html" class="product-card">
+    <div class="card-image"><img src="images/Pinkmagnolialotion.jpg.webp" alt="Pink Magnolia Body Lotion" loading="lazy"></div>
+    <div class="card-info">
+      <span class="card-name">Pink Magnolia</span>
+      <span class="card-meta">Body Lotion &bull; 200ml &bull; €14,99</span>
+    </div>
+    <p class="card-desc">Zachte magnolia geur, intensief voedend en verzorgend.</p>
+  </a>
+
 </div>
 
 <script>
 (function () {
-  var KEY = 'bodylotionView';
+  var KEY = 'lotion-view';
   var grid = document.querySelector('.products-grid');
   var buttons = document.querySelectorAll('.view-btn');
   function setActiveButton(view) { buttons.forEach(function(btn){ btn.classList.toggle('active', btn.getAttribute('data-view') === view); }); }
