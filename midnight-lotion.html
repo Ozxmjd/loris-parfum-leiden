@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Midnight — Body Lotion — Loris Parfum Leiden</title>
-<meta name="description" content="Midnight Body Lotion 200ml — Mysterieuze avondgeur, rijke hydraterende formule.">
+<meta name="description" content="Midnight Body Lotion 236ml — Mysterieuze avondgeur, rijke hydraterende formule.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -55,7 +55,7 @@
 </header>
 <section class="product-hero">
   <a href="bodycare-lotion.html" class="back-link">← Terug naar Body Lotion</a>
-  <span class="product-eyebrow">Body Lotion &bull; 200ml</span>
+  <span class="product-eyebrow">Body Lotion &bull; 236ml</span>
   <h1 class="product-title">Midnight</h1>
 </section>
 <section class="photo-section">
@@ -64,8 +64,8 @@
 <div class="product-body">
   <section class="atc-section">
     <p class="atc-desc">Mysterieuze avondgeur, rijke hydraterende formule.</p>
-    <div class="atc-price">€14,99</div>
-    <div class="atc-ml">200ml Body Lotion</div>
+    <div class="atc-price">€9,99</div>
+    <div class="atc-ml">236ml Body Lotion</div>
     <div class="qty-wrap">
       <button class="qty-btn" id="qty-minus">&#8722;</button>
       <span class="qty-val" id="qty-val">1</span>
@@ -85,7 +85,7 @@
   document.getElementById('qty-minus').addEventListener('click', function () { if (qty > 1) { qty--; qtyVal.textContent = qty; } });
   document.getElementById('qty-plus').addEventListener('click', function () { if (qty < 10) { qty++; qtyVal.textContent = qty; } });
   atcBtn.addEventListener('click', function () {
-    window.lorisCart.addToCart('Midnight', 'Body Lotion', 14.99, 'images/midnightlotion.jpg.webp', null, qty);
+    window.lorisCart.addToCart('Midnight', 'Body Lotion', 9.99, 'images/midnightlotion.jpg.webp', null, qty);
     fb.textContent = '✓ ' + qty + (qty === 1 ? ' fles' : ' flessen') + ' toegevoegd';
     atcBtn.textContent = 'Nog meer toevoegen';
     qty = 1; qtyVal.textContent = '1';
