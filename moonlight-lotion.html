@@ -38,6 +38,21 @@
   .atc-btn:hover { background: var(--gold); border-color: var(--gold); color: var(--black); }
   .atc-feedback { margin-top: 10px; min-height: 18px; font-size: 11px; color: var(--gold); letter-spacing: 1px; text-transform: uppercase; }
   @media (max-width: 600px) { header { padding: 18px 20px; } nav { display: none; } .product-hero { padding: 110px 20px 50px; } .atc-section { padding: 32px 20px; } }
+
+  .related-section { background: #0a0a0a; padding: 70px 40px; }
+  .related-inner { max-width: 860px; margin: 0 auto; }
+  .related-title { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 600; color: #ffffff; letter-spacing: 3px; text-transform: uppercase; text-align: center; margin-bottom: 10px; }
+  .related-divider { width: 40px; height: 2px; background: #c9a45c; margin: 0 auto 44px; }
+  .related-grid { display: flex; justify-content: center; gap: 28px; flex-wrap: wrap; }
+  .related-card { display: block; text-decoration: none; width: 200px; background: #141414; border: 1px solid rgba(201,164,92,0.25); overflow: hidden; transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease; }
+  .related-card:hover { border-color: #c9a45c; transform: translateY(-5px); box-shadow: 0 16px 32px rgba(0,0,0,0.4); }
+  .related-img { width: 100%; aspect-ratio: 1/1; overflow: hidden; }
+  .related-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; filter: brightness(0.9); }
+  .related-card:hover .related-img img { transform: scale(1.06); filter: brightness(0.8); }
+  .related-info { padding: 14px 12px 16px; text-align: center; border-top: 1px solid #c9a45c; }
+  .related-cat { display: block; font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; color: #c9a45c; margin-bottom: 5px; }
+  .related-name { display: block; font-family: 'Playfair Display', serif; font-size: 15px; color: #ffffff; font-weight: 600; }
+  @media (max-width: 600px) { .related-section { padding: 50px 20px; } .related-card { width: calc(50% - 14px); } }
 </style>
 </head>
 <body>
@@ -75,6 +90,29 @@
     <p class="atc-feedback" id="atc-feedback"></p>
   </section>
 </div>
+
+<section class="related-section">
+  <div class="related-inner">
+    <h2 class="related-title">Compleet de Collectie</h2>
+    <div class="related-divider"></div>
+    <div class="related-grid">
+      <a href="moonlight.html" class="related-card">
+        <div class="related-img"><img src="images/Moonlightbodymist.png.webp" alt="Moonlight" loading="lazy"></div>
+        <div class="related-info">
+          <span class="related-cat">Body Mist</span>
+          <span class="related-name">Moonlight</span>
+        </div>
+      </a>
+      <a href="moonlight-showergel.html" class="related-card">
+        <div class="related-img"><img src="images/moonlightshowergel.png.webp" alt="Moonlight" loading="lazy"></div>
+        <div class="related-info">
+          <span class="related-cat">Shower Gel</span>
+          <span class="related-name">Moonlight</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
 <script src="cart.js"></script>
 <script>
 (function () {
