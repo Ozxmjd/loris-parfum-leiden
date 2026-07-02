@@ -640,5 +640,21 @@
 </script>
 
 <script src="cart.js"></script>
+
+<!-- Cookie banner -->
+<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;z-index:9999;background:#0a0a0a;border-top:1px solid rgba(201,164,92,0.4);padding:18px 40px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;">
+  <p style="margin:0;font-size:13px;color:#ccc;font-family:'Montserrat',sans-serif;font-weight:300;line-height:1.6;flex:1;min-width:220px;">
+    Wij gebruiken cookies om uw ervaring op onze website te verbeteren. Door verder te gaan gaat u akkoord met ons cookiebeleid.
+  </p>
+  <div style="display:flex;gap:12px;flex-shrink:0;">
+    <a href="privacy.html" style="display:inline-block;padding:10px 20px;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;font-family:'Montserrat',sans-serif;font-weight:500;color:#c9a45c;border:1px solid rgba(201,164,92,0.5);text-decoration:none;transition:all .2s;">Meer informatie</a>
+    <button onclick="(function(){localStorage.setItem('cookieAccepted','1');document.getElementById('cookie-banner').style.display='none';})()" style="display:inline-block;padding:10px 24px;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;font-family:'Montserrat',sans-serif;font-weight:600;color:#0a0a0a;background:#c9a45c;border:none;cursor:pointer;">Akkoord</button>
+  </div>
+</div>
+<script>
+  if (!localStorage.getItem('cookieAccepted')) {
+    document.getElementById('cookie-banner').style.display = 'flex';
+  }
+</script>
 </body>
 </html>
