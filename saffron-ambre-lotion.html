@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Saffron Ambre — Shower Gel — Loris Parfum Leiden</title>
-<meta name="description" content="Saffron Ambre Shower Gel 295ml — Warme amber en saffraan voor een luxueuze douche-ervaring.">
+<title>Saffron Ambre — Body Lotion — Loris Parfum Leiden</title>
+<meta name="description" content="Saffron Ambre Body Lotion 236ml — Warme amber en saffraan, intensief voedend voor de huid.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -69,20 +69,18 @@
   </nav>
 </header>
 <section class="product-hero">
-  <a href="bodycare-showergel.html" class="back-link">← Terug naar Shower Gel</a>
-  <span class="product-eyebrow">Shower Gel &bull; 295ml</span>
+  <a href="bodycare-lotion.html" class="back-link">← Terug naar Body Lotion</a>
+  <span class="product-eyebrow">Body Lotion &bull; 236ml</span>
   <h1 class="product-title">Saffron Ambre</h1>
 </section>
 <section class="photo-section">
-  <div class="photo-frame">
-    <img src="images/Saffronshower.jpg.webp" alt="Saffron Ambre Shower Gel" loading="lazy">
-  </div>
+  <div class="photo-frame"><img src="images/Screenshot 2026-07-02 at 11.15.55.png" alt="Saffron Ambre Body Lotion" loading="lazy"></div>
 </section>
 <div class="product-body">
   <section class="atc-section">
-    <p class="atc-desc">Warme amber en saffraan voor een luxueuze douche-ervaring.</p>
+    <p class="atc-desc">Warme amber en saffraan, intensief voedend voor de huid.</p>
     <div class="atc-price">€9,99</div>
-    <div class="atc-ml">295ml Shower Gel</div>
+    <div class="atc-ml">236ml Body Lotion</div>
     <div class="qty-wrap">
       <button class="qty-btn" id="qty-minus">&#8722;</button>
       <span class="qty-val" id="qty-val">1</span>
@@ -105,10 +103,10 @@
           <span class="related-name">Saffron Ambre</span>
         </div>
       </a>
-      <a href="saffron-ambre-lotion.html" class="related-card">
-        <div class="related-img"><img src="images/Screenshot 2026-07-02 at 11.15.55.png" alt="Saffron Ambre" loading="lazy"></div>
+      <a href="saffron-ambre-showergel.html" class="related-card">
+        <div class="related-img"><img src="images/Saffronshower.jpg.webp" alt="Saffron Ambre" loading="lazy"></div>
         <div class="related-info">
-          <span class="related-cat">Body Lotion</span>
+          <span class="related-cat">Shower Gel</span>
           <span class="related-name">Saffron Ambre</span>
         </div>
       </a>
@@ -125,7 +123,7 @@
   document.getElementById('qty-minus').addEventListener('click', function () { if (qty > 1) { qty--; qtyVal.textContent = qty; } });
   document.getElementById('qty-plus').addEventListener('click', function () { if (qty < 10) { qty++; qtyVal.textContent = qty; } });
   atcBtn.addEventListener('click', function () {
-    window.lorisCart.addToCart('Saffron Ambre', 'Shower Gel', 9.99, 'images/Saffronshower.jpg.webp', null, qty);
+    window.lorisCart.addToCart('Saffron Ambre', 'Body Lotion', 9.99, 'images/Screenshot 2026-07-02 at 11.15.55.png', null, qty);
     fb.textContent = '✓ ' + qty + (qty === 1 ? ' fles' : ' flessen') + ' toegevoegd';
     atcBtn.textContent = 'Nog meer toevoegen';
     qty = 1; qtyVal.textContent = '1';
