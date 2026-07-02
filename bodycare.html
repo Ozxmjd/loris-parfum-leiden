@@ -44,6 +44,20 @@
 
   @media (max-width: 768px) { .categories { padding: 70px 24px; } .cat-card { flex: 1 1 100%; max-width: 100%; } .cat-card-image { height: 220px; } }
   @media (max-width: 500px) { .page-header h1 { font-size: 32px; } nav { display: none; } header { padding: 18px 20px; } }
+
+  footer { background: #060606; color: #999; padding: 70px 0 0; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 0 40px; }
+  .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 60px; padding-bottom: 60px; border-bottom: 1px solid rgba(255,255,255,0.08); }
+  .footer-brand .logo { color: var(--white); margin-bottom: 18px; display: flex; }
+  .footer-brand p { font-size: 14px; font-weight: 300; line-height: 1.8; max-width: 300px; }
+  .footer-col h4 { color: var(--white); font-size: 13px; text-transform: uppercase; letter-spacing: 2px; margin-bottom: 20px; font-weight: 600; }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 10px; font-size: 14px; font-weight: 300; }
+  .footer-col ul li a { color: #999; text-decoration: none; transition: color 0.3s; }
+  .footer-col ul li a:hover { color: var(--gold); }
+  .footer-bottom { text-align: center; padding: 28px 0; font-size: 13px; font-weight: 300; letter-spacing: 1px; }
+  .footer-bottom span { color: var(--gold); }
+  @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr; gap: 40px; } }
 </style>
 </head>
 <body>
@@ -106,6 +120,40 @@
   </div>
 </section>
 
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo">LORIS PARFUM<span>LEIDEN</span></a>
+        <p>Uw exclusieve parfumerie in het hart van Leiden. Tijdloze geuren met persoonlijk advies.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navigatie</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="parfum.html">Onze Producten</a></li>
+          <li><a href="index.html#contact">Contact</a></li>
+          <li><a href="privacy.html">Privacy Beleid</a></li>
+          <li><a href="algemene-voorwaarden.html">Algemene Voorwaarden</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact</h4>
+        <ul>
+          <li>Haarlemmerstraat 168</li>
+          <li>2312 GG Leiden</li>
+          <li><a href="mailto:lorisleiden@snsbusiness.nl">lorisleiden@snsbusiness.nl</a></li>
+          <li><a href="tel:0639135752">06 39135752</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      &copy; <span id="year"></span> <span>Loris Parfum Leiden</span>. Alle rechten voorbehouden.
+    </div>
+  </div>
+</footer>
+
 <script src="cart.js"></script>
+<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
