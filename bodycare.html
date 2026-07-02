@@ -4,13 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Bodycare Collectie — Loris Parfum Leiden</title>
-<meta name="description" content="Ontdek de Bodycare collectie van Loris Parfum Leiden: Body Mist en Shower Gel.">
+<meta name="description" content="Ontdek de Bodycare collectie van Loris Parfum Leiden: Body Mist, Shower Gel en Body Lotion.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
   :root { --black: #0a0a0a; --white: #ffffff; --gold: #c9a45c; --gold-light: #e0c896; --gray: #6b6b6b; --off-white: #f7f5f0; --border: #e8e3d8; }
   * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'Montserrat', sans-serif; background: var(--white); color: var(--black); }
+  body { font-family: 'Montserrat', sans-serif; background: var(--off-white); color: var(--black); }
+
   header { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(10,10,10,0.95); backdrop-filter: blur(10px); padding: 20px 40px; display: flex; justify-content: space-between; align-items: center; }
   .logo { font-family: 'Playfair Display', serif; font-size: 24px; font-weight: 700; color: var(--white); letter-spacing: 2px; text-transform: uppercase; text-decoration: none; display: flex; flex-direction: column; line-height: 1.1; }
   .logo span { font-size: 11px; letter-spacing: 4px; color: var(--gold); font-family: 'Montserrat', sans-serif; font-weight: 400; }
@@ -24,37 +25,25 @@
   .page-header h1 { font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 600; margin-bottom: 16px; }
   .page-header p { color: #aaa; font-size: 16px; max-width: 500px; margin: 0 auto; }
 
-  /* Section divider */
-  .collection-section { padding: 70px 40px 20px; }
-  .collection-section + .collection-section { padding-top: 60px; border-top: 1px solid var(--border); }
-  .section-header { max-width: 1300px; margin: 0 auto 36px; display: flex; align-items: baseline; gap: 20px; }
-  .section-header h2 { font-family: 'Playfair Display', serif; font-size: 32px; font-weight: 600; }
-  .section-header::after { content: ''; flex: 1; height: 1px; background: var(--border); }
-  .section-meta { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: var(--gray); white-space: nowrap; }
+  .categories { padding: 100px 40px; }
+  .categories-grid { max-width: 1200px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: center; gap: 34px; }
 
-  /* Product grid */
-  .products-grid { max-width: 1300px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; padding-bottom: 20px; }
-  .product-card { display: block; background: var(--white); border: 1px solid var(--border); text-decoration: none; overflow: hidden; transition: border-color 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease; }
-  .product-card:hover { border-color: var(--gold); box-shadow: 0 18px 36px rgba(0,0,0,0.1); transform: translateY(-6px); }
-  .card-image { aspect-ratio: 1 / 1; overflow: hidden; background: var(--off-white); }
-  .card-image img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
-  .product-card:hover .card-image img { transform: scale(1.06); }
-  .card-info { padding: 16px 14px 20px; text-align: center; }
-  .card-info::before { content: ''; display: block; width: 24px; height: 2px; background: var(--gold); margin: 0 auto 10px; }
-  .card-name { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; letter-spacing: 0.5px; color: var(--black); transition: color 0.3s ease; display: block; margin-bottom: 5px; line-height: 1.2; }
-  .product-card:hover .card-name { color: var(--gold); }
-  .card-meta { font-size: 11px; letter-spacing: 1.5px; text-transform: uppercase; color: var(--gray); }
+  .cat-card { flex: 1 1 320px; max-width: 360px; background: var(--white); border: 1px solid #e6e0d2; overflow: hidden; text-decoration: none; color: inherit; display: block; transition: border-color 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease; }
+  .cat-card:hover { border-color: var(--gold); transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
 
-  /* See-all link */
-  .see-all-wrap { max-width: 1300px; margin: 28px auto 0; text-align: right; padding-bottom: 10px; }
-  .see-all { display: inline-flex; align-items: center; gap: 8px; color: var(--gold); text-decoration: none; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; border-bottom: 1px solid var(--gold); padding-bottom: 2px; transition: opacity 0.2s; }
-  .see-all:hover { opacity: 0.7; }
+  .cat-card-image { width: 100%; height: 280px; overflow: hidden; border-bottom: 1px solid var(--gold); }
+  .cat-card-image img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.7s ease; }
+  .cat-card:hover .cat-card-image img { transform: scale(1.08); }
 
-  .page-footer-space { height: 100px; }
+  .cat-card-body { padding: 36px 30px; text-align: center; }
+  .cat-card-body h3 { font-family: 'Playfair Display', serif; font-size: 21px; font-weight: 600; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 2px; }
+  .cat-card-body p { color: var(--gray); font-size: 14px; font-weight: 300; line-height: 1.7; margin-bottom: 20px; }
+  .cat-card-link { display: inline-flex; align-items: center; gap: 8px; color: var(--gold); font-size: 11px; letter-spacing: 3px; text-transform: uppercase; font-weight: 600; }
+  .cat-card-link svg { width: 14px; height: 14px; transition: transform 0.3s ease; }
+  .cat-card:hover .cat-card-link svg { transform: translateX(5px); }
 
-  @media (max-width: 1100px) { .products-grid { grid-template-columns: repeat(3, 1fr); } }
-  @media (max-width: 800px) { .products-grid { grid-template-columns: repeat(2, 1fr); } .collection-section { padding: 50px 20px 10px; } .section-header h2 { font-size: 24px; } }
-  @media (max-width: 500px) { .page-header h1 { font-size: 32px; } nav { display: none; } .see-all-wrap { text-align: center; } }
+  @media (max-width: 768px) { .categories { padding: 70px 24px; } .cat-card { flex: 1 1 100%; max-width: 100%; } .cat-card-image { height: 220px; } }
+  @media (max-width: 500px) { .page-header h1 { font-size: 32px; } nav { display: none; } header { padding: 18px 20px; } }
 </style>
 </head>
 <body>
@@ -78,169 +67,45 @@
   <p>Verzorgende producten die naadloos aansluiten op uw favoriete geur.</p>
 </div>
 
-<!-- ===== BODY MIST ===== -->
-<section class="collection-section">
-  <div class="section-header">
-    <h2>Body Mist</h2>
-    <span class="section-meta">250ml &bull; €9,99</span>
-  </div>
-  <div class="products-grid">
+<section class="categories">
+  <div class="categories-grid">
 
-    <a href="bitter-sweet.html" class="product-card">
-      <div class="card-image"><img src="images/BitterSweetBodyMIST.jpg.webp" alt="Bitter Sweet" loading="lazy"></div>
-      <div class="card-info"><span class="card-name">Bitter Sweet</span><span class="card-meta">Body Mist &bull; 250ml</span></div>
+    <a href="bodycare-mist.html" class="cat-card">
+      <div class="cat-card-image">
+        <img src="images/VanillaMist.jpg.webp" alt="Body Mist collectie" loading="lazy">
+      </div>
+      <div class="cat-card-body">
+        <h3>Body Mist</h3>
+        <p>Lichte, verfrissende mists in 8 unieke geuren. Perfect voor een subtiele geurervaring gedurende de dag. 250ml &bull; €9,99</p>
+        <span class="cat-card-link">Bekijk collectie <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </div>
     </a>
 
-    <a href="japanese-cherry.html" class="product-card">
-      <div class="card-image"><img src="images/JapaneseMist.png.webp" alt="Japanese Cherry" loading="lazy"></div>
-      <div class="card-info"><span class="card-name">Japanese Cherry</span><span class="card-meta">Body Mist &bull; 250ml</span></div>
+    <a href="bodycare-showergel.html" class="cat-card">
+      <div class="cat-card-image">
+        <img src="images/QueenShowergel_1_9108beb5-0433-4b85-a33e-21cd3f4d45c5.jpg.webp" alt="Shower Gel collectie" loading="lazy">
+      </div>
+      <div class="cat-card-body">
+        <h3>Shower Gel</h3>
+        <p>Verzorgende douchegels in 7 verwennende geuren. Voor een luxueuze start van uw dag. 295ml &bull; €9,99</p>
+        <span class="cat-card-link">Bekijk collectie <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </div>
     </a>
 
-    <a href="sweet-kiss.html" class="product-card">
-      <div class="card-image"><img src="images/BodyMISTSweetKissss.jpg.webp" alt="Sweet Kiss" loading="lazy"></div>
-      <div class="card-info"><span class="card-name">Sweet Kiss</span><span class="card-meta">Body Mist &bull; 250ml</span></div>
+    <a href="bodycare-lotion.html" class="cat-card">
+      <div class="cat-card-image">
+        <img src="images/Queenlotion.jpg.webp" alt="Body Lotion collectie" loading="lazy">
+      </div>
+      <div class="cat-card-body">
+        <h3>Body Lotion</h3>
+        <p>Intensief hydraterende lotions in 9 weelderige geuren. Zijdezachte huid met een heerlijke geur. 236ml &bull; €9,99</p>
+        <span class="cat-card-link">Bekijk collectie <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></span>
+      </div>
     </a>
 
-    <a href="saffron-ambre.html" class="product-card">
-      <div class="card-image"><img src="images/SaffronMIST.jpg.webp" alt="Saffron Ambre" loading="lazy"></div>
-      <div class="card-info"><span class="card-name">Saffron Ambre</span><span class="card-meta">Body Mist &bull; 250ml</span></div>
-    </a>
-
-    <a href="midnight.html" class="product-card">
-      <div class="card-image"><img src="images/Midnightmist.jpg.webp" alt="Midnight" loading="lazy"></div>
-      <div class="card-info"><span class="card-name">Midnight</span><span class="card-meta">Body Mist &bull; 250ml</span></div>
-    </a>
-
-    <a href="vanilla-sugar.html" class="product-card">
-      <div class="card-image"><img src="images/VanillaMist.jpg.webp" alt="Vanilla Sugar" loading="lazy"></div>
-      <div class="card-info"><span class="card-name">Vanilla Sugar</span><span class="card-meta">Body Mist &bull; 250ml</span></div>
-    </a>
-
-    <a href="moonlight.html" class="product-card">
-      <div class="card-image"><img src="images/Moonlightbodymist.png.webp" alt="Moonlight" loading="lazy"></div>
-      <div class="card-info"><span class="card-name">Moonlight</span><span class="card-meta">Body Mist &bull; 250ml</span></div>
-    </a>
-
-    <a href="by-night.html" class="product-card">
-      <div class="card-image"><img src="images/Bynightbodymist.png.webp" alt="By Night" loading="lazy"></div>
-      <div class="card-info"><span class="card-name">By Night</span><span class="card-meta">Body Mist &bull; 250ml</span></div>
-    </a>
-
-  </div>
-  <div class="see-all-wrap">
-    <a href="bodycare-mist.html" class="see-all">Bekijk alle Body Mist producten →</a>
   </div>
 </section>
 
-<!-- ===== SHOWER GEL ===== -->
-<section class="collection-section">
-  <div class="section-header">
-    <h2>Shower Gel</h2>
-    <span class="section-meta">295ml &bull; €9,99</span>
-  </div>
-  <div class="products-grid">
-
-    <a href="queen-showergel.html" class="product-card">
-      <div class="card-image"><img src="images/QueenShowergel_1_9108beb5-0433-4b85-a33e-21cd3f4d45c5.jpg.webp" alt="Queen" loading="lazy"></div>
-      <div class="card-info"><span class="card-name">Queen</span><span class="card-meta">Shower Gel &bull; 295ml</span></div>
-    </a>
-
-    <a href="by-night-showergel.html" class="product-card">
-      <div class="card-image"><img src="images/ByNightShowergel_1.jpg.webp" alt="By Night" loading="lazy"></div>
-      <div class="card-info"><span class="card-name">By Night</span><span class="card-meta">Shower Gel &bull; 295ml</span></div>
-    </a>
-
-    <a href="saffron-ambre-showergel.html" class="product-card">
-      <div class="card-image"><img src="images/Saffronshower.jpg.webp" alt="Saffron Ambre" loading="lazy"></div>
-      <div class="card-info"><span class="card-name">Saffron Ambre</span><span class="card-meta">Shower Gel &bull; 295ml</span></div>
-    </a>
-
-    <a href="midnight-showergel.html" class="product-card">
-      <div class="card-image"><img src="images/Midnightshower.jpg.webp" alt="Midnight" loading="lazy"></div>
-      <div class="card-info"><span class="card-name">Midnight</span><span class="card-meta">Shower Gel &bull; 295ml</span></div>
-    </a>
-
-    <a href="japanese-cherry-showergel.html" class="product-card">
-      <div class="card-image"><img src="images/JapaneseShowerg.png.webp" alt="Japanese Cherry" loading="lazy"></div>
-      <div class="card-info"><span class="card-name">Japanese Cherry</span><span class="card-meta">Shower Gel &bull; 295ml</span></div>
-    </a>
-
-    <a href="moonlight-showergel.html" class="product-card">
-      <div class="card-image"><img src="images/moonlightshowergel.png.webp" alt="Moonlight" loading="lazy"></div>
-      <div class="card-info"><span class="card-name">Moonlight</span><span class="card-meta">Shower Gel &bull; 295ml</span></div>
-    </a>
-
-    <a href="pink-magnolia-showergel.html" class="product-card">
-      <div class="card-image"><img src="images/pinkmagnoliashowerg.png.webp" alt="Pink Magnolia" loading="lazy"></div>
-      <div class="card-info"><span class="card-name">Pink Magnolia</span><span class="card-meta">Shower Gel &bull; 295ml</span></div>
-    </a>
-
-  </div>
-  <div class="see-all-wrap">
-    <a href="bodycare-showergel.html" class="see-all">Bekijk alle Shower Gel producten →</a>
-  </div>
-</section>
-
-<!-- ===== BODY LOTION ===== -->
-<section class="collection-section">
-  <div class="section-header">
-    <h2>Body Lotion</h2>
-    <span class="section-meta">236ml &bull; €9,99</span>
-  </div>
-  <div class="products-grid">
-
-    <a href="bitter-sweet-lotion.html" class="product-card">
-      <div class="card-image"><img src="images/BitterweettBodylostion.jpg.webp" alt="Bitter Sweet" loading="lazy"></div>
-      <div class="card-info"><span class="card-name">Bitter Sweet</span><span class="card-meta">Body Lotion &bull; 236ml</span></div>
-    </a>
-
-    <a href="angels-dream-lotion.html" class="product-card">
-      <div class="card-image"><img src="images/AngelsssDreamBodylotion.jpg.webp" alt="Angel's Dream" loading="lazy"></div>
-      <div class="card-info"><span class="card-name">Angel's Dream</span><span class="card-meta">Body Lotion &bull; 236ml</span></div>
-    </a>
-
-    <a href="midnight-lotion.html" class="product-card">
-      <div class="card-image"><img src="images/midnightlotion.jpg.webp" alt="Midnight" loading="lazy"></div>
-      <div class="card-info"><span class="card-name">Midnight</span><span class="card-meta">Body Lotion &bull; 236ml</span></div>
-    </a>
-
-    <a href="moonlight-lotion.html" class="product-card">
-      <div class="card-image"><img src="images/moonlightlotion.jpg.webp" alt="Moonlight" loading="lazy"></div>
-      <div class="card-info"><span class="card-name">Moonlight</span><span class="card-meta">Body Lotion &bull; 236ml</span></div>
-    </a>
-
-    <a href="by-night-lotion.html" class="product-card">
-      <div class="card-image"><img src="images/bynightlotion.jpg.webp" alt="By Night" loading="lazy"></div>
-      <div class="card-info"><span class="card-name">By Night</span><span class="card-meta">Body Lotion &bull; 236ml</span></div>
-    </a>
-
-    <a href="vanilla-sugar-lotion.html" class="product-card">
-      <div class="card-image"><img src="images/vanillasugarlotion.jpg.webp" alt="Vanilla Sugar" loading="lazy"></div>
-      <div class="card-info"><span class="card-name">Vanilla Sugar</span><span class="card-meta">Body Lotion &bull; 236ml</span></div>
-    </a>
-
-    <a href="queen-lotion.html" class="product-card">
-      <div class="card-image"><img src="images/Queenlotion.jpg.webp" alt="Queen" loading="lazy"></div>
-      <div class="card-info"><span class="card-name">Queen</span><span class="card-meta">Body Lotion &bull; 236ml</span></div>
-    </a>
-
-    <a href="japanese-cherry-lotion.html" class="product-card">
-      <div class="card-image"><img src="images/japoncicegilotion.jpg.webp" alt="Japanese Cherry" loading="lazy"></div>
-      <div class="card-info"><span class="card-name">Japanese Cherry</span><span class="card-meta">Body Lotion &bull; 236ml</span></div>
-    </a>
-
-    <a href="pink-magnolia-lotion.html" class="product-card">
-      <div class="card-image"><img src="images/Pinkmagnolialotion.jpg.webp" alt="Pink Magnolia" loading="lazy"></div>
-      <div class="card-info"><span class="card-name">Pink Magnolia</span><span class="card-meta">Body Lotion &bull; 236ml</span></div>
-    </a>
-
-  </div>
-  <div class="see-all-wrap">
-    <a href="bodycare-lotion.html" class="see-all">Bekijk alle Body Lotion producten →</a>
-  </div>
-</section>
-
-<div class="page-footer-space"></div>
 <script src="cart.js"></script>
 </body>
 </html>
