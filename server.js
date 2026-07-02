@@ -47,6 +47,98 @@ app.post('/webhook', express.raw({ type: 'application/json' }), async (req, res)
 // Overige routes: JSON body parser
 app.use(express.json());
 
+// ===== Checkout sessie aanmaken =====
+app.post('/api/create-checkout-session', async (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+
+  const { items } = req.body;
+  if (!items || !items.length) {
+    return res.status(400).json({ error: 'Geen producten opgegeven' });
+  }
+
+  // Bereken totaal van alle items
+  const totalEuros = items.reduce((sum, item) => sum + item.price * item.qty, 0);
+
+  // Dynamische verzendopties op basis van totaalbedrag
+  const shippingOptions = totalEuros >= 50
+    ? [
+        {
+          shipping_rate_data: {
+            type: 'fixed_amount',
+            fixed_amount: { amount: 0, currency: 'eur' },
+            display_name: 'Standaard verzending — Gratis',
+            delivery_estimate: {
+              minimum: { unit: 'business_day', value: 2 },
+              maximum: { unit: 'business_day', value: 4 },
+            },
+          },
+        },
+        {
+          shipping_rate_data: {
+            type: 'fixed_amount',
+            fixed_amount: { amount: 0, currency: 'eur' },
+            display_name: 'Gratis afhalen — Haarlemmerstraat 168, Leiden',
+          },
+        },
+      ]
+    : [
+        {
+          shipping_rate_data: {
+            type: 'fixed_amount',
+            fixed_amount: { amount: 495, currency: 'eur' },
+            display_name: 'Standaard verzending',
+            delivery_estimate: {
+              minimum: { unit: 'business_day', value: 2 },
+              maximum: { unit: 'business_day', value: 4 },
+            },
+          },
+        },
+        {
+          shipping_rate_data: {
+            type: 'fixed_amount',
+            fixed_amount: { amount: 0, currency: 'eur' },
+            display_name: 'Gratis afhalen — Haarlemmerstraat 168, Leiden',
+          },
+        },
+      ];
+
+  const lineItems = items.map(item => ({
+    price_data: {
+      currency: 'eur',
+      product_data: { name: `${item.name} — ${item.category}` },
+      unit_amount: Math.round(item.price * 100),
+    },
+    quantity: item.qty,
+  }));
+
+  const siteUrl = process.env.SITE_URL || 'https://loris-parfum-leiden.nl';
+
+  try {
+    const session = await stripe.checkout.sessions.create({
+      payment_method_types: ['ideal', 'card'],
+      line_items: lineItems,
+      mode: 'payment',
+      shipping_address_collection: { allowed_countries: ['NL', 'BE', 'DE'] },
+      shipping_options: shippingOptions,
+      success_url: `${siteUrl}/bedankt.html`,
+      cancel_url: `${siteUrl}/winkelwagen.html`,
+    });
+
+    res.json({ url: session.url });
+  } catch (err) {
+    console.error('Fout bij aanmaken Stripe sessie:', err.message);
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// OPTIONS preflight voor CORS
+app.options('/api/create-checkout-session', (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.sendStatus(204);
+});
+
 // ===== Verwerk voltooide checkout =====
 async function handleCheckoutCompleted(session) {
   const email = session.customer_details?.email;
