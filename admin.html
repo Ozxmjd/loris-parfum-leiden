@@ -907,6 +907,24 @@ function renderOrdDetail(o,i) {
       '<div class="t-dim">'+(it.quantity||1)+'&times;'+(it.ml?' &middot; '+it.ml+' ml':'')+'</div>'+
       '<div class="price-txt">'+eur(it.total||it.price)+'</div></div>';
   }).join('')+'</div>' : '<p class="t-dim" style="margin-bottom:12px">Geen items.</p>';
+
+  var addr = o.shipping_address || {};
+  var addrObj = addr.address || addr;
+  var line1  = esc(addrObj.line1 || '—');
+  var postal  = esc(addrObj.postal_code || '—');
+  var city    = esc(addrObj.city || '—');
+  var country = esc(addrObj.country || '—');
+  var phone   = esc(o.customer_phone || '—');
+  var method  = esc(o.shipping_method || addr.shipping_method || '—');
+  var shipInfo = '<div style="margin-bottom:14px;padding:14px 16px;background:var(--card);border:1px solid var(--border);display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:10px 20px;">'+
+    '<div><div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim);margin-bottom:4px;">Straat</div><div style="font-size:13px;">'+line1+'</div></div>'+
+    '<div><div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim);margin-bottom:4px;">Postcode</div><div style="font-size:13px;">'+postal+'</div></div>'+
+    '<div><div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim);margin-bottom:4px;">Stad</div><div style="font-size:13px;">'+city+'</div></div>'+
+    '<div><div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim);margin-bottom:4px;">Land</div><div style="font-size:13px;">'+country+'</div></div>'+
+    '<div><div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim);margin-bottom:4px;">Telefoon</div><div style="font-size:13px;">'+phone+'</div></div>'+
+    '<div><div style="font-size:9px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--dim);margin-bottom:4px;">Verzendmethode</div><div style="font-size:13px;color:var(--gold);">'+method+'</div></div>'+
+  '</div>';
+
   var sel = '<div class="ord-status-row">'+
     '<span class="ord-status-lbl">Status wijzigen:</span>'+
     '<select class="s-sel" id="ss'+i+'">'+
@@ -917,7 +935,7 @@ function renderOrdDetail(o,i) {
     '</select>'+
     '<button class="btn btn-sm btn-gold" onclick="updOrdStatus(\''+esc(o.id)+'\','+i+')">Opslaan</button>'+
   '</div>';
-  return ig+sel;
+  return ig+shipInfo+sel;
 }
 
 function xRow(id) { var el=document.getElementById(id); if(el) el.classList.toggle('open'); }
